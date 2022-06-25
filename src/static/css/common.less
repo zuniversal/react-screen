@@ -1,0 +1,332 @@
+@import './variable.less';
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Source Han Sans CN;
+  background: #f0f2f5;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8492a6;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #e2e2e2;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+.root,
+.ant-layout {
+  width: 100%;
+  height: 100%;
+}
+
+// ::-webkit-scrollbar {
+//     width: 8px;
+//     height: 8px;
+// }
+
+// ::-webkit-scrollbar-thumb {
+//     background: #8492A6;
+//     border-radius: 10px;
+// }
+
+// ::-webkit-scrollbar-track {
+//     background: #e2e2e2;
+// }
+
+.fullfill {
+  width: 100%;
+  height: 100%;
+}
+
+.linkTd,
+.linking {
+  color: @primary;
+  cursor: pointer;
+}
+
+.posAbs {
+  position: absolute;
+  // position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.fsb {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fje {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.noMargin {
+  margin: 0 !important;
+}
+
+.contentWrapper {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.dfc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:not(:last-child):after {
+    margin-right: 10px;
+  }
+}
+
+.flex-bw {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btnWrapper {
+  .ant-btn {
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.posHidden {
+  position: fixed;
+  right: -100%;
+  bottom: -100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.hiddenmp {
+  display: none !important;
+}
+
+.hide {
+  display: none;
+  transition: all 2s linear !important;
+}
+
+.w100 {
+  width: 100%;
+}
+
+.w50 {
+  width: 50%;
+}
+
+.w25 {
+  width: 25%;
+}
+
+.primaryBorderBottom {
+  border-bottom: 1px solid @primary!important;
+}
+
+// 过滤框
+.custom-filter-dropdown {
+  padding: 8px;
+  background: #fff;
+  border-radius: 6px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+}
+
+.custom-filter-dropdown input {
+  width: 130px;
+  margin-right: 8px;
+}
+
+.noWrap {
+  white-space: nowrap;
+}
+
+.ellipsis {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.df {
+  display: flex;
+}
+
+.dif {
+  display: inline-flex;
+}
+
+.f1 {
+  flex: 1;
+}
+
+.df1 {
+  display: flex;
+  flex: 1;
+}
+
+.textInput {
+  display: block;
+  min-height: 34px;
+  padding: 4px 11px;
+  background-color: #f5f5f5;
+  border: 1px solid #d9d9d9;
+  border-radius: 2px;
+}
+
+.noBreak {
+  page-break-inside: avoid;
+}
+
+.activeLink {
+  color: @primary;
+}
+
+.activeRow {
+  background: @primary;
+}
+
+.f-r {
+  float: right;
+}
+
+// 清除浮动
+.clearFix::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.extraTips {
+  color: #ccc;
+}
+
+.dangerText {
+  color: red;
+}
+
+.t-r {
+  text-align: right;
+}
+
+.t-c {
+  text-align: center;
+}
+
+.w-128 {
+  width: 128px;
+}
+
+// .d-ib {
+//     display: inline-block;
+// }
+
+// .transition {
+//     transition: all .3s linear;
+// }
+
+// .btnWrapper {
+//     clear: both;
+//     overflow: hidden;
+//     margin-bottom: 10px;
+//     display: inline;
+// }
+
+// .ant-btn{
+//     margin-right: 5px;
+
+//     padding: 0 6px!important;
+//     height: 25px!important;
+//     font-size: 12px!important;
+
+// }
+// .ant-btn-primary {
+//     background-color: @primary!important;
+//     border-color: @primary!important;
+// }
+
+// .center {
+//     position: absolute;
+//     top: 50%;
+//     left: 50%;
+//     transform: translate(-50%, -50%)
+// }
+
+// .border {
+//     border: 1px solid #49a9ee;
+//     border-radius: 4px;
+//     transition: all .3s linear;
+// }
+
+// // .iconfont {
+// //     font-size: 36px!important;
+// // }
+
+// .tooltip {
+//     position: relative;
+//     // display: inline-block;
+//     // border-bottom: 1px dotted black; /* 悬停元素上显示点线 */
+// }
+
+// /* Tooltip 文本 */
+// .tooltip .tooltiptext {
+//     visibility: hidden;
+//     // width: 120px;
+//     width: initial;
+//     background-color: black;
+//     color: #fff;
+//     text-align: center;
+//     padding: 5px 10px;
+//     border-radius: 6px;
+
+//     /* 定位 */
+//     position: absolute;
+//     z-index: 1;
+//     // bottom: 100%;
+//     left: 25%;
+//     // margin-left: -60px;
+
+//     /* 淡入 - 1秒内从 0% 到 100% 显示: */
+//     opacity: 0;
+//     transition: opacity 1s;
+// }
+
+// /* 鼠标移动上去后显示提示框 */
+// .tooltip:hover .tooltiptext {
+//     visibility: visible;
+//     opacity: 1;
+//     z-index: 1000;
+// }
+
+// .formBtnWrapper{
+//     height: 40px;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+// }

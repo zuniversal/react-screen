@@ -1,0 +1,59 @@
+@import './variable.less';
+
+.userMsgNotice {
+  right: 320px;
+}
+
+// 通用组件样式
+.ant-radio-disabled .ant-radio-inner::after {
+  background-color: @primary;
+}
+.smartTable {
+  .actionCol a {
+    // &:nth-child(even){
+    //   padding-right: 15px;
+
+    // }
+    &:not(:last-child):after {
+      width: 2px;
+      padding: 10px;
+      color: @primary;
+      content: '|';
+    }
+    // margin-right: 10px;
+    // border-right: 2px solid @primary;
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+
+  // [disabled]{
+  //   cursor: not-allowed;
+  // }
+  .ant-pagination-item-active {
+    background: @primary;
+    a {
+      color: white;
+    }
+  }
+  .ant-table-thead > tr > th {
+    background: #f0f0f0;
+  }
+  .ant-table-thead {
+  }
+
+  th {
+    color: #fff;
+    border-bottom: 2px solid @primary!important;
+  }
+  .noThLine {
+    th {
+      border-bottom: 2px solid white !important;
+    }
+  }
+}
+
+.menuHeaderWrapper {
+  .searchForm {
+    color: @primary;
+  }
+}
