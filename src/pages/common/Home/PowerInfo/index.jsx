@@ -72,24 +72,24 @@ const configs = [
 // };
 
 const PowerInfo = props => {
-  // return <div className='machineCircleWrapper '>
-  //   {configs.map((item, index) => (<div className='powerInfoItem ' key={index} >
-  //     {/* <div className='powerInfoIconWrapper'>
-  //       <img src={item.src} className="powerInfoIcon"/>
-  //     </div> */}
-  //     {item.infos.map((v, i) => (<div className='powerInfoRow' key={i} >
-  //       <div className='text'>{v.text}</div>
-  //       <div className='val'>{v.val}</div>
-  //     </div>))}
-  //   </div>))}
-  //   <div className='machineCircle '>
-  //     {/* <img src={require('@/static/img/home/center/circle.png')} className="circleRing"/> */}
-  //     <div className='centerMachineIcon'>
-  //       <img src={require('@/static/img/home/center/water.png')} className="centerIcon"/> 
-  //       开机
-  //     </div>
-  //   </div>
-  // </div>
+  return <div className='machineCircleWrapper '>
+    {configs.map((item, index) => (<div className='powerInfoItem ' key={index} >
+      {/* <div className='powerInfoIconWrapper'>
+        <img src={item.src} className="powerInfoIcon"/>
+      </div> */}
+      {item.infos.map((v, i) => (<div className='powerInfoRow' key={i} >
+        <div className='text'>{v.text}</div>
+        <div className='val'>{v.val}</div>
+      </div>))}
+    </div>))}
+    <div className='machineCircle '>
+      {/* <img src={require('@/static/img/home/center/circle.png')} className="circleRing"/> */}
+      <div className='centerMachineIcon'>
+        <img src={require('@/static/img/home/center/water.png')} className="centerIcon"/> 
+        开机
+      </div>
+    </div>
+  </div>
   return <div className='machineCircle '>
     {configs.map((item, index) => (<div className='powerInfoItem ' key={index} >
       {/* <div className='powerInfoIconWrapper'>

@@ -82,10 +82,10 @@ const Home = props => {
       
       <div className='center'>
         <div className='centerBox powerInfoWrapper'>
-          <div className='machineCircleWrapper '>
+          {/* <div className='machineCircleWrapper '>
             <PowerInfo></PowerInfo> 
-          </div>
-          {/* <PowerInfo></PowerInfo>  */}
+          </div> */}
+          <PowerInfo></PowerInfo> 
           <EnvInfo></EnvInfo>
           <div className='factoryTitle '>来宾市城东污水处理厂</div>
         </div>
