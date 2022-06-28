@@ -17,6 +17,7 @@ import 'echarts/lib/component/dataZoom';
 import 'echarts/lib/component/timeline';
 
 import 'echarts-liquidfill'
+// import 'echarts-liquidfill/src/liquidFill.js'
 
 import china from 'echarts/map/json/china.json';
 echarts.registerMap('china', china);

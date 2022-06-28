@@ -28,7 +28,7 @@
     "axios": "^0.20.0",
     "echarts": "^4.9.0",
     "echarts-for-react": "^2.0.16",
-    "echarts-liquidfill": "^3.1.0",
+    "echarts-liquidfill": "^2.0.6",
     "lint-staged": "^10.0.7",
     "lodash": "^4.17.20",
     "moment": "^2.27.0",

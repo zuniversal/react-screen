@@ -5,12 +5,11 @@ import {
   powerMoneyAxisConfig,
   dayHoursNum,
 } from '@/configs';
-import LineEcharts from './LineEcharts';
 import IncomeTrendChart from './IncomeTrendChart';
 import PowerLineChart from './PowerLineChart';
 import HistoryElecChart from './HistoryElecChart';
-import PowerPie from './PowerPie';
-import PowerLiquid from './PowerLiquid';
+import PowerInstallLiquid from './PowerInstallLiquid';
+import HistoryElecCalc from './HistoryElecCalc';
 import EnergyCalc from './EnergyCalc';
 import EnvInfo from './EnvInfo';
 import PowerInfo from './PowerInfo';
@@ -19,8 +18,6 @@ import ElectricPie from './ElectricPie';
 import logo from '@/static/img/home/logo.png';
 import sandglass from '@/static/img/home/left/sandglass.png';
 import shine from '@/static/img/home/left/shine.png';
-import pv from '@/static/img/home/left/pv.png';
-import storedEnergy from '@/static/img/home/left/storedEnergy.png';
 
 const IconTitle = props => {
   return (
@@ -57,7 +54,7 @@ const Home = props => {
             </div>
           </div>
         </div>
-        <div className='leftBox installCapacity'>
+        {/* <div className='leftBox installCapacity'>
           <div className='flexBorderBox'>
             <div className='iconTitle'>
               <div className='df'>
@@ -76,25 +73,19 @@ const Home = props => {
             </div>
             <div className='chartVal'>552</div>
           </div>
+        </div> */}
+        <div className='leftBox installCapacity'>
+          <PowerInstallLiquid></PowerInstallLiquid>
         </div>
-        <div className='leftBox historyElecCalc'>
-          <div className='iconTitle'>
-            <div className=''>
-              <img src={require('@/static/img/home/left/historyElecCalc.png')} className="icon"/>
-              <div className='chartTitle'>历史7天电量统计</div>
-            </div>
-          </div>
-          <HistoryElecChart></HistoryElecChart>
-        </div>
+        <HistoryElecCalc></HistoryElecCalc>
       </div>
       
-      {/* <div className='center'>
+      <div className='center'>
         <div className='centerBox powerInfoWrapper'>
           <div className='machineCircleWrapper '>
-            <div className='machineCircle '>
-              <PowerInfo></PowerInfo> 
-            </div>
+            <PowerInfo></PowerInfo> 
           </div>
+          {/* <PowerInfo></PowerInfo>  */}
           <EnvInfo></EnvInfo>
           <div className='factoryTitle '>来宾市城东污水处理厂</div>
         </div>
@@ -120,8 +111,7 @@ const Home = props => {
         <div className='rightBox powerLineChart'>
           <PowerLineChart></PowerLineChart>
         </div>
-
-      </div> */}
+      </div>
     </div>
   );
 };

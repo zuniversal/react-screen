@@ -129,12 +129,12 @@ const optionHandle = params => {
   };
 };
 
-const LineEcharts = props => {
+const HistoryElecChart = props => {
   const option = optionHandle(props);
-  console.log(' LineEcharts optionoption  ： ', props, option); //
+  console.log(' HistoryElecChart optionoption  ： ', props, option); //
   return <SmartEchart {...props} option={option}></SmartEchart>;
 };
 
-LineEcharts.defaultProps = {};
+HistoryElecChart.defaultProps = {};
 
-export default LineEcharts;
+export default HistoryElecChart;

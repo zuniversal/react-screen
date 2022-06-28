@@ -45,93 +45,78 @@ const optionHandle = params => {
   } = params;
   console.log(' optionoption ： ', params); //
   return {
-    colors: ['#C1232B', '#4bffa4', '#FCCE10', '#f50'],
+    title: [
+      {
+          text: '564252.5',
+          left: '48%',
+          top: "15%",
+          textAlign: 'center',
+          textStyle: {
+              fontSize: '12',
+              fontWeight: '400',
+              color: '#fff',
+          },
+      },
+      {
+          text: 'KWp',
+          left: '48%',
+          top: "30%",
+          textAlign: 'center',
+          textStyle: {
+              fontSize: '12',
+              fontWeight: '400',
+              color: '#fff',
+          },
+      },
+      {
+          text: '112850.5',
+          left: '48%',
+          top: "55%",
+          textAlign: 'center',
+          textStyle: {
+              fontSize: '12',
+              fontWeight: '400',
+              color: '#fff',
+          },
+      },
+      {
+          text: 'KW',
+          left: '48%',
+          top: "70%",
+          textAlign: 'center',
+          textStyle: {
+              fontSize: '12',
+              fontWeight: '400',
+              color: '#fff',
+          },
+      },
+    ],
     series: [
       {
         type: 'liquidFill',
-        radius: '70%',
-        z: 6,
+        radius: '100%',
         center: ['50%', '50%'],
-        amplitude: 20,
         backgroundStyle: {
           borderWidth: 1,
-          color: 'rgba(201,219,252, 1)', // 球体
+          color: '#104347',
         },
-        color: [
-          {
-            type: 'linear',
-            x: 0,
-            y: 0,
-            x2: 0,
-            y2: 1,
-            colorStops: [
-              {
-                offset: 1,
-                color: '#133480',
-              },
-              {
-                offset: 0,
-                color: '#5F8EE8',
-              },
-            ],
-            globalCoord: false,
-          },
-          {
-            type: 'linear',
-            x: 0,
-            y: 0,
-            x2: 0,
-            y2: 1,
-            colorStops: [
-              {
-                offset: 1,
-                color: '#133480',
-              },
-              {
-                offset: 0,
-                color: '#5F8EE8',
-              },
-            ],
-            globalCoord: false,
-          },
-          {
-            type: 'linear',
-            x: 0,
-            y: 0,
-            x2: 0,
-            y2: 1,
-            colorStops: [
-              {
-                offset: 1,
-                color: '#5F8DE8',
-              },
-              {
-                offset: 0,
-                color: '#5F8DE8',
-              },
-            ],
-            globalCoord: false,
-          },
-        ],
+        color: ['#31D4D5'],
+        color: params.color,
+        // data个数代表波浪数
         data: [
-          value + 0.02,
-          {
-            value: value - 0.01,
-            direction: 'left',
-          },
-          value - 0.01,
+          value,
         ],
         label: {
           normal: {
             formatter: '',
-          },
+          }
         },
         outline: {
-          show: true,
           itemStyle: {
-            borderWidth: 0,
+            borderWidth: 1,
+            borderColor: '#104347',
           },
-          borderDistance: 0,
+          borderDistance: 3,
         },
       },
     ],

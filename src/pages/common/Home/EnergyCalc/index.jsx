@@ -56,10 +56,10 @@ const configs = [
 
 const EnergyCalc = props => {
   return <div className=''>
-    {configs.map(item => (<div className='content'>
+    {configs.map((item, index) => (<div className='content' key={index} >
       <div className='chartTitle'>{item.title}</div>
       <div className='itemBox'>
-        {item.infos.map(v => (<div className='item'>
+        {item.infos.map((v, i) => (<div className='item' key={i} >
           <div className='text'>{v.text}</div>
           <div className='val'>{v.val}</div>
         </div>))}

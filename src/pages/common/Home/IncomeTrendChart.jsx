@@ -83,7 +83,9 @@ const optionHandle = params => {
         type: 'line',
         yAxisIndex: 0,
         symbol: 'circle',
+        showSymbol: false,
         symbolSize: 4,
+        showBackground: true,
         smooth: true,
         showBackground: true,
         data,
@@ -92,12 +94,12 @@ const optionHandle = params => {
   };
 };
 
-const LineEcharts = props => {
+const IncomeTrendChart = props => {
   const option = optionHandle(props);
-  console.log(' LineEcharts optionoption  ： ', props, option); //
+  console.log(' IncomeTrendChart optionoption  ： ', props, option); //
   return <SmartEchart {...props} option={option}></SmartEchart>;
 };
 
-LineEcharts.defaultProps = {};
+IncomeTrendChart.defaultProps = {};
 
-export default LineEcharts;
+export default IncomeTrendChart;

@@ -17,12 +17,12 @@ const configs1 = [
 const configs2 = [
   {
     text: '环境温度°C ',
-    val: '72',
+    val: '18',
     src: require('@/static/img/home/center/temperature.png')
   },
   {
     text: '环境湿度%',
-    val: '18',
+    val: '72',
     src: require('@/static/img/home/center/humidity.png')
   },
 ]
@@ -30,7 +30,7 @@ const configs2 = [
 const EnvInfo = props => {
   return <div className='envInfo '>
     <div className='leftBox '>
-      {configs1.map(v => (<div className='envInfoItem'>
+      {configs1.map((v, i) => (<div className='envInfoItem' key={i}>
         <div className='envInfoIconWrapper'>
           <img src={v.src} className="envInfoIcon"/>
         </div>
@@ -39,7 +39,7 @@ const EnvInfo = props => {
       </div>))}
     </div>
     <div className='rightBox '>
-      {configs2.map(v => (<div className='envInfoItem'>
+      {configs2.map((v, i) => (<div className='envInfoItem' key={i}>
         <div className='envInfoIconWrapper'>
           <img src={v.src} className="envInfoIcon"/>
         </div>
