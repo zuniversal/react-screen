@@ -33,18 +33,14 @@ const RealData = props => {
     </div> */}
     <div className='realDataItemWrapper'>
       <div className='realDataItem'>
-        {configs1.map(v => (
-          <div className='text'>{v.text}</div>
-        ))}
+        {configs1.map((v, i) => <div className='text' key={i} >{v.text}</div>)}
       </div>
       <div className='realDataItem'>
-        {configs2.map(v => (
-          <div className='val'>{v.val}</div>
-        ))}
+        {configs2.map((v, i) => <div className='val' key={i} >{v.val}</div>)}
       </div>
     </div>
 
-    <div className='lightBox'>实时数据</div>
+    <div className='lightBox' onClick={props.toggleShowRealData}>实时数据</div>
   </div>
 };
 

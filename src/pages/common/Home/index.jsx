@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, } from 'react';
 import './style.less';
 import {
   recentPowerAxisConfig,
@@ -14,6 +14,7 @@ import EnergyCalc from './EnergyCalc';
 import EnvInfo from './EnvInfo';
 import PowerInfo from './PowerInfo';
 import RealData from './RealData';
+import RealDataDesc from './RealDataDesc';
 import ElectricPie from './ElectricPie';
 import logo from '@/static/img/home/logo.png';
 import sandglass from '@/static/img/home/left/sandglass.png';
@@ -32,6 +33,10 @@ const IconTitle = props => {
 
 const Home = props => {
 
+  const [isShowRealData, setIsShowRealData] = useState(false);
+  // const [isShowRealData, setIsShowRealData] = useState(true);
+  
+  const toggleShowRealData = params => setIsShowRealData(!isShowRealData)
   return (
     <div className="home">
       <div className='systemTitle'>
@@ -93,24 +98,30 @@ const Home = props => {
 
       <div className='right'>
         <div className='rightBox electricCalc'>
-          <RealData></RealData>
+          <RealData toggleShowRealData={toggleShowRealData}></RealData>
         </div>
-        <div className='rightBox electricPie'>
-          <ElectricPie></ElectricPie>
-        </div>
-        <div className='rightBox incomeTrendChart'>
-          <div className='iconTitle'>
-            <div className='chartTitle'>当月收益趋势</div>
-            <div className='iconRight'>
-              <div className='text'>创造收益总值</div>
-              <div className='val'>655224</div>
+        {
+          isShowRealData ? <RealDataDesc></RealDataDesc> : <div className='righBlock'>
+            <div className='rightBox electricPie'>
+              <ElectricPie></ElectricPie>
+            </div>
+            <div className='rightBox incomeTrendChart'>
+              <div className='iconTitle'>
+                <div className='chartTitle'>当月收益趋势</div>
+                <div className='iconRight'>
+                  <div className='text'>创造收益总值</div>
+                  <div className='val'>655224</div>
+                </div>
+              </div>
+              <IncomeTrendChart></IncomeTrendChart>
+            </div>
+            <div className='rightBox powerLineChart'>
+              <PowerLineChart></PowerLineChart>
             </div>
           </div>
-          <IncomeTrendChart></IncomeTrendChart>
-        </div>
-        <div className='rightBox powerLineChart'>
-          <PowerLineChart></PowerLineChart>
-        </div>
+        }
+        
+        
       </div>
     </div>
   );

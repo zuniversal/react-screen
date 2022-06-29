@@ -83,9 +83,9 @@ const PowerInfo = props => {
       </div>))}
     </div>))}
     <div className='machineCircle '>
-      {/* <img src={require('@/static/img/home/center/circle.png')} className="circleRing"/> */}
+      {/* <img src={require('@/static/img/home/center/circle1.png')} className="circleRing"/> */}
       <div className='centerMachineIcon'>
-        <img src={require('@/static/img/home/center/water.png')} className="centerIcon"/> 
+        {/* <img src={require('@/static/img/home/center/water.png')} className="centerIcon"/>  */}
         开机
       </div>
     </div>

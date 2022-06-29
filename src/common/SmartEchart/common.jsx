@@ -40,7 +40,7 @@ export const grid = {
   top: '10%',
   left: '30px',
   right: 0,
-  bottom: '10%',
+  bottom: '20%',
 };
 
 export const splitLine = {

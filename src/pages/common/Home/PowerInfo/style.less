@@ -5,7 +5,7 @@
   position: relative;
   .machineCircle {
     // background: url(~@/static/img/home/center/circle.png);
-    background: url(~@/static/img/home/center/circleBlue.png) no-repeat center;
+    background: url(~@/static/img/home/center/circle1.png) no-repeat center;
     // // overflow: hidden;
     // // width: 100%;
     // width: 100%;
@@ -33,7 +33,7 @@
       // transform: translate(0px, -66%) rotate(45deg) scale(3);
       // width: 70%;
       border-bottom: 1px dashed #0DD0D2;
-      transform: translate(0px, -39%) rotate(45deg) scale(2);
+      transform: rotate(45deg) scale(2) translate(0px, -12%) ;
       width: 150%;
       height: 100%;
       // animation: slash 5s infinite ease;
@@ -48,7 +48,7 @@
       // transform: translate(0px, -32%) rotate(-45deg) scale(3);
       // width: 70%;
       border-bottom: 1px dashed #0DD0D2;
-      transform: translate(0px, -60%) rotate(-45deg) scale(2);
+      transform: rotate(-45deg) scale(2) translate(0px, -23%) ;
       width: 150%;
       height: 100%;
       // animation: slash 5s infinite ease;
@@ -65,8 +65,10 @@
     flex-direction: column;
     position: absolute;
     top: 50%;
+    top: 54%;
     left: 50%;
     transform: translate(-50%, -50%);
+    color: #11D0D2;
     .centerIcon {
       width: inherit;
     }
@@ -77,6 +79,8 @@
   position: relative;
   flex: 1;
   display: flex;
+  // background: #31D4D5;
+  z-index: 10;
   // padding: 20px;
   
   & > div {

@@ -28,6 +28,9 @@ const optionHandle = props => {
         type: 'pie',
         radius: '55%',
         center: ['55%', '60%'],
+        label: {
+          color: "#fff"
+        },
         data,
         data: [
           { value: 335, name: '访问直接' },
