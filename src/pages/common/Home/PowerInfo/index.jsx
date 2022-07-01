@@ -50,10 +50,10 @@ const configs4 = [
 ]
 
 const configs = [
-  { infos: configs1, src: require('@/static/img/home/center/pvBlue.png'), },
-  { infos: configs2, src: require('@/static/img/home/center/house.png'), },
-  { infos: configs3, src: require('@/static/img/home/center/batteryBlue.png'), },
-  { infos: configs4, src: require('@/static/img/home/center/tower.png'), },
+  { infos: configs1, src: require('@/static/img/home/center/pvBlue.png'), class: 'pvBlue', },
+  { infos: configs2, src: require('@/static/img/home/center/house.png'), class: 'house', },
+  { infos: configs3, src: require('@/static/img/home/center/batteryBlue.png'), class: 'batteryBlue', },
+  { infos: configs4, src: require('@/static/img/home/center/tower.png'), class: 'tower', },
 ]
 
 
@@ -83,9 +83,25 @@ const PowerInfo = props => {
       </div>))}
     </div>))}
     <div className='machineCircle '>
-      {/* <img src={require('@/static/img/home/center/circle1.png')} className="circleRing"/> */}
+      {/* <div className='circleRingWrapper2'>
+      <div className='circleRingWrapper3'>
+      <div className='circleRingWrapper'>
+        <img src={require('@/static/img/home/center/circle1.png')} className="circleRing"/></div></div></div> */}
+      <div className='circleRingWrapper'>
+        {/* <div className='inner inner1'></div>
+        <div className='inner inner2'></div> */}
+        
+        {/* {configs.map((item, i) => <div className='powerInfoIconWrapper'>
+          <img src={item.src} className="powerInfoIcon"/>
+        </div>)} */}
+        {configs.map((item, i) => <img src={item.src} className={`powerInfoIcon ${item.class}`} key={i}  />)}
+        {/* <img src={require('@/static/img/home/center/circle.png')} className="coverCircle"/></div> */}
+        </div>
+        {/* <img src={require('@/static/img/home/center/circle1.png')} className="circleRing"/></div> */}
+      {/* <div className='circleRingWrapper circleRingWrapper2'><img src={require('@/static/img/home/center/circle1.png')} className="circleRing"/></div>
+      <div className='circleRingWrapper circleRingWrapper3'><img src={require('@/static/img/home/center/circle1.png')} className="circleRing"/></div> */}
       <div className='centerMachineIcon'>
-        {/* <img src={require('@/static/img/home/center/water.png')} className="centerIcon"/>  */}
+        <img src={require('@/static/img/home/center/battery.png')} className="centerIcon"/> 
         开机
       </div>
     </div>
