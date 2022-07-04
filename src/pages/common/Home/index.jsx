@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState } from 'react';
 import './style.less';
 import {
   recentPowerAxisConfig,
@@ -22,40 +22,37 @@ import shine from '@/static/img/home/left/shine.png';
 
 const IconTitle = props => {
   return (
-    <div className='iconTitle'>
-      <img src={props.logo} alt=""/>
-      <img src={require('@/static/img/home/left/pv.png')} alt=""/>
-      <div className='title'>{props.title}</div>
+    <div className="iconTitle">
+      <img src={props.logo} alt="" />
+      <img src={require('@/static/img/home/left/pv.png')} alt="" />
+      <div className="title">{props.title}</div>
       {/* <div className='subTitle'>{props.subTitle}</div> */}
     </div>
   );
 };
 
 const Home = props => {
-
   const [isShowRealData, setIsShowRealData] = useState(false);
   // const [isShowRealData, setIsShowRealData] = useState(true);
-  
-  const toggleShowRealData = params => setIsShowRealData(!isShowRealData)
+
+  const toggleShowRealData = params => setIsShowRealData(!isShowRealData);
   return (
     <div className="home">
-      <div className='systemTitle'>
-        <img src={logo} alt=""/>
-        <div className='title'>
-          中宇清能 安钒达光储碳系统
-        </div>
+      <div className="systemTitle">
+        <img src={logo} className="logo" />
+        <div className="title">中宇清能 安钒达光储碳系统</div>
       </div>
-      <div className='left'>
-        <div className='borderBox calcInfo'>
-          <div className='leftBox energyCalc'>
+      <div className="left">
+        <div className="borderBox calcInfo">
+          <div className="leftBox energyCalc">
             <EnergyCalc></EnergyCalc>
           </div>
-          <div className='leftBox carbonAssets'>
-            <img src={sandglass} className="sandglass"/>
-            <div className='chartTitle'>累计碳资产</div>
-            <div className='carbonValWrapper'>
-              <div className='carbonVal'>566854</div>
-              <img src={shine} className="shine"/>
+          <div className="leftBox carbonAssets">
+            <img src={sandglass} className="sandglass" />
+            <div className="chartTitle">累计碳资产</div>
+            <div className="carbonValWrapper">
+              <div className="carbonVal">566854</div>
+              <img src={shine} className="shine" />
             </div>
           </div>
         </div>
@@ -79,49 +76,49 @@ const Home = props => {
             <div className='chartVal'>552</div>
           </div>
         </div> */}
-        <div className='leftBox installCapacity'>
+        <div className="leftBox installCapacity">
           <PowerInstallLiquid></PowerInstallLiquid>
         </div>
         <HistoryElecCalc></HistoryElecCalc>
       </div>
-      
-      <div className='center'>
-        <div className='centerBox powerInfoWrapper'>
+
+      <div className="center">
+        <div className="centerBox powerInfoWrapper">
           {/* <div className='machineCircleWrapper '>
             <PowerInfo></PowerInfo> 
           </div> */}
-          <PowerInfo></PowerInfo> 
+          <PowerInfo></PowerInfo>
           <EnvInfo></EnvInfo>
-          <div className='factoryTitle '>来宾市城东污水处理厂</div>
+          <div className="factoryTitle ">来宾市城东污水处理厂</div>
         </div>
       </div>
 
-      <div className='right'>
-        <div className='rightBox electricCalc'>
+      <div className="right">
+        <div className="rightBox electricCalc">
           <RealData toggleShowRealData={toggleShowRealData}></RealData>
         </div>
-        {
-          isShowRealData ? <RealDataDesc></RealDataDesc> : <div className='righBlock'>
-            <div className='rightBox electricPie'>
+        {isShowRealData ? (
+          <RealDataDesc></RealDataDesc>
+        ) : (
+          <div className="righBlock">
+            <div className="rightBox electricPie">
               <ElectricPie></ElectricPie>
             </div>
-            <div className='rightBox incomeTrendChart'>
-              <div className='iconTitle'>
-                <div className='chartTitle'>当月收益趋势</div>
-                <div className='iconRight'>
-                  <div className='text'>创造收益总值</div>
-                  <div className='val'>655224</div>
+            <div className="rightBox incomeTrendChart">
+              <div className="iconTitle">
+                <div className="chartTitle">当月收益趋势</div>
+                <div className="iconRight">
+                  <div className="text">创造收益总值</div>
+                  <div className="val">655224</div>
                 </div>
               </div>
               <IncomeTrendChart></IncomeTrendChart>
             </div>
-            <div className='rightBox powerLineChart'>
+            <div className="rightBox powerLineChart">
               <PowerLineChart></PowerLineChart>
             </div>
           </div>
-        }
-        
-        
+        )}
       </div>
     </div>
   );

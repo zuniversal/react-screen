@@ -5,11 +5,14 @@ import { gridZero } from '@/common/SmartEchart/common';
 const optionHandle = props => {
   const { data, title = '' } = props;
   return {
-    ...gridZero,
-    animation: false,
-    title: {
-      text: title,
-      x: 'center',
+    // ...gridZero,
+    // animation: false,
+    // title: {
+    //   text: title,
+    //   x: 'center',
+    // },
+    tooltip: {
+      trigger: 'item',
     },
     color: [
       'rgba(236, 78, 81)',
@@ -24,12 +27,13 @@ const optionHandle = props => {
     // },
     series: [
       {
-        name: 'Country Visit',
         type: 'pie',
         radius: '55%',
         center: ['55%', '60%'],
         label: {
-          color: "#fff"
+          fontSize: '0.1vh',
+          fontSize: '8',
+          color: '#fff',
         },
         data,
         data: [

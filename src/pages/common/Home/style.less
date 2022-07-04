@@ -1,132 +1,135 @@
 .home {
+  // background-position: center;
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 100%;
   font-family: Microsoft YaHei;
-  // background: url(/bg.jpg) no-repeat cover; 
+  // background: url(/bg.jpg) no-repeat cover;
   // background: url(/bg.jpg);
   background: url(/bg.jpg);
   background: url(~@/static/img/home/bg.png);
   background-size: cover;
-  // background-position: center;
-  display: flex;
-  justify-content: center;
-  
-  .chartVal{
-    font-size: 2.1vh;
-    font-weight: 500;
-    font-style: italic;
-    color: #31D4D5;
+
+  .logo {
+    width: 18%;
+    margin-top: -5px;
   }
-  .systemTitle{
+
+  .chartVal {
+    color: #31d4d5;
+    font-weight: 500;
+    font-size: 2.1vh;
+    font-style: italic;
+  }
+  .systemTitle {
     position: fixed;
     display: flex;
     align-items: center;
-    margin-top: 1.9vh;
+    margin-top: 1.7vh;
   }
-  .chartTitle{
+  .chartTitle {
     color: #fff;
-    font-size: 2vh;
     font-weight: bold;
+    font-size: 1.5vh;
     white-space: nowrap;
-    
   }
-  .factoryTitle{
-    color: #fff;
-    font-size: 2.5vh;
+  .factoryTitle {
     margin: -15px auto;
     margin: 0px auto;
-  }
-  .title{
-    font-size: 2.5vh;
-    font-weight: 400;
     color: #fff;
+    font-size: 2.5vh;
+  }
+  .title {
+    color: #fff;
+    font-weight: 400;
+    font-size: 2.5vh;
   }
 
   .left {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
     width: 100%;
     // margin: 10px;
     margin-top: 3%;
     margin-left: 1%;
-    padding-right: 12px;
+    // padding-right: 12px;
 
     .calcInfo {
-      flex: 1;
       display: flex;
+      flex: 1;
       flex-direction: column;
       // margin-bottom: 10px;
       .energyCalc {
-        flex: 1;
         display: flex;
+        flex: 1;
         margin-bottom: 10px;
       }
       .carbonAssets {
         // flex: 1;
         display: flex;
-        margin-bottom: 10px;
         align-items: center;
+        margin-bottom: 10px;
         overflow: initial;
         .sandglass {
           margin-right: 20px;
         }
         .carbonValWrapper {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
           position: relative;
+          display: flex;
+          flex: 1;
+          flex-direction: column;
         }
         .carbonVal {
-          font-size: 3vh;
-          font-weight: bold;
-          font-style: italic;
-          color: #FD6D4F;
-          // background: url(~@/static/img/home/left/shine.png) no-repeat center;
-          text-align: right;
+          margin-top: -25px;
           padding-right: 15vh;
           padding-right: 60px;
+          color: #fd6d4f;
+          font-weight: bold;
+          font-size: 3vh;
+          font-style: italic;
+          // background: url(~@/static/img/home/left/shine.png) no-repeat center;
+          text-align: right;
           background-size: 20vh 20vh;
-          margin-top: -25px;
         }
         .shine {
-          margin-right: 20px;
           position: absolute;
           // right: 15vh;
           top: -15px;
           right: -20px;
+          margin-right: 20px;
         }
       }
     }
     .installCapacity {
-      flex: 1;
       display: flex;
+      flex: 1;
       margin-bottom: 10px;
     }
-
   }
-  .center{
-    flex: 1;
+  .center {
     display: flex;
+    flex: 1;
     // margin: 0 15px;
     margin-top: 5%;
     margin-bottom: 10px;
   }
   .righBlock {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
     transition: all 1s linear !important;
   }
   .powerInfoWrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
     position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
   }
   .infoBox {
-    flex: 1;
     display: flex;
+    flex: 1;
     padding: 20px;
     & > div {
       // margin: 20px;
@@ -139,17 +142,13 @@
     }
   }
 
-
-
-
-
   .right {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
     margin-top: 3%;
     margin-right: 1%;
-    padding-left: 12px;
+    // padding-left: 12px;
     transition: all 1s linear !important;
 
     .electricCalc {
@@ -158,19 +157,19 @@
       margin-bottom: 10px;
     }
     .electricPie {
-      flex: 1;
       display: flex;
+      flex: 1;
       margin-bottom: 10px;
     }
     .incomeTrendChart {
-      flex: 1;
       display: flex;
+      flex: 1;
       flex-direction: column;
       margin-bottom: 10px;
     }
     .powerLineChart {
-      flex: 1;
       display: flex;
+      flex: 1;
       flex-direction: column;
     }
   }
@@ -178,7 +177,7 @@
 
 .echarts-for-react {
   width: 100%;
-  height: 100%!important;
+  height: 100% !important;
 }
 
 .iconTitle {
@@ -187,64 +186,63 @@
   .icon {
     margin-right: 10px;
   }
-  
-  div{
+
+  div {
     display: flex;
     align-items: center;
   }
 
   .iconRight {
     .text {
-      font-size: 2.3vh;
-      font-weight: bolder;
-      white-space: nowrap;
       color: #fff;
+      font-weight: bolder;
+      font-size: 2.3vh;
+      white-space: nowrap;
     }
     .val {
-      font-size: 3vh;
-      font-weight: bolder;
-      font-style: italic;
-      color: #FD6D4F;
       margin-left: 10px;
+      color: #fd6d4f;
+      font-weight: bolder;
+      font-size: 3vh;
+      font-style: italic;
     }
   }
-  
 }
 
 .centerBox {
   display: flex;
-  background: url("/border.png");
-  background: url(~@/static/img/home/centerBox.png);
   // overflow: hidden;
   width: 100%;
+  background: url('/border.png');
+  background: url(~@/static/img/home/centerBox.png);
   background-size: 100% 100%;
 }
 
 .leftBox {
   display: flex;
-  background: url("/border.png");
-  background: url(~@/static/img/home/leftBox.png);
   // overflow: hidden;
   width: 100%;
   padding: 10px 12px;
-  background-size: cover;
   overflow: hidden;
+  background: url('/border.png');
+  background: url(~@/static/img/home/leftBox.png);
+  background-size: cover;
 }
 
 .rightBox {
   display: flex;
-  background: url("/border.png");
-  background: url(~@/static/img/home/rightBox.png);
   // overflow: hidden;
   width: 100%;
   padding: 10px 12px;
-  background-size: cover;
   overflow: hidden;
+  background: url('/border.png');
+  background: url(~@/static/img/home/rightBox.png);
+  background-size: cover;
 }
 
-.flexBorderBox{
-  flex: 1;
+.flexBorderBox {
   display: flex;
+  flex: 1;
   flex-direction: column;
   // &:not(:last-child) {
   //   border-image: url(~@/static/img/home/verticalLine.png) 30 stretch;
@@ -252,54 +250,53 @@
   //   border: 10px solid transparent;
   // }
 
-  .chartVal{
+  .chartVal {
     margin-left: 30px;
   }
 }
 
-.lightBox{
-  background: rgba(7, 255, 220, 0.3);
-  border: 1px solid #07FFDC;
-  color: #fff;
+.lightBox {
   padding: 2px 12px;
+  color: #fff;
   font-size: 12px;
   white-space: nowrap;
+  background: rgba(7, 255, 220, 0.3);
+  border: 1px solid #07ffdc;
   cursor: default;
 }
 
-.colorIntroWrapper{
+.colorIntroWrapper {
   display: flex;
   justify-content: space-evenly;
   color: #fff;
   font-size: 1.8vh;
-  .colorIntroItem{
+  .colorIntroItem {
     &.introBlue {
       &::before {
-        border: 2px solid #0DD0D2;
+        border: 2px solid #0dd0d2;
       }
     }
     &.introGreen {
       &::before {
-        border: 2px solid #0CEBA3;
+        border: 2px solid #0ceba3;
       }
     }
     &.introOrange {
       &::before {
-        border: 2px solid #FC7154;
+        border: 2px solid #fc7154;
       }
     }
     &::before {
-      content: " ";
       display: inline-block;
-      margin-right: 5px;
       width: 9px;
       height: 9px;
+      margin-right: 5px;
+      border: 2px solid #0dd0d2;
       border-radius: 50%;
-      border: 2px solid #0DD0D2;
+      content: ' ';
     }
   }
 }
-
 
 @keyframes slash {
   0% {

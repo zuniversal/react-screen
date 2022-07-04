@@ -34,9 +34,9 @@ const datas = [
 const monthArr = createIndexArr(24).map(v => `${v}`);
 
 const value = 0.5;
-const value1 = 75.2
-const value2 = 75.2
-const data = [value, value, value, ];
+const value1 = 75.2;
+const value2 = 75.2;
+const data = [value, value, value];
 
 const optionHandle = params => {
   const {
@@ -47,48 +47,48 @@ const optionHandle = params => {
   return {
     title: [
       {
-          text: '564252.5',
-          left: '48%',
-          top: "15%",
-          textAlign: 'center',
-          textStyle: {
-              fontSize: '12',
-              fontWeight: '400',
-              color: '#fff',
-          },
+        text: '564252.5',
+        left: '48%',
+        top: '15%',
+        textAlign: 'center',
+        textStyle: {
+          fontSize: '0.8vh',
+          fontWeight: '400',
+          color: '#fff',
+        },
       },
       {
-          text: 'KWp',
-          left: '48%',
-          top: "30%",
-          textAlign: 'center',
-          textStyle: {
-              fontSize: '12',
-              fontWeight: '400',
-              color: '#fff',
-          },
+        text: 'KWp',
+        left: '48%',
+        top: '30%',
+        textAlign: 'center',
+        textStyle: {
+          fontSize: '0.8vh',
+          fontWeight: '400',
+          color: '#fff',
+        },
       },
       {
-          text: '112850.5',
-          left: '48%',
-          top: "55%",
-          textAlign: 'center',
-          textStyle: {
-              fontSize: '12',
-              fontWeight: '400',
-              color: '#fff',
-          },
+        text: '112850.5',
+        left: '48%',
+        top: '55%',
+        textAlign: 'center',
+        textStyle: {
+          fontSize: '0.8vh',
+          fontWeight: '400',
+          color: '#fff',
+        },
       },
       {
-          text: 'KW',
-          left: '48%',
-          top: "70%",
-          textAlign: 'center',
-          textStyle: {
-              fontSize: '12',
-              fontWeight: '400',
-              color: '#fff',
-          },
+        text: 'KW',
+        left: '48%',
+        top: '70%',
+        textAlign: 'center',
+        textStyle: {
+          fontSize: '0.8vh',
+          fontWeight: '400',
+          color: '#fff',
+        },
       },
     ],
     series: [
@@ -103,13 +103,11 @@ const optionHandle = params => {
         color: ['#31D4D5'],
         color: params.color,
         // data个数代表波浪数
-        data: [
-          value,
-        ],
+        data: [value],
         label: {
           normal: {
             formatter: '',
-          }
+          },
         },
         outline: {
           itemStyle: {
