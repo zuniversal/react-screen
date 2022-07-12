@@ -106,7 +106,7 @@ const Home = props => {
             </div>
             <div className="rightBox incomeTrendChart">
               <div className="iconTitle">
-                <div className="chartTitle">当月收益趋势</div>
+                <div className="chartTitle">近30天收益趋势</div>
                 <div className="iconRight">
                   <div className="text">创造收益总值</div>
                   <div className="val">655224</div>

@@ -2,6 +2,7 @@ import React from 'react';
 import './style.less';
 import SmartEchart from '@/common/SmartEchart';
 import { createIndexArr } from '@/utils';
+import moment from 'moment';
 
 const datas = [
   // 0,
@@ -32,8 +33,11 @@ const datas = [
   163.3,
 ];
 
-const dayArr = createIndexArr(6).map(
-  v => '2022-04-' + `${v}`.padStart(2, '0'),
+const { getDate, getMonth,  } = new Date()
+
+const dayArr = createIndexArr(7).reverse().map(
+  // v => `2022-${moment().subtract(v, 'days').format('YYYY-MM-DD')}-` + `${v + 1}`.padStart(2, '0'),
+  v => `${moment().subtract(v, 'days').format('YYYY-MM-DD')}`
 );
 
 const optionHandle = params => {
@@ -41,7 +45,7 @@ const optionHandle = params => {
     // data = [],
     data = datas,
   } = params;
-  console.log(' optionoption ： ', params); //
+  console.log(' optionoption  ', params, ); //
   return {
     // legend: {
     //   data: [
@@ -71,7 +75,7 @@ const optionHandle = params => {
         },
         data: dayArr,
         axisLabel: {
-          rotate: 10,
+          // rotate: 10,
           fontSize: 10, 
           textStyle: {
             color: 'rgba(255, 255, 255, 0.2)',  

@@ -39,7 +39,9 @@ export const grid = {
   // bottom: '10%',
   top: '10%',
   left: '30px',
+  left: '40px',
   right: 0,
+  right: '2%',
   bottom: '20%',
 };
 

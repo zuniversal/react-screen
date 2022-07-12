@@ -17,7 +17,7 @@ const greenEnergyConfig = {
       val: '584.7',
     },
     {
-      text: '本月发电量 kWWh',
+      text: '本月发电量 kWh',
       val: '2243.1',
     },
     {

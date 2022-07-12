@@ -21,6 +21,8 @@ import 'echarts-liquidfill'
 
 import china from 'echarts/map/json/china.json';
 echarts.registerMap('china', china);
+// import { debounce,  } from '@/utils'// 
+import debounce from 'lodash/debounce';
 
 /* 
     通用 Echarts 组件 
@@ -45,6 +47,16 @@ class SmartEcharts extends React.PureComponent {
     //   e.getDataURL(),
     // );
   };
+
+  resize = debounce(() => {
+      console.log('SmartEchart resize debounce ： ', this.echartsRef,  );
+      window.location.reload()
+    }, 500)
+  componentDidMount() {
+    console.log(' SmartEchart 组件componentDidMount挂载 ： ', this.state, this.props,  )// 
+    window.addEventListener('resize', debounce(this.resize))
+  }
+  
 
   render() {
     const { data, type, legend, tabData, option } = this.props;

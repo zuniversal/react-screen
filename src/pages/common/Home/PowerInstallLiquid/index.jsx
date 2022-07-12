@@ -15,7 +15,7 @@ const configs = [
       },
       {
         class: 'introOrange', 
-        text: '总装接容量', 
+        text: '总装机容量', 
       },
     ],  
   },
@@ -31,7 +31,7 @@ const configs = [
       },
       {
         class: 'introOrange', 
-        text: '总装接容量', 
+        text: '总装机容量', 
       },
     ],
   },

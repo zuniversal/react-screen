@@ -2,6 +2,7 @@ import React from 'react';
 import './style.less';
 import SmartEchart from '@/common/SmartEchart';
 import { createIndexArr } from '@/utils';
+import moment from 'moment';
 
 const datas = [
   121.6,
@@ -29,10 +30,18 @@ const datas = [
   183.8,
   133.0,
   163.3,
-];
+  313.6,
+  253.2,
+  313.7,
+  383.8,
+  233.0,
+  213.0,
+  163.3,
+].map((v) => v * 500);
 
-const monthArr = createIndexArr(24).map(
-  v => `${v}`
+const monthArr = createIndexArr(31).reverse().map(
+  // v => `${v + 1}`
+  v => `${moment().subtract(v, 'days').format('YYYY-MM-DD')}`
 );
 
 const Title = () => 'Title'

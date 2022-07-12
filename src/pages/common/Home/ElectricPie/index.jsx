@@ -36,13 +36,13 @@ const configs = [
 ]
 
 const ElectricPie = props => {
-  return configs.map(item => (<div className='flexBorderBox'>
+  return configs.map((item, index) => (<div className='flexBorderBox' key={index}>
       <div className='electricPieItem'>
         <div className='chartTitle'>{item.title}</div>
         <PowerPie></PowerPie>
       </div>
       <div className='electricPieInfoWrapper'>
-        {item.infos.map(v => (<div className='electricPieInfoRow'>
+        {item.infos.map((v, i) => (<div className='electricPieInfoRow' key={i}>
           <div className='text'>{v.text}</div>
           <div className='val'>{v.val} {v.unit}</div>
         </div>))}
