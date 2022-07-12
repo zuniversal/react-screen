@@ -8,7 +8,7 @@
     // animation: rotate 1s infinite ease;
     width: 100%;
     // width: 70%;
-    height: 100%;
+    // height: 100%;
     margin: 0 auto;
     overflow: hidden;
     // background: url(~@/static/img/home/center/circle.png);
@@ -22,7 +22,7 @@
     // border:1px solid red;
     // padding: 0 100% 100% 0;
 
-    background: url(~@/static/img/home/center/circle.png) no-repeat center;
+    // background: url(~@/static/img/home/center/circle.png) no-repeat center;
     background-size: contain;
     background-size: 70%;
 
@@ -60,10 +60,19 @@
 
   .circleRingWrapper2,
   .circleRingWrapper3 {
-    border: 1px dashed #0dd0d2;
-    transform: rotate(45deg) scale(1) translate(0px, -9%);
-    transform-origin: bottom center;
+    // border: 1px dashed #0dd0d2;
+    // transform: rotate(45deg) scale(1) translate(0px, -9%);
+    // transform-origin: bottom center;
   }
+  .innerWrapper {
+    position: absolute;
+    top: 15%;
+    right: 15%;
+    bottom: 15%;
+    left: 15%;
+    overflow: hidden;
+  }
+
   .inner {
     position: absolute;
     top: 28%;
@@ -72,17 +81,33 @@
     display: inline-block;
     width: 0px;
     height: 100%;
+    font-size: 20px;
     border-left: 1px dashed #0dd0d2;
     transform: rotate(45deg) scale(2);
   }
   .inner1 {
     left: 23%;
+    left: 10%;
+    left: 20%;
     transform: rotate(45deg) scale(2);
+    animation: translateLeft 5s infinite linear;
   }
   .inner2 {
     left: 400px;
-    left: 75%;
+    left: 90%;
+    left: 80%;
     transform: rotate(-45deg) scale(2);
+    animation: translateRight 5s infinite linear;
+  }
+  .inner3 {
+    left: 20%;
+    transform: rotate(45deg) scale(2);
+    animation: translateLeftR 5s infinite linear;
+  }
+  .inner4 {
+    left: 80%;
+    transform: rotate(-45deg) scale(2);
+    animation: translateRightR 5s infinite linear;
   }
   .circleRingWrapper {
     margin: 0 auto;
@@ -111,7 +136,9 @@
     //   // animation: slash 5s infinite ease;
     // }
   }
-
+  .circleRing2 {
+    width: 100%;
+  }
   .circleRing {
     width: inherit;
     width: fit-content;

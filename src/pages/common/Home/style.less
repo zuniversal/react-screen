@@ -197,8 +197,8 @@
   .iconRight {
     .text {
       color: #fff;
-      font-size: 1.8vh;
       font-weight: bolder;
+      font-size: 1.8vh;
       white-space: nowrap;
     }
     .val {
@@ -313,5 +313,41 @@
   }
   100% {
     transform: rotate(45deg) scale(1.414);
+  }
+}
+
+@keyframes translateLeft {
+  0% {
+    transform: rotate(45deg) scale(2) translate(0px, -0%);
+  }
+  100% {
+    transform: rotate(45deg) scale(2) translate(0px, -100%);
+  }
+}
+
+@keyframes translateRight {
+  0% {
+    transform: rotate(-45deg) scale(2) translate(0px, -0%);
+  }
+  100% {
+    transform: rotate(-45deg) scale(2) translate(0px, -100%);
+  }
+}
+
+@keyframes translateLeft {
+  0% {
+    transform: rotate(45deg) scale(2) translate(0px, -100%);
+  }
+  100% {
+    transform: rotate(45deg) scale(2) translate(0px, -0%);
+  }
+}
+
+@keyframes translateRight {
+  0% {
+    transform: rotate(-45deg) scale(2) translate(0px, -100%);
+  }
+  100% {
+    transform: rotate(-45deg) scale(2) translate(0px, -0%);
   }
 }
