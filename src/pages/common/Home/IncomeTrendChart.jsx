@@ -37,14 +37,19 @@ const datas = [
   233.0,
   213.0,
   163.3,
-].map((v) => v * 500);
+].map(v => v * 420);
 
-const monthArr = createIndexArr(31).reverse().map(
-  // v => `${v + 1}`
-  v => `${moment().subtract(v, 'days').format('YYYY-MM-DD')}`
-);
+const monthArr = createIndexArr(31)
+  .reverse()
+  .map(
+    // v => `${v + 1}`
+    v =>
+      `${moment()
+        .subtract(v, 'days')
+        .format('MM-DD')}`,
+  );
 
-const Title = () => 'Title'
+const Title = () => 'Title';
 
 const optionHandle = params => {
   const {
@@ -58,7 +63,7 @@ const optionHandle = params => {
     //   text: '当月收益趋势',
     //   fontSize: 12,
     //   textStyle: {
-    //     color: '#fff',  
+    //     color: '#fff',
     //   },
     // },
     xAxis: [
@@ -68,9 +73,9 @@ const optionHandle = params => {
           type: 'shadow',
         },
         axisLabel: {
-          fontSize: 10, 
+          fontSize: 10,
           textStyle: {
-            color: 'rgba(255, 255, 255, 0.2)',   
+            color: 'rgba(255, 255, 255, 0.2)',
           },
         },
         data: monthArr,
@@ -80,9 +85,9 @@ const optionHandle = params => {
     yAxis: {
       type: 'value',
       axisLabel: {
-        fontSize: 10, 
+        fontSize: 10,
         textStyle: {
-          color: 'rgba(255, 255, 255, 0.2)',  
+          color: 'rgba(255, 255, 255, 0.2)',
         },
       },
     },
