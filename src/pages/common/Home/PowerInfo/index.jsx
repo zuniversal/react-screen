@@ -108,8 +108,8 @@ const PowerInfo = props => {
       <div className='circleRingWrapper'>
         <img src={require('@/static/img/home/center/circle1.png')} className="circleRing"/></div></div></div> */}
         <div className="circleRingWrapper">
-          <div className="inner inner1"></div>
-          <div className="inner inner2"></div>
+          {/* <div className='inner inner1'></div>
+        <div className='inner inner2'></div> */}
 
           {/* {configs.map((item, i) => <div className='powerInfoIconWrapper'>
           <img src={item.src} className="powerInfoIcon"/>
