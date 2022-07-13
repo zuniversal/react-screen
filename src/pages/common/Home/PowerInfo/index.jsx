@@ -121,6 +121,9 @@ const PowerInfo = props => {
             className="circleRing2"
           />
         </div>
+        <div className="centerMachineIcon">
+          开机
+        </div> 
         {/* <div className='circleRingWrapper circleRingWrapper3'><img src={require('@/static/img/home/center/circle1.png')} className="circleRing"/></div> */}
         {/* <div className="centerMachineIcon">
           <img

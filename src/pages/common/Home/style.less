@@ -63,50 +63,51 @@
       flex: 1;
       flex-direction: column;
       // margin-bottom: 10px;
-      .energyCalc {
+    }
+    .energyCalc {
+      display: flex;
+      flex: 5;
+      margin-bottom: 10px;
+    }
+    .carbonAssets {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      overflow: initial;
+      .sandglass {
+        margin-right: 20px;
+      }
+      .carbonValWrapper {
+        position: relative;
         display: flex;
         flex: 1;
-        margin-bottom: 10px;
+        flex-direction: column;
       }
-      .carbonAssets {
-        // flex: 1;
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-        overflow: initial;
-        .sandglass {
-          margin-right: 20px;
-        }
-        .carbonValWrapper {
-          position: relative;
-          display: flex;
-          flex: 1;
-          flex-direction: column;
-        }
-        .carbonVal {
-          margin-top: -25px;
-          padding-right: 15vh;
-          padding-right: 60px;
-          color: #fd6d4f;
-          font-weight: bold;
-          font-size: 3vh;
-          font-style: italic;
-          // background: url(~@/static/img/home/left/shine.png) no-repeat center;
-          text-align: right;
-          background-size: 20vh 20vh;
-        }
-        .shine {
-          position: absolute;
-          // right: 15vh;
-          top: -15px;
-          right: -20px;
-          margin-right: 20px;
-        }
+      .carbonVal {
+        margin-top: -25px;
+        padding-right: 15vh;
+        padding-right: 60px;
+        color: #fd6d4f;
+        font-weight: bold;
+        font-size: 3vh;
+        font-size: 2.5vh;
+        font-style: italic;
+        // background: url(~@/static/img/home/left/shine.png) no-repeat center;
+        text-align: right;
+        background-size: 20vh 20vh;
+      }
+      .shine {
+        position: absolute;
+        // right: 15vh;
+        top: -15px;
+        right: -20px;
+        margin-right: 20px;
       }
     }
     .installCapacity {
       display: flex;
-      flex: 1;
+      flex: 4;
       margin-bottom: 10px;
     }
   }

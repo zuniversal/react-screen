@@ -3,6 +3,9 @@ import routes from './routes';
 // import common from './routes/common';
 
 export default defineConfig({
+  // mfsu: { production: { output: '.mfsu-production' } },
+  // mfsu: {},
+
   nodeModulesTransform: {
     type: 'none',
   },

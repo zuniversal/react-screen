@@ -47,15 +47,19 @@ class SmartEcharts extends React.PureComponent {
     //   e.getDataURL(),
     // );
   };
-
-  resize = debounce(() => {
-      console.log('SmartEchart resize debounce ： ', this.echartsRef,  );
-      window.location.reload()
-    }, 500)
-  componentDidMount() {
-    console.log(' SmartEchart 组件componentDidMount挂载 ： ', this.state, this.props,  )// 
-    window.addEventListener('resize', debounce(this.resize))
-  }
+  // resize = debounce(() => {
+  //     console.log('SmartEchart resize debounce ： ', this.echartsRef,  );
+  //     window.location.reload()
+  //   }, 500)
+    
+  // componentDidMount() {
+  //   console.log(' SmartEchart 组件componentDidMount挂载 ： ', this.state, this.props,  )// 
+  //   window.addEventListener('resize', this.resize)
+  // }
+  // componentWillUnmount() {
+  //   console.log(' SmartEchart 组件componentWillUnmount卸载 ： ', this.state, this.props,  )// 
+  //   window.removeEventListener('resize', this.resize)
+  // }
   
 
   render() {

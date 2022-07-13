@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect,  } from 'react';
 import './style.less';
 import {
   recentPowerAxisConfig,
@@ -19,6 +19,7 @@ import ElectricPie from './ElectricPie';
 import logo from '@/static/img/home/logo.png';
 import sandglass from '@/static/img/home/left/sandglass.png';
 import shine from '@/static/img/home/left/shine.png';
+import debounce from 'lodash/debounce';
 
 const IconTitle = props => {
   return (
@@ -31,11 +32,26 @@ const IconTitle = props => {
   );
 };
 
+const resize = debounce(() => {
+  console.log('useEffect resize debounce ： ', );
+  window.location.reload()
+}, 500)
+
 const Home = props => {
   const [isShowRealData, setIsShowRealData] = useState(false);
   // const [isShowRealData, setIsShowRealData] = useState(true);
 
   const toggleShowRealData = params => setIsShowRealData(!isShowRealData);
+  
+  useEffect(() => {
+    console.log(' useEffect 更新 ： ', );
+    window.addEventListener('resize', resize)
+    return () => {
+      console.log(' useEffect 卸载 ： ', );
+      window.removeEventListener('resize', resize)
+    };
+  }, []);
+
   return (
     <div className="home">
       <div className="systemTitle">
@@ -43,7 +59,8 @@ const Home = props => {
         <div className="title">中宇清能 安钒达光储碳系统</div>
       </div>
       <div className="left">
-        <div className="borderBox calcInfo">
+        {/* <div className="borderBox calcInfo">
+        </div> */}
           <div className="leftBox energyCalc">
             <EnergyCalc></EnergyCalc>
           </div>
@@ -55,7 +72,6 @@ const Home = props => {
               <img src={shine} className="shine" />
             </div>
           </div>
-        </div>
         {/* <div className='leftBox installCapacity'>
           <div className='flexBorderBox'>
             <div className='iconTitle'>
