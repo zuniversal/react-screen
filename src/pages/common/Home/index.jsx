@@ -17,7 +17,8 @@ import RealData from './RealData';
 import RealDataDesc from './RealDataDesc';
 import ElectricPie from './ElectricPie';
 import logo from '@/static/img/home/logo.png';
-import sandglass from '@/static/img/home/left/sandglass.png';
+// import sandglass from '@/static/img/home/left/sandglass.png';
+import sandglass from '@/static/img/home/left/sandglass.gif';
 import shine from '@/static/img/home/left/shine.png';
 import debounce from 'lodash/debounce';
 
@@ -65,8 +66,10 @@ const Home = props => {
             <EnergyCalc></EnergyCalc>
           </div>
           <div className="leftBox carbonAssets">
-            <img src={sandglass} className="sandglass" />
-            <div className="chartTitle">累计碳资产</div>
+            <div className="sandglassWrapper">
+              <img src={sandglass} className="sandglass" />
+            </div>
+            <div className="chartTitle">累计绿能资产</div>
             <div className="carbonValWrapper">
               <div className="carbonVal">566854</div>
               <img src={shine} className="shine" />
@@ -122,7 +125,7 @@ const Home = props => {
             </div>
             <div className="rightBox incomeTrendChart">
               <div className="iconTitle">
-                <div className="chartTitle">近30天收益趋势</div>
+                <div className="chartTitle">近30天绿能收益趋势</div>
                 <div className="iconRight">
                   <div className="text">创造收益总值</div>
                   <div className="val">655224</div>

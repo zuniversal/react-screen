@@ -5,6 +5,7 @@ import PowerPie from '../PowerPie';
 const configs = [
   {
     title: '峰平谷电量', 
+    unit: '度',
     infos: [
       {
         text: '总电费 : ',
@@ -20,6 +21,7 @@ const configs = [
   },
   {
     title: '峰平谷电费',  
+    unit: '元',
     infos: [
       {
         text: '总电量 : ',
@@ -39,7 +41,7 @@ const ElectricPie = props => {
   return configs.map((item, index) => (<div className='flexBorderBox' key={index}>
       <div className='electricPieItem'>
         <div className='chartTitle'>{item.title}</div>
-        <PowerPie></PowerPie>
+        <PowerPie {...props} unit={item.unit}></PowerPie>
       </div>
       <div className='electricPieInfoWrapper'>
         {item.infos.map((v, i) => (<div className='electricPieInfoRow' key={i}>

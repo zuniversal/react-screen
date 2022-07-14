@@ -13,6 +13,7 @@ const optionHandle = props => {
     // },
     tooltip: {
       trigger: 'item',
+      formatter: '{b}\n{c}' + props.unit,
     },
     color: [
       'rgba(236, 78, 81)',
@@ -29,18 +30,19 @@ const optionHandle = props => {
       {
         type: 'pie',
         radius: '55%',
-        center: ['55%', '60%'],
+        // center: ['55%', '60%'],
         label: {
           fontSize: '0.1vh',
           fontSize: '8',
           color: '#fff',
+          formatter: '{b}\n{c}' + props.unit,
         },
         data,
         data: [
-          { value: 335, name: '访问直接' },
-          { value: 310, name: '邮件营销' },
-          { value: 234, name: '联盟广告' },
-          { value: 135, name: '视频广告' },
+          { value: 335, name: '谷时电量', },
+          { value: 310, name: '平时电量', },
+          { value: 234, name: '峰时电量', },
+          { value: 135, name: '其他电量', },
         ],
       },
     ],

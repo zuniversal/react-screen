@@ -7,7 +7,7 @@ const configs1 = [
     val: '26097284.52',
   },
   {
-    text: '累计无功电量KVarh',
+    text: '累计无功电量kWh',
     val: '8584633.07',
   },
 ]

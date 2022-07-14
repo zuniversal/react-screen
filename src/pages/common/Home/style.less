@@ -75,8 +75,16 @@
       align-items: center;
       margin-bottom: 10px;
       overflow: initial;
-      .sandglass {
+      .sandglassWrapper {
         margin-right: 20px;
+        width: 30px;
+        height: 40px;
+        overflow: hidden;
+      }
+      .sandglass {
+        width: 80px;
+        height: 80px;
+        transform: translate(-25px, -24px);
       }
       .carbonValWrapper {
         position: relative;
@@ -100,7 +108,8 @@
       .shine {
         position: absolute;
         // right: 15vh;
-        top: -15px;
+        top: -20px;
+        // top: -2%;
         right: -20px;
         margin-right: 20px;
       }
