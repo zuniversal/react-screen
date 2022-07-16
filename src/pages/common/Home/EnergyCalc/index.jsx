@@ -35,7 +35,7 @@ const storedEnergyConfig = {
   title: '储能统计',  
   infos: [
     {
-      text: '充电置 kWh',
+      text: '充电量 kWh',
       val: '2243.1',
     },
     {
@@ -43,7 +43,7 @@ const storedEnergyConfig = {
       val: '567.2',
     },
     {
-      text: '充放电次数 kWh',
+      text: '充放电次数',
       val: '54',
     },
   ],
