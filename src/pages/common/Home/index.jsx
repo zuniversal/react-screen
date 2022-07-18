@@ -1,4 +1,4 @@
-import React, { useState, useEffect,  } from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.less';
 import {
   recentPowerAxisConfig,
@@ -34,22 +34,22 @@ const IconTitle = props => {
 };
 
 const resize = debounce(() => {
-  console.log('useEffect resize debounce ： ', );
-  window.location.reload()
-}, 500)
+  console.log('useEffect resize debounce ： ');
+  window.location.reload();
+}, 500);
 
 const Home = props => {
   const [isShowRealData, setIsShowRealData] = useState(false);
   // const [isShowRealData, setIsShowRealData] = useState(true);
 
   const toggleShowRealData = params => setIsShowRealData(!isShowRealData);
-  
+
   useEffect(() => {
-    console.log(' useEffect 更新 ： ', );
-    window.addEventListener('resize', resize)
+    console.log(' useEffect 更新 ： ');
+    window.addEventListener('resize', resize);
     return () => {
-      console.log(' useEffect 卸载 ： ', );
-      window.removeEventListener('resize', resize)
+      console.log(' useEffect 卸载 ： ');
+      window.removeEventListener('resize', resize);
     };
   }, []);
 
@@ -62,19 +62,19 @@ const Home = props => {
       <div className="left">
         {/* <div className="borderBox calcInfo">
         </div> */}
-          <div className="leftBox energyCalc">
-            <EnergyCalc></EnergyCalc>
+        <div className="leftBox energyCalc">
+          <EnergyCalc></EnergyCalc>
+        </div>
+        <div className="leftBox carbonAssets">
+          <div className="sandglassWrapper">
+            <img src={sandglass} className="sandglass" />
           </div>
-          <div className="leftBox carbonAssets">
-            <div className="sandglassWrapper">
-              <img src={sandglass} className="sandglass" />
-            </div>
-            <div className="chartTitle">累计绿能资产</div>
-            <div className="carbonValWrapper">
-              <div className="carbonVal">566854</div>
-              <img src={shine} className="shine" />
-            </div>
+          <div className="chartTitle">累计碳资产</div>
+          <div className="carbonValWrapper">
+            <div className="carbonVal">566854</div>
+            <img src={shine} className="shine" />
           </div>
+        </div>
         {/* <div className='leftBox installCapacity'>
           <div className='flexBorderBox'>
             <div className='iconTitle'>
