@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './style.less';
+import { connect } from 'umi';
 import {
   recentPowerAxisConfig,
   powerMoneyAxisConfig,
@@ -22,6 +23,8 @@ import sandglass from '@/static/img/home/left/sandglass.gif';
 import shine from '@/static/img/home/left/shine.png';
 import debounce from 'lodash/debounce';
 
+const mapStateToProps = ({ home }) => home;
+
 const IconTitle = props => {
   return (
     <div className="iconTitle">
@@ -39,10 +42,19 @@ const resize = debounce(() => {
 }, 500);
 
 const Home = props => {
+  console.log(' Home ： ', props); //
   const [isShowRealData, setIsShowRealData] = useState(false);
   // const [isShowRealData, setIsShowRealData] = useState(true);
 
   const toggleShowRealData = params => setIsShowRealData(!isShowRealData);
+
+  useEffect(() => {
+    console.log(' useEffect  ： ');
+    // props.dispatch({
+    //   type: 'home/getTemperatureHumidityAsync',
+    // })
+    props.getTemperatureHumidityAsync();
+  }, []);
 
   useEffect(() => {
     console.log(' useEffect 更新 ： ');
@@ -143,4 +155,10 @@ const Home = props => {
   );
 };
 
-export default Home;
+export default connect(mapStateToProps, dispatch => {
+  return {
+    getTemperatureHumidityAsync: () => {
+      dispatch({ type: 'home/getTemperatureHumidityAsync' });
+    },
+  };
+})(Home);

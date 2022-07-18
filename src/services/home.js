@@ -1,19 +1,9 @@
-import {
-  get,
-  post,
-  put,
-  remove,
-  noTipsGet,
-  noTipsPost,
-  noTipsPut,
-  noTipsRemove,
-} from '@/utils/request';
+import { req } from '@/utils/request';
 
-export const getStatistic = p =>
-  noTipsGet(`console/home_page/web_statistic`, p);
-export const getOrdersChart = p => noTipsGet(`console/home_page/order_data`, p);
-export const getInspectionsChart = p =>
-  noTipsGet(`console/home_page/inspection_task_data`, p);
-export const getPendingOrders = p => noTipsGet(`console/home_page/orders`, p);
-export const getInspectionTasks = p =>
-  noTipsGet(`console/home_page/inspection_tasks`, p);
+export const get = p => req.noTipsGet(`/acrel/ADW300`, p);
+// 物联网温湿度验证
+export const getTemperatureHumidityverify = p => req.noTipsGet(`/ots/th`, p);
+// 物联网温湿度接收
+export const addTemperatureHumidity = p => req.post(`/ots/th`, p);
+// 获取最新温湿度数据
+export const getTemperatureHumidity = p => req.noTipsGet(`/ots/th/record`, p);
