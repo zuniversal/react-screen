@@ -74,7 +74,7 @@ export default defineConfig({
     });
   },
   proxy: {
-    '/api': {
+    '/ots': {
       target: 'http://106.15.92.117:9510',
       changeOrigin: true,
       // pathRewrite: {

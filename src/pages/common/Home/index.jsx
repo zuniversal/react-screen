@@ -53,7 +53,7 @@ const Home = props => {
     // props.dispatch({
     //   type: 'home/getTemperatureHumidityAsync',
     // })
-    props.getTemperatureHumidityAsync();
+    // props.getTemperatureHumidityAsync();
   }, []);
 
   useEffect(() => {
@@ -119,7 +119,7 @@ const Home = props => {
             <PowerInfo></PowerInfo> 
           </div> */}
           <PowerInfo></PowerInfo>
-          <EnvInfo></EnvInfo>
+          <EnvInfo temperatureHumidityInfo={props.temperatureHumidityInfo} ></EnvInfo>
           <div className="factoryTitle ">来宾市城东污水处理厂</div>
         </div>
       </div>
