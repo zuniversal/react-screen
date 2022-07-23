@@ -53,7 +53,7 @@ const Home = props => {
     // props.dispatch({
     //   type: 'home/getTemperatureHumidityAsync',
     // })
-    // props.getTemperatureHumidityAsync();
+    props.getTemperatureHumidityAsync();
   }, []);
 
   useEffect(() => {
