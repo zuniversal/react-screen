@@ -14,11 +14,11 @@ const model = {
   },
 
   reducers: {
-    getTemperatureHumidity(state, { payload, type }) {
-      console.log(' getTemperatureHumidityAsync ： ', state, payload);
+    getTemperatureHumidity(state, { payload, type, data, dtp, }) {
+      console.log(' getTemperatureHumidityAsync ： ', state, payload, data, dtp);
       return {
         ...state,
-        temperatureHumidityInfo: payload.data,
+        temperatureHumidityInfo: data,
       };
     },
   },
@@ -30,6 +30,7 @@ const model = {
     ) {
       console.log(' getTemperatureHumidityAsync ： ', payload, action, type);
       const res = yield call(services.getTemperatureHumidity, payload);
+      console.log(' resresres ： ', res,  )// 
       yield put({
         type: 'home/getTemperatureHumidity',
         ...res,

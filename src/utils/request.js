@@ -208,6 +208,7 @@ export class Request {
         // return res.data
         const { data, ...rest } = res.data;
 
+        return res.data
         return {
           ...data,
           rest,

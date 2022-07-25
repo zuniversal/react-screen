@@ -75,6 +75,7 @@ export default defineConfig({
   },
   proxy: {
     '/api': {
+      target: 'https://api.github.com',
       target: 'http://106.15.92.117:9510',
       changeOrigin: true,
       pathRewrite: {

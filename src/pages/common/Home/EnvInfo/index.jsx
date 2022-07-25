@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './style.less';
+import { connect } from 'umi';
+
+const mapStateToProps = ({ home }) => home;
 
 const configs1 = [
   {
@@ -28,6 +31,14 @@ const configs2 = [
 ]
 
 const EnvInfo = props => {
+  useEffect(() => {
+    console.log(' useEffect  ： ', props, );
+    // props.dispatch({
+    //   type: 'home/getTemperatureHumidityAsync',
+    // })
+    props.getTemperatureHumidityAsync();
+  }, []);
+
   return <div className='envInfo '>
     <div className='leftBox '>
       {configs1.map((v, i) => (<div className='envInfoItem' key={i}>
@@ -50,4 +61,12 @@ const EnvInfo = props => {
   </div>
 };
 
-export default EnvInfo;
+// export default EnvInfo;
+export default connect(mapStateToProps, dispatch => {
+  return {
+    getTemperatureHumidityAsync: () => {
+      dispatch({ type: 'home/getTemperatureHumidityAsync' });
+    },
+  };
+})(EnvInfo);
+
