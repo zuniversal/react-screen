@@ -84,6 +84,10 @@ const optionHandle = params => {
         showBackground: true,
         data,
         color: '#FC7154',  
+        areaStyle: {
+          color: '#FC7154', 
+          color: 'rgba(180, 94, 74,0.7)',
+        },
       },
     ],
   };

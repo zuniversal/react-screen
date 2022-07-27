@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.less';
 import SmartEchart from '@/common/SmartEchart';
-import { createIndexArr } from '@/utils';
+import { createIndexArr, vh, } from '@/utils';
 
 const datas = [
   121.6,
@@ -52,7 +52,7 @@ const optionHandle = params => {
         top: '15%',
         textAlign: 'center',
         textStyle: {
-          fontSize: '0.8vh',
+          fontSize: vh(1.5),
           fontWeight: '400',
           color: '#fff',
         },
@@ -63,7 +63,7 @@ const optionHandle = params => {
         top: '30%',
         textAlign: 'center',
         textStyle: {
-          fontSize: '0.8vh',
+          fontSize: vh(1.5),
           fontWeight: '400',
           color: '#fff',
         },
@@ -74,7 +74,7 @@ const optionHandle = params => {
         top: '55%',
         textAlign: 'center',
         textStyle: {
-          fontSize: '0.8vh',
+          fontSize: vh(1.5),
           fontWeight: '400',
           color: '#fff',
         },
@@ -85,7 +85,7 @@ const optionHandle = params => {
         top: '70%',
         textAlign: 'center',
         textStyle: {
-          fontSize: '0.8vh',
+          fontSize: vh(1.5),
           fontWeight: '400',
           color: '#fff',
         },

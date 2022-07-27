@@ -844,3 +844,5 @@ export const toFixed = (num = '', decimal = 2) => {
   }
   return parseFloat(num).toFixed(decimal);
 };
+
+export const vh = val => window.document.body.offsetHeight * 0.01 * val

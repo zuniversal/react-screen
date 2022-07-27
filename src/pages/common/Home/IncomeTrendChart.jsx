@@ -103,6 +103,10 @@ const optionHandle = params => {
         smooth: true,
         showBackground: true,
         data,
+        areaStyle: {
+          color: '#00B460',
+          color: 'rgba(3, 143, 84,0.7)',
+        },
       },
     ],
   };

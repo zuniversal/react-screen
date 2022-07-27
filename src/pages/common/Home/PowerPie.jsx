@@ -1,6 +1,7 @@
 import React from 'react';
 import SmartEchart from '@/common/SmartEchart';
 import { gridZero } from '@/common/SmartEchart/common';
+import { vh } from '@/utils';
 
 const optionHandle = props => {
   const { data, title = '' } = props;
@@ -32,8 +33,8 @@ const optionHandle = props => {
         radius: '55%',
         // center: ['55%', '60%'],
         label: {
-          fontSize: '0.1vh',
-          fontSize: '8',
+          fontSize: vh(1.5),
+          // fontSize: '8',
           color: '#fff',
           formatter: '{b}\n{c}' + props.unit,
         },
