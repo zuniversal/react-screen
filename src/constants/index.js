@@ -41,7 +41,7 @@ export const screenPort = {
 export const BIG_SCREEN =
   protocol + '//' + hostname + `:${screenPort}/normal_screen`;
 
-export const TEST_URL = ``;
+export const TEST_URL = `/api`;
 export const PROXY_URL = `/api`;
 // export const PROXY_URL = ``;
 // export const PROXY_URL = `/api/v1/cnosole/`;
