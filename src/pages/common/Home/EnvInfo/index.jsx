@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './style.less';
 import { connect } from 'umi';
+import { mapStateToProps, mapDispatchToProps, } from '@/models/home';
 
-const mapStateToProps = ({ home }) => home;
+// const mapStateToProps = ({ home }) => home;
 
 const configs1 = [
   {
@@ -21,18 +22,22 @@ const configs2 = [
   {
     text: '环境温度°C ',
     val: '18',
+    key: 'temperature',
     src: require('@/static/img/home/center/temperature.png')
   },
   {
     text: '环境湿度%',
     val: '72',
+    key: 'humidity',
     src: require('@/static/img/home/center/humidity.png')
   },
 ]
 
 const EnvInfo = props => {
+  const {temperatureHumidityInfo, } = props
+  
   useEffect(() => {
-    console.log(' useEffect  ： ', props, );
+    console.log(' EnvInfo useEffect  ： ', props, );
     // props.dispatch({
     //   type: 'home/getTemperatureHumidityAsync',
     // })
@@ -47,6 +52,7 @@ const EnvInfo = props => {
         </div>
         <div className='text'>{v.text}</div>
         <div className='val'>{v.val}</div>
+        {/* <div className='val'>{temperatureHumidityInfo[v.key]}</div> */}
       </div>))}
     </div>
     <div className='rightBox '>
@@ -55,18 +61,13 @@ const EnvInfo = props => {
           <img src={v.src} className="envInfoIcon"/>
         </div>
         <div className='text'>{v.text}</div>
-        <div className='val'>{v.val}</div>
+        {/* <div className='val'>{v.val}</div> */}
+        <div className='val'>{temperatureHumidityInfo[v.key]}</div>
       </div>))}
     </div>
   </div>
 };
 
 // export default EnvInfo;
-export default connect(mapStateToProps, dispatch => {
-  return {
-    getTemperatureHumidityAsync: () => {
-      dispatch({ type: 'home/getTemperatureHumidityAsync' });
-    },
-  };
-})(EnvInfo);
+export default connect(mapStateToProps, mapDispatchToProps)(EnvInfo);
 

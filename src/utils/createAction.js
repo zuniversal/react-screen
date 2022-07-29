@@ -157,6 +157,19 @@ export const init = (prefix, noDefault) => {
   //   Object.keys(actionMap).forEach(types => (actions[types] = action(actionMap[types])));
   //   return actions
   // };
+  
+  const createDispatch = (model) => dispatch => {
+    const actions = Object.keys(model.reducers);
+    const asyncActions = Object.keys(model.effects);
+    const dispatchActions = {};
+    [
+      ...actions,
+      ...asyncActions,
+    ].forEach(types => (dispatchActions[types] = data => dispatch({ type: `${prefix}/${types}`, payload: data, })));
+    console.log(' dispatchActions ： ', actions, asyncActions, dispatchActions,  )// 
+    return dispatchActions;
+  }
+
   return {
     names: 'zyb',
     // customActions,
@@ -177,5 +190,6 @@ export const init = (prefix, noDefault) => {
         ...createCRUD(asyncActions),
       };
     },
+    createDispatch,
   };
 };

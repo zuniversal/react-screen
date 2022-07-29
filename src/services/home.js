@@ -8,3 +8,7 @@ export const addTemperatureHumidity = p => req.post(`/ots/th`, p);
 // 获取最新温湿度数据
 export const getTemperatureHumidity = p => req.noTipsGet(`/ots/th/record/`, p);
 // export const getTemperatureHumidity = p => req.noTipsGet(`/search/users?q=zuniversal`, p);
+// 获取当月峰平谷电量及费用
+export const getElectricFee = p => req.noTipsGet(`/ele_meter/fee/`, p);
+// 获取当月峰平谷电量及费用
+export const getPowerlineInfo = p => req.noTipsGet(`/ele_meter/list/`, p);
