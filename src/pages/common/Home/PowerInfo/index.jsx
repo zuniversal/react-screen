@@ -8,7 +8,7 @@ const configs1 = [
   },
   {
     text: 'PV1电流',
-    val: '11. OA',
+    val: '11.OA',
   },
   {
     text: 'PV2电压',
@@ -30,18 +30,18 @@ const configs2 = [
 const configs3 = [
   {
     text: '电池电流',
-    val: '-16. OA',
+    val: '-16.0A',
   },
   {
-    text: '电网电流',
-    val: '6.5A',
+    text: '电池电压',
+    val: '52.5V',
   },
 ];
 
 const configs4 = [
   {
-    text: '电池电压',
-    val: '52.5V',
+    text: '电网电流',
+    val: '6.5A',
   },
   {
     text: '电网电压',
