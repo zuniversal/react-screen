@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './style.less';
 import { connect } from 'umi';
-import { mapStateToProps, mapDispatchToProps, } from '@/models/home';
+import { mapStateToProps, mapDispatchToProps } from '@/models/home';
 import SystemTitle from './SystemTitle';
 import IncomeTrendChart from './IncomeTrendChart';
 import PowerLineChart from './PowerLineChart';
@@ -33,26 +33,26 @@ const Home = props => {
   useEffect(() => {
     console.log(' useEffect  ： ');
     let userAgent = navigator.userAgent.toLowerCase();
-    if (/ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(userAgent)) {
-      console.log('前端是移动端')
-      setIsMobile('mobile')
+    if (
+      /ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(
+        userAgent,
+      )
+    ) {
+      console.log('前端是移动端');
+      setIsMobile('mobile');
     } else {
-      console.log('前端是pc端')
+      console.log('前端是pc端');
+      window.addEventListener('resize', resize);
+      return () => {
+        console.log(' useEffect 卸载 ： ');
+        window.removeEventListener('resize', resize);
+      };
     }
   }, []);
 
   useEffect(() => {
     console.log(' useEffect  ： ');
     props.getTemperatureHumidityAsync();
-  }, []);
-
-  useEffect(() => {
-    console.log(' useEffect 更新 ： ');
-    window.addEventListener('resize', resize);
-    return () => {
-      console.log(' useEffect 卸载 ： ');
-      window.removeEventListener('resize', resize);
-    };
   }, []);
 
   return (
@@ -69,7 +69,9 @@ const Home = props => {
       <div className="center">
         <div className="centerBox powerInfoWrapper">
           <PowerInfo></PowerInfo>
-          <EnvInfo temperatureHumidityInfo={props.temperatureHumidityInfo} ></EnvInfo>
+          <EnvInfo
+            temperatureHumidityInfo={props.temperatureHumidityInfo}
+          ></EnvInfo>
           <div className="factoryTitle ">来宾市城东污水处理厂</div>
         </div>
       </div>
