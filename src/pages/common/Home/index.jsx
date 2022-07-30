@@ -25,10 +25,21 @@ const resize = debounce(() => {
 
 const Home = props => {
   console.log(' Home ： ', props); //
+  const [isMobile, setIsMobile] = useState('');
   const [isShowRealData, setIsShowRealData] = useState(false);
   // const [isShowRealData, setIsShowRealData] = useState(true);
 
   const toggleShowRealData = params => setIsShowRealData(!isShowRealData);
+  useEffect(() => {
+    console.log(' useEffect  ： ');
+    let userAgent = navigator.userAgent.toLowerCase();
+    if (/ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(userAgent)) {
+      console.log('前端是移动端')
+      setIsMobile('mobile')
+    } else {
+      console.log('前端是pc端')
+    }
+  }, []);
 
   useEffect(() => {
     console.log(' useEffect  ： ');
@@ -45,7 +56,7 @@ const Home = props => {
   }, []);
 
   return (
-    <div className="home">
+    <div className={`home ${isMobile}`}>
       <SystemTitle></SystemTitle>
 
       <div className="left">
@@ -75,6 +86,7 @@ const Home = props => {
           </div>
         )}
       </div>
+      {/* <PowerLineChart></PowerLineChart> */}
     </div>
   );
 };

@@ -37,7 +37,7 @@ export const grid = {
   // right: '2%',
   // top: '12%',
   // bottom: '10%',
-  top: '10%',
+  top: '12%',
   left: '30px',
   left: '40px',
   right: 0,
@@ -75,7 +75,7 @@ export const toolbox = {
 
 export default {
   color,
-  tooltip,
+  // tooltip,
   grid,
   splitLine,
   // toolbox,

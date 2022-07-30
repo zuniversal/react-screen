@@ -92,7 +92,7 @@ class SmartEcharts extends React.PureComponent {
     // );
 
     // return null
-    // console.log(' optionConfig ： ', optionConfig, common, option, )// 
+    console.log(' optionConfig ： ', optionConfig, common, option, )// 
     return (
       <ReactEcharts
         echarts={echarts}

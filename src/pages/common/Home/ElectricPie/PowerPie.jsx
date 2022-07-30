@@ -13,6 +13,8 @@ const optionHandle = props => {
     //   x: 'center',
     // },
     tooltip: {
+      show: true,  
+      triggerOn: "mousemove",
       trigger: 'item',
       formatter: '{b}\n{c}' + props.unit,
     },
@@ -30,7 +32,7 @@ const optionHandle = props => {
     series: [
       {
         type: 'pie',
-        radius: '55%',
+        // radius: '55%',
         // center: ['55%', '60%'],
         label: {
           fontSize: vh(1.5),

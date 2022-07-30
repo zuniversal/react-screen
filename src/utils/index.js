@@ -140,6 +140,8 @@ export const nowMonthPad = `${new Date().getMonth() + 1}`.padStart(2, '0');
 export const nowDay = new Date().getDate();
 export const nowYearMonth = `${nowYear}-${nowMonth}`;
 export const nowYearMonthDay = `${nowYear}-${nowMonth}-${nowDay}`;
+export const nowYearMonthDayFull = `${nowYear}-${`${nowMonth}`.padStart(2, '0')}-${nowDay}`;
+console.log(' nowDay ： ', nowYearMonthDayFull, nowYearMonthDay, nowDay,  )//
 export const getCountDays = (month = nowMonth, year = nowYear) =>
   new Date(year, month, 0).getDate();
 // export const getMonthDays = ({month, year, isPad}) =>

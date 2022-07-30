@@ -9,6 +9,26 @@
   background: url(/bg.jpg);
   background: url(~@/static/img/home/bg.png);
   background-size: 100% 100%;
+  &.mobile{
+    flex-direction: column;
+    height: auto;
+    background: url(~@/static/img/home/mbg.png) no-repeat !important;
+    background: #0f5759!important;
+    background-size: 100% 100%;
+    .electricPie{
+      flex-direction: column;
+    }
+    .center{
+      order: -1;
+    }
+    .machineCircleWrapper {
+      padding-top: 40px;
+      padding-bottom: 100px;
+    }
+    .electricPieItem {
+      height: 200px;
+    }
+  }
 
   .logo {
     width: 16%;

@@ -1,5 +1,7 @@
 import { init } from '@/utils/createAction';
 import * as services from '@/services/home';
+import { nowYearMonthDayFull } from '@/utils';
+// import { powerConfigMap } from '@/pages/common/Home/PowerLineChart';
 
 const namespace = 'home';
 const { createAction, createDispatch, } = init(namespace);
@@ -10,7 +12,9 @@ const model = {
   state: {
     temperatureHumidityInfo: {},
     electricFee: {},
-    powerLineInfo: {},
+    powerlineInfo: {},
+    powerlineInfo: [],
+    powerlineParams: {},
   },
 
   reducers: {
@@ -41,9 +45,24 @@ const model = {
     },
     getPowerlineInfo(state, { payload, data, dtp, }) {
       console.log(' getPowerlineInfo ： ', state, payload, data, dtp);
+      // const powerlineInfo = {}
+      // if (payload.query === powerConfigMap.POWER_CURVEif) {
+      //   // powerlineInfo = data
+      // }
+      // if (payload.query === powerConfigMap.POWER_VOLTAGEif) {
+      //   // powerlineInfo = data
+      // }
+      // if (payload.query === powerConfigMap.POWER_CURRENTif) {
+      //   // powerlineInfo = data
+      // }
+      // if (payload.query === powerConfigMap.POWER_LOADif) {
+      //   // powerlineInfo = data
+      // }
+      
       return {
         ...state,
-        powerLineInfo: data,
+        powerlineInfo: data,
+        powerlineParams: payload,
       };
     },
   },
@@ -80,7 +99,12 @@ const model = {
       { call, put },
     ) {
       console.log(' getPowerlineInfoAsync ： ', payload, action, type);
-      const res = yield call(services.getPowerlineInfo, payload);
+      const params = {
+        start_time: `${nowYearMonthDayFull} 00:00:00`,
+        end_time: `${nowYearMonthDayFull} 23:59:59`,
+        ...payload,
+      }
+      const res = yield call(services.getPowerlineInfo, params);
       console.log(' getPowerlineInfoAsync resresres ： ', res,  )// 
       yield put({
         type: 'getPowerlineInfo',

@@ -155,7 +155,7 @@ const configs = [
 ];
 
 const RealDataDesc = props => {
-  return <div className='rightBox realDataDesc' >
+  return <div className='leftBox realDataDesc' >
     {configs.map((v, i) => (<div className='itemBox' key={i} >
       <div className='label'>{v.label}</div>
       <div className='val'>{v.val}</div>
