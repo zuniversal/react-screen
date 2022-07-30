@@ -1,9 +1,13 @@
 .electricPie {
   flex: 1;
+  height: 100%;
   margin-bottom: 10px;
+  .electricPieItemWrapper {
+    height: 100%;
+  }
   .electricPieItem {
-    flex: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
   }
   .electricPieInfoWrapper {
@@ -13,20 +17,20 @@
   }
   .electricPieInfoRow {
     display: flex;
-    justify-content: flex-end;
     align-items: flex-end;
+    justify-content: flex-end;
     height: 3vh;
   }
   .text {
-    font-size: 1.5vh;
-    opacity: 0.6;
-    white-space: nowrap;
     color: #fff;
+    font-size: 1.5vh;
+    white-space: nowrap;
+    opacity: 0.6;
   }
   .val {
-    font-size: 2vh;
+    color: #31d4d5;
     font-weight: 500;
+    font-size: 2vh;
     font-style: italic;
-    color: #31D4D5;
   }
 }

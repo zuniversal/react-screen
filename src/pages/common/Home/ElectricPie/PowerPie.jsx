@@ -13,8 +13,8 @@ const optionHandle = props => {
     //   x: 'center',
     // },
     tooltip: {
-      show: true,  
-      triggerOn: "mousemove",
+      show: true,
+      triggerOn: 'mousemove',
       trigger: 'item',
       formatter: '{b}\n{c}' + props.unit,
     },
@@ -32,7 +32,7 @@ const optionHandle = props => {
     series: [
       {
         type: 'pie',
-        // radius: '55%',
+        radius: '55%',
         // center: ['55%', '60%'],
         label: {
           fontSize: vh(1.5),
@@ -41,9 +41,9 @@ const optionHandle = props => {
           formatter: '{b}\n{c}' + props.unit,
         },
         data: [
-          { value: 335, name: '谷时电量', },
-          { value: 310, name: '平时电量', },
-          { value: 234, name: '峰时电量', },
+          { value: 335, name: '谷时电量' },
+          { value: 310, name: '平时电量' },
+          { value: 234, name: '峰时电量' },
           // { value: 135, name: '其他电量', },
         ],
         data,

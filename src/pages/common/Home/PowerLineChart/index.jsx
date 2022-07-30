@@ -3,8 +3,8 @@ import './style.less';
 import SmartEchart from '@/common/SmartEchart';
 import { createIndexArr } from '@/utils';
 import { connect } from 'umi';
-import { mapStateToProps, mapDispatchToProps, } from '@/models/home';
-import { Tabs,  } from 'antd';
+import { mapStateToProps, mapDispatchToProps } from '@/models/home';
+import { Tabs } from 'antd';
 const { TabPane } = Tabs;
 
 const datas = [
@@ -35,31 +35,28 @@ const datas = [
   351.8,
 ];
 
-const monthArr = createIndexArr(24).map(
-  v => `${v}`
-);
+const monthArr = createIndexArr(24).map(v => `${v}`);
 
-
-const todayColor = '#FC7154';
+const todayColor = 'rgba(255, 64, 65, .8)';
 const workdayColor = 'rgb(31, 114, 220)';
 const weekendColor = 'rgb(19, 208, 208)';
 
-const todayArea = 'rgba(180, 94, 74,0.7)';
+const todayArea = 'rgba(255, 64, 65, .2)';
 const workdayArea = 'rgba(236, 78, 81,0.5)';
 const weekendArea = 'rgba(19, 208, 208,0.5)';
-const colors = [todayColor, workdayColor, weekendColor]
-const areaColors = [todayArea, workdayArea, weekendArea]
+const colors = [todayColor, workdayColor, weekendColor];
+const areaColors = [todayArea, workdayArea, weekendArea];
 
-export const POWER_CURVE = 'power_curve'
-export const POWER_VOLTAGE = 'ua,ub,uc'
-export const POWER_CURRENT = 'ia,ib,ic'
-export const POWER_LOAD = 'p'
+export const POWER_CURVE = 'power_curve';
+export const POWER_VOLTAGE = 'ua,ub,uc';
+export const POWER_CURRENT = 'ia,ib,ic';
+export const POWER_LOAD = 'p';
 export const powerConfigMap = {
   POWER_CURVE,
   POWER_VOLTAGE,
   POWER_CURRENT,
   POWER_LOAD,
-}
+};
 
 export const powerCurveMap = {
   today: {
@@ -74,7 +71,7 @@ export const powerCurveMap = {
     name: '周末',
     color: weekendColor,
   },
-}
+};
 
 export const voltageMap = {
   ua: {
@@ -89,7 +86,7 @@ export const voltageMap = {
     name: 'uc',
     color: weekendColor,
   },
-}
+};
 
 export const currentMap = {
   ia: {
@@ -104,14 +101,14 @@ export const currentMap = {
     name: 'ic',
     color: weekendColor,
   },
-}
+};
 
 export const loadMap = {
   p: {
     name: 'p',
     color: todayColor,
   },
-}
+};
 
 // export const powerChartMap = {
 //   [POWER_CURVE]: {
@@ -145,77 +142,89 @@ export const configs = [
     tab: '负荷',
     key: powerConfigMap.POWER_LOAD,
   },
-]
+];
 
-const createSeries = ({data, params}) => {
-  console.log(' createSeries   ,   ： ', data, params, )
+const createSeries = ({ data, params }) => {
+  console.log(' createSeries   ,   ： ', data, params);
   const seriesItem = {
     type: 'line',
     yAxisIndex: 0,
     showSymbol: false,
     symbolSize: 4,
     showBackground: true,
-  }
-  let series = []
+  };
+  let series = [];
   if (params.query === powerConfigMap.POWER_CURVE) {
-    console.log(' series Array.isArray(data) ： ', Array.isArray(data), data, )// 
+    console.log(' series Array.isArray(data) ： ', Array.isArray(data), data); //
     series = Object.keys(powerCurveMap).map((key, i) => ({
       ...seriesItem,
       ...powerCurveMap[key],
       data: data[key],
+      symbol: 'circle',
+      // symbolSize: 8,
       // areaStyle: {
       //   color: areaColors[i],
       // },
-    }))
-    console.log(' createSeries series ： ', series,  )// 
+    }));
+    console.log(' createSeries series ： ', series); //
   }
   if (params.query === powerConfigMap.POWER_VOLTAGE) {
-    const datas = {}
-    series = Object.keys(voltageMap).map((key, i) => {
-      datas[key] = []
-      return key 
-    }).map((key, i) => {
-      datas[key] = data.map((item, i) => item[key])
-      console.log(' datas seriesseries ： ', datas,  )// 
-      return {
-        ...seriesItem,
-        name: key,
-        data: datas[key],
-      }
-    })
-    console.log(' datas seriesseries  series ： ', datas, series, )// 
+    const datas = {};
+    series = Object.keys(voltageMap)
+      .map((key, i) => {
+        datas[key] = [];
+        return key;
+      })
+      .map((key, i) => {
+        datas[key] = data.map((item, i) => item[key]);
+        console.log(' datas seriesseries ： ', datas); //
+        return {
+          ...seriesItem,
+          name: key,
+          data: datas[key],
+        };
+      });
+    console.log(' datas seriesseries  series ： ', datas, series); //
   }
   if (params.query === powerConfigMap.POWER_CURRENT) {
-    const datas = {}
-    series = Object.keys(currentMap).map((key, i) => {
-      datas[key] = []
-      return key 
-    }).map((key, i) => {
-      datas[key] = data.map((item, i) => item[key])
-      return {
-        ...seriesItem,
-        name: key,
-        data: datas[key],
-      }
-    })
+    const datas = {};
+    series = Object.keys(currentMap)
+      .map((key, i) => {
+        datas[key] = [];
+        return key;
+      })
+      .map((key, i) => {
+        datas[key] = data.map((item, i) => item[key]);
+        return {
+          ...seriesItem,
+          name: key,
+          data: datas[key],
+        };
+      });
   }
   if (params.query === powerConfigMap.POWER_LOAD) {
-    const datas = {}
-    series = Object.keys(loadMap).map((key, i) => {
-      datas[key] = []
-      return key 
-    }).map((key, i) => {
-      datas[key] = data.map((item, i) => item[key])
-      return {
-        ...seriesItem,
-        name: key,
-        data: datas[key],
-      }
-    })
+    const datas = {};
+    series = Object.keys(loadMap)
+      .map((key, i) => {
+        datas[key] = [];
+        return key;
+      })
+      .map((key, i) => {
+        datas[key] = data.map((item, i) => item[key]);
+        return {
+          ...seriesItem,
+          name: key,
+          data: datas[key],
+          color: todayArea,
+          areaStyle: {
+            color: todayArea,
+          },
+        };
+      });
   }
-  console.log(' datas series ： ', series )
-  return series 
-}
+  console.log(' datas series ： ', series);
+  return series;
+};
 
 const optionHandle = params => {
   const {
@@ -239,9 +248,9 @@ const optionHandle = params => {
           type: 'shadow',
         },
         axisLabel: {
-          fontSize: 10, 
+          fontSize: 10,
           textStyle: {
-            color: 'rgba(255, 255, 255, 0.2)',   
+            color: 'rgba(255, 255, 255, 0.2)',
           },
         },
         data: monthArr,
@@ -249,15 +258,15 @@ const optionHandle = params => {
       },
     ],
     yAxis: {
-      name: "kWh",
+      name: 'kWh',
       nameTextStyle: {
         color: 'rgba(255, 255, 255, 0.2)',
       },
       type: 'value',
       axisLabel: {
-        fontSize: 10, 
+        fontSize: 10,
         textStyle: {
-          color: 'rgba(255, 255, 255, 0.2)',  
+          color: 'rgba(255, 255, 255, 0.2)',
         },
       },
     },
@@ -271,9 +280,9 @@ const optionHandle = params => {
     //     symbolSize: 4,
     //     showBackground: true,
     //     data,
-    //     color: '#FC7154',  
+    //     color: '#FC7154',
     //     areaStyle: {
-    //       color: '#FC7154', 
+    //       color: '#FC7154',
     //       color: 'rgba(180, 94, 74,0.7)',
     //     },
     //   },
@@ -306,41 +315,49 @@ const optionHandle = params => {
     //     },
     //   },
     // ],
-    series: createSeries({data, params: powerlineParams}),
+    series: createSeries({ data, params: powerlineParams }),
   };
 };
 
 const ActionTabs = props => {
-  return <Tabs defaultActiveKey="1" onChange={key => props.onChange({
-      query: key,
-    })}>
-    {configs.map((v, i) => (
-      <TabPane {...v}></TabPane>
-    ))}
-  </Tabs>
+  return (
+    <Tabs
+      defaultActiveKey="1"
+      onChange={key =>
+        props.onChange({
+          query: key,
+        })
+      }
+    >
+      {configs.map((v, i) => (
+        <TabPane {...v}></TabPane>
+      ))}
+    </Tabs>
+  );
 };
 
-  
 const PowerLineChart = props => {
-  const {powerlineInfo, powerlineParams, } = props
+  const { powerlineInfo, powerlineParams } = props;
   const option = optionHandle({
     ...props,
     data: powerlineInfo,
   });
   console.log(' PowerLineChart optionoption  ： ', props, option); //
-  
+
   useEffect(() => {
     props.getPowerlineInfoAsync({
       query: configs[0].key,
     });
   }, []);
-  
-  return <div className="rightBox powerLineChart">
-    <ActionTabs onChange={props.getPowerlineInfoAsync}></ActionTabs>
-    <div className="powerLineChartWrapper">
-      <SmartEchart {...props} option={option}></SmartEchart>;
+
+  return (
+    <div className="rightBox powerLineChart">
+      <ActionTabs onChange={props.getPowerlineInfoAsync}></ActionTabs>
+      <div className="powerLineChartWrapper">
+        <SmartEchart {...props} option={option}></SmartEchart>;
+      </div>
     </div>
-  </div>
+  );
 };
 
 // export default PowerLineChart;

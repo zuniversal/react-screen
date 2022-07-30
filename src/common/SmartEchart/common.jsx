@@ -75,7 +75,7 @@ export const toolbox = {
 
 export default {
   color,
-  // tooltip,
+  tooltip,
   grid,
   splitLine,
   // toolbox,
