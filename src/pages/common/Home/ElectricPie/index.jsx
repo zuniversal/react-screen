@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style.less';
 import { connect } from 'umi';
 import { mapStateToProps, mapDispatchToProps, } from '@/models/home';
-import PowerPie from '../PowerPie';
+import PowerPie from './PowerPie';
 
 const configs = [
   {
@@ -52,7 +52,8 @@ const ElectricPie = props => {
     });
   }, []);
 
-  return configs.map((item, index) => (<div className='flexBorderBox' key={index}>
+  return <div className="rightBox electricPie">
+    {configs.map((item, index) => (<div className='flexBorderBox' key={index}>
       <div className='electricPieItem'>
         <div className='chartTitle'>{item.title}</div>
         <PowerPie {...props} data={electricFee[item.dataKey]} unit={item.unit}></PowerPie>
@@ -63,7 +64,8 @@ const ElectricPie = props => {
           <div className='val'>{v.val} {v.unit}</div>
         </div>))}
       </div>
-    </div>))
+    </div>))}
+  </div>
 };
 
 // export default ElectricPie;

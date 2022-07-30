@@ -132,6 +132,10 @@ const PowerInfo = props => {
           />
           开机
         </div>
+        {/* <div className="iconName iconName1">光伏</div>
+        <div className="iconName iconName2">负载</div>
+        <div className="iconName iconName3">储能</div>
+        <div className="iconName iconName4">电网</div> */}
       </div>
     </div>
   );

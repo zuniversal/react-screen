@@ -1,6 +1,6 @@
 import React from 'react';
 import './style.less';
-import HistoryElecChart from '../HistoryElecChart';
+import HistoryElecChart from './HistoryElecChart';
   
 const HistoryElecCalc = props => {
   return <div className='leftBox historyElecCalc'>

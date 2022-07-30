@@ -10,7 +10,7 @@
     // width: 70%;
     // height: 100%;
     margin: 0 auto;
-    overflow: hidden;
+    // overflow: hidden;
     // background: url(~@/static/img/home/center/circle.png);
     // background: url(~@/static/img/home/center/circle1.png) no-repeat center;
     // // overflow: hidden;
@@ -25,6 +25,15 @@
     // background: url(~@/static/img/home/center/circle.png) no-repeat center;
     background-size: contain;
     background-size: 70%;
+    
+    top: 10%;
+    right: 0%;
+    bottom: 0%;
+    left: 0%;
+    // background: #31D4D5;
+    z-index: 10;
+    display: flex;
+    flex: 1;
 
     // &::before {
     //   content: " ";
@@ -109,8 +118,64 @@
     transform: rotate(-45deg) scale(3);
     animation: translateRightR 5s infinite linear;
   }
+
+  .powerInfoItem {
+    position: absolute;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    color: #fff;
+    font-weight: 400;
+    // padding: 15px 35px;
+    // padding: 3% 7%;
+    &:nth-child(1) {
+      top: 1.2%;
+      left: 6%;
+      // left: -15%;
+    }
+    &:nth-child(2) {
+      top: 1.2%;
+      right: 6%;
+      // right: -15%;
+    }
+    &:nth-child(3) {
+      bottom: 1.2%;
+      left: 6%;
+      // left: -15%;
+    }
+    &:nth-child(4) {
+      right: 6%;
+      bottom: 1.2%;
+      // right: -15%;
+    }
+    .powerInfoRow {
+      display: flex;
+      align-items: center;
+      line-height: normal;
+    }
+    .text {
+      font-weight: bold;
+      font-size: 1.6vh;
+      white-space: nowrap;
+    }
+    .val {
+      margin-left: 10px;
+      color: #fd6d4f;
+      font-weight: bold;
+      font-size: 1.9vh;
+      font-style: italic;
+    }
+  }
+
   .circleRingWrapper {
     margin: 0 auto;
+    // background: url(~@/static/img/home/center/text.png) no-repeat center;
+    background: url(~@/static/img/home/center/text.png) no-repeat 50% 110%;
+    background-size: 80%;
+    background: url(~@/static/img/home/center/text.png) no-repeat 50% 97%;
+    background-size: 78%;
+    // background: url(~@/static/img/home/center/text.png) no-repeat 50% 83%;
+    // background-size: 78%;
     // &::before {
     //   content: " ";
     //   display: inline-block;
@@ -205,19 +270,9 @@
     }
   }
 }
+
 // .powerInfo {
 .machineCircle {
-  position: relative;
-  // padding: 20px;
-
-  top: 10%;
-  right: 0%;
-  bottom: 0%;
-  left: 0%;
-  // background: #31D4D5;
-  z-index: 10;
-  display: flex;
-  flex: 1;
   .leftBox {
     flex: 1;
     margin-right: 10px;
@@ -266,59 +321,34 @@
   }
 }
 
-.powerInfoItem {
-  position: absolute;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  color: #fff;
-  font-weight: 400;
-  // padding: 15px 35px;
-  // padding: 3% 7%;
-  &:nth-child(1) {
-    top: 1.2%;
-    left: 6%;
-    // left: -15%;
-  }
-  &:nth-child(2) {
-    top: 1.2%;
-    right: 6%;
-    // right: -15%;
-  }
-  &:nth-child(3) {
-    bottom: 1.2%;
-    left: 6%;
-    // left: -15%;
-  }
-  &:nth-child(4) {
-    right: 6%;
-    bottom: 1.2%;
-    // right: -15%;
-  }
-  .powerInfoRow {
-    display: flex;
-    align-items: center;
-    line-height: normal;
-  }
-  .text {
-    font-weight: bold;
-    font-size: 1.6vh;
-    white-space: nowrap;
-  }
-  .val {
-    margin-left: 10px;
-    color: #fd6d4f;
-    font-weight: bold;
-    font-size: 1.9vh;
-    font-style: italic;
-  }
-}
-
 @keyframes rotate {
   0% {
     transform: rotate(0deg) scale(1);
   }
   100% {
     transform: rotate(360deg) scale(1);
+  }
+}
+
+.iconName{
+  position: absolute;
+  color: #11d0d2;
+  &:nth-child(1) {
+    top: 25%;
+    left: 10%;
+    left: 3vw;
+  }
+  &:nth-child(2) {
+    top: 25%;
+    right: 10%;
+    right: 3vw;
+  }
+  &:nth-child(3) {
+    bottom: -2%;
+    left: 10%;
+  }
+  &:nth-child(4) {
+    right: 10%;
+    bottom: -2%;
   }
 }

@@ -24,7 +24,7 @@ const configs2 = [
 ]
 
 const RealData = props => {
-  return <div className='realData '>
+  return <div className='rightBox realData '>
     {/* <div className='realDataItemWrapper '>
       {configs1.map(v => (<div className='realDataItem'>
         <div className='text'>{v.text}</div>

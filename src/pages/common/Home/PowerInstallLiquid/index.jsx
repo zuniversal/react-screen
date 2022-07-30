@@ -38,7 +38,8 @@ const configs = [
 ]
 
 const PowerInstallLiquid = props => {
-  return configs.map((item, index) => (<div className='flexBorderBox' key={index} >
+  return <div className="leftBox installCapacity">
+    {configs.map((item, index) => (<div className='flexBorderBox' key={index} >
       <div className='iconTitle'>
         <div className='df'>
           <img src={item.src} className="icon"/>
@@ -50,7 +51,8 @@ const PowerInstallLiquid = props => {
       <div className='colorIntroWrapper'>
         {item.colorIntro.map((v, i) => (<div className={`colorIntroItem ${v.class}`} key={i} >{v.text}</div>))}
       </div>
-    </div>))
+    </div>))}
+  </div>
 };
 
 PowerInstallLiquid.defaultProps = {};

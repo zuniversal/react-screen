@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './style.less';
 import SmartEchart from '@/common/SmartEchart';
 import { createIndexArr } from '@/utils';
+import { connect } from 'umi';
+import { mapStateToProps, mapDispatchToProps, } from '@/models/home';
 import { Tabs,  } from 'antd';
 const { TabPane } = Tabs;
 
@@ -98,19 +100,19 @@ const ActionTabs = props => {
     {[
       {
         tab: '能耗曲线',
-        key: '能耗曲线',
+        key: 'power_curve',
       },
       {
         tab: '电压',
-        key: '电压',
+        key: 'ua,ub,uc',
       },
       {
         tab: '电流',
-        key: '电流',
+        key: 'ia,ib,ic',
       },
       {
         tab: '负荷',
-        key: '负荷',
+        key: 'p',
       },
     ].map((v, i) => (
       <TabPane {...v}></TabPane>
@@ -122,7 +124,13 @@ const ActionTabs = props => {
 const PowerLineChart = props => {
   const option = optionHandle(props);
   console.log(' PowerLineChart optionoption  ： ', props, option); //
-  return <div className="powerLineChart">
+  const {powerLineInfo, } = props
+  
+  useEffect(() => {
+    props.getPowerlineInfoAsync();
+  }, []);
+  
+  return <div className="rightBox powerLineChart">
     <ActionTabs></ActionTabs>
     <div className="powerLineChartWrapper">
       <SmartEchart {...props} option={option}></SmartEchart>;
@@ -130,6 +138,5 @@ const PowerLineChart = props => {
   </div>
 };
 
-PowerLineChart.defaultProps = {};
-
-export default PowerLineChart;
+// export default PowerLineChart;
+export default connect(mapStateToProps, mapDispatchToProps)(PowerLineChart);

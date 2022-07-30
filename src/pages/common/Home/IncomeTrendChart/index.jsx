@@ -115,9 +115,16 @@ const optionHandle = params => {
 const IncomeTrendChart = props => {
   const option = optionHandle(props);
   console.log(' IncomeTrendChart optionoption  ： ', props, option); //
-  return <SmartEchart {...props} option={option}></SmartEchart>;
+  return <div className="rightBox incomeTrendChart">
+    <div className="iconTitle">
+      <div className="chartTitle">近30天绿能收益趋势</div>
+      <div className="iconRight">
+        <div className="text">创造收益总值</div>
+        <div className="val">655224</div>
+      </div>
+    </div>
+    <SmartEchart {...props} option={option}></SmartEchart>
+  </div>
 };
-
-IncomeTrendChart.defaultProps = {};
 
 export default IncomeTrendChart;

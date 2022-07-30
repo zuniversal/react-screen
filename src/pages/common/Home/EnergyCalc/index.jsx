@@ -55,7 +55,8 @@ const configs = [
 ]
 
 const EnergyCalc = props => {
-  return configs.map((item, index) => (<div className='content' key={index} >
+  return <div className="leftBox energyCalc">
+    {configs.map((item, index) => (<div className='content' key={index} >
       <div className='chartTitle'>{item.title}</div>
       <div className='itemBox'>
         {item.infos.map((v, i) => (<div className='item' key={i} >
@@ -63,7 +64,8 @@ const EnergyCalc = props => {
           <div className='val'>{v.val}</div>
         </div>))}
       </div>
-    </div>))
+    </div>))}
+  </div>
 };
 
 export default EnergyCalc;
