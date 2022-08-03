@@ -129,18 +129,22 @@ export const configs = [
   {
     tab: '能耗曲线',
     key: powerConfigMap.POWER_CURVE,
+    yAxisName: 'kWh',
   },
   {
     tab: '电压',
     key: powerConfigMap.POWER_VOLTAGE,
+    yAxisName: 'V',
   },
   {
     tab: '电流',
     key: powerConfigMap.POWER_CURRENT,
+    yAxisName: 'A',
   },
   {
     tab: '负荷',
     key: powerConfigMap.POWER_LOAD,
+    yAxisName: 'KW',
   },
 ];
 
@@ -232,8 +236,9 @@ const optionHandle = params => {
     // data = datas,
     data,
     powerlineParams,
+    query,
   } = params;
-  console.log(' optionoptionoptionoption ： ', params); //
+  console.log(' optionoptionoptionoption ： ', params, query, configs.find(v => v.key === query)?.yAxisName); //
   return {
     // grid: {
     //   top: '20%',
@@ -258,7 +263,7 @@ const optionHandle = params => {
       },
     ],
     yAxis: {
-      name: 'kWh',
+      name: configs.find(v => v.key === query)?.yAxisName || 'kWh',
       nameTextStyle: {
         color: 'rgba(255, 255, 255, 0.2)',
       },
@@ -341,6 +346,7 @@ const PowerLineChart = props => {
   const option = optionHandle({
     ...props,
     data: powerlineInfo,
+    ...powerlineParams,
   });
   console.log(' PowerLineChart optionoption  ： ', props, option); //
 
