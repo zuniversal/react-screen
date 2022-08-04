@@ -37,9 +37,9 @@ const datas = [
 
 const monthArr = createIndexArr(24).map(v => `${v}`);
 
-const todayColor = 'rgba(255, 64, 65, .8)';
-const workdayColor = 'rgb(31, 114, 220)';
-const weekendColor = 'rgb(19, 208, 208)';
+const todayColor = '#EBAE3E';
+const workdayColor = 'rgb(5,252,253)';
+const weekendColor = 'rgb(255,64,65)';
 
 const todayArea = 'rgba(255, 64, 65, .2)';
 const workdayArea = 'rgba(236, 78, 81,0.5)';
@@ -59,10 +59,6 @@ export const powerConfigMap = {
 };
 
 export const powerCurveMap = {
-  today: {
-    name: '今日',
-    color: todayColor,
-  },
   working_day: {
     name: '工作日',
     color: workdayColor,
@@ -70,6 +66,10 @@ export const powerCurveMap = {
   rest_day: {
     name: '周末',
     color: weekendColor,
+  },
+  today: {
+    name: '今日',
+    color: todayColor,
   },
 };
 
@@ -110,21 +110,6 @@ export const loadMap = {
   },
 };
 
-// export const powerChartMap = {
-//   [POWER_CURVE]: {
-//     color: todayColor
-//   },
-//   [POWER_VOLTAGE]: {
-//     color: todayColor
-//   },
-//   [POWER_CURRENT]: {
-//     color: workdayColor
-//   },
-//   [POWER_LOAD]: {
-//     color: weekendColor
-//   },
-// }
-
 export const configs = [
   {
     tab: '能耗曲线',
@@ -153,8 +138,8 @@ const createSeries = ({ data, params }) => {
   const seriesItem = {
     type: 'line',
     yAxisIndex: 0,
-    showSymbol: false,
-    symbolSize: 4,
+    // showSymbol: false,
+    // symbolSize: 4,
     showBackground: true,
   };
   let series = [];
@@ -165,7 +150,10 @@ const createSeries = ({ data, params }) => {
       ...powerCurveMap[key],
       data: data[key],
       symbol: 'circle',
-      // symbolSize: 8,
+      // symbolSize: 6,
+      lineStyle: {
+        width: 2,
+      },
       // areaStyle: {
       //   color: areaColors[i],
       // },
@@ -184,8 +172,12 @@ const createSeries = ({ data, params }) => {
         console.log(' datas seriesseries ： ', datas); //
         return {
           ...seriesItem,
+          symbol: 'circle',
           name: key,
           data: datas[key],
+          lineStyle: {
+            width: 2,
+          },
         };
       });
     console.log(' datas seriesseries  series ： ', datas, series); //
@@ -201,8 +193,13 @@ const createSeries = ({ data, params }) => {
         datas[key] = data.map((item, i) => item[key]);
         return {
           ...seriesItem,
+          symbol: 'circle',
           name: key,
           data: datas[key],
+          lineStyle: {
+            width: 2,
+          },
+          // areaStyle: areaColors[i],
         };
       });
   }
@@ -217,9 +214,13 @@ const createSeries = ({ data, params }) => {
         datas[key] = data.map((item, i) => item[key]);
         return {
           ...seriesItem,
+          symbol: 'circle',
           name: key,
           data: datas[key],
           color: todayArea,
+          lineStyle: {
+            width: 4,
+          },
           areaStyle: {
             color: todayArea,
           },
@@ -243,6 +244,38 @@ const optionHandle = params => {
     // grid: {
     //   top: '20%',
     // },
+    legend: {
+      bottom: 0,
+      right: 0,
+      itemGap: 40,
+      itemWidth: 10,
+      itemHeight: 10,
+      selected: {
+        今日: true,
+        工作日: true,
+        周末: true,
+      },
+      data: [
+        {
+          name: '今日',
+          icon:
+            'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAALhJREFUGBmNkDsOwjAMhm2rA11Rj8JKyxFyAm7BAoKhQoiKW3AAlCNQWDlKxFoGFGNHtVQYAA+JH1/+2Ebo7e6raWRYMPNEU4h4I4TD2LXXFOsRfLUE5i0zoMZmEkQgXBeu3WFSinyW4hMINvkoPyrYPbq5YLW4GRHOsvQdyDuBCndpFOqtCb4EjrBXhqwnUzJKb8spQ8PCN590OgVSTx+k5ZT5e5i0jnAqVyJWsww1FH1bjxV+LfwFfsZeQpKLo6sAAAAASUVORK5CYII=',
+        },
+        {
+          name: '工作日',
+          icon:
+            'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAKtJREFUGBmNkDsOwjAMhv2XIi7EihSae3CLLiA6IISouAX3CFRizYUQNMZ5VYWFerBs58vvBygZa72inmsiXsYSLM1wgTEPn8M7XustsTvm3NeCAU6QPe7mhKDkuJOHNzE1tJhfA/R8bUTmIHFJBVSZ2hXys0F3awMUXcuqkojP1FMtQJopK43IQV0YAaeZb2kD6mf6taEGO3mZeB5V7cKGzN+jjM+Tu/07+Acd2kyRiHTNUwAAAABJRU5ErkJggg==',
+        },
+        {
+          name: '周末',
+          icon:
+            'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAI9JREFUGBmNkIEJwzAMBEUgJnSDDtNVukYh2apzdA7vELCk6pSmEENDDcLS//tlSeRzJvdbafYsajUjcrCdz7uoz6OajU39EGoKlyJehUgj1gAfF/crQQ4Gl860wwXi0CaKFMOFJgqrCHHphWCbidWhJ3/Vg7i8IJvJvRd9MTR/D4NLfHrJyc/Ws7fD+Wzhb4FFqS8uIKsnAAAAAElFTkSuQmCC',
+        },
+      ],
+      textStyle: {
+        color: '#ffffff',
+      },
+    },
     tooltip: {
       trigger: 'axis',
     },
@@ -258,7 +291,7 @@ const optionHandle = params => {
             color: 'rgba(255, 255, 255, 0.2)',
           },
         },
-        data: monthArr,
+        data: query === powerConfigMap.POWER_CURVE ? monthArr : data.map((v) => v.uptime.split(' ')[1].split('.')[0]),
         boundaryGap: false,
       },
     ],
@@ -274,6 +307,9 @@ const optionHandle = params => {
           color: 'rgba(255, 255, 255, 0.2)',
         },
       },
+      min: value => value.min,
+      max: value => value.max,
+      // interval: query === powerConfigMap.POWER_VOLTAGE ? Math.max(...data.map((v) => Math.max(...data.map((v) => )))) : null,
     },
     // series: [
     //   {
