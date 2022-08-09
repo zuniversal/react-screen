@@ -27,13 +27,13 @@ const Home = props => {
   console.log(' Home ： ', props); //
   const [isMobile, setIsMobile] = useState('');
   const [isShowRealData, setIsShowRealData] = useState(false);
-  const [isShowCom, setIsShowCom] = useState(false);
+  const [isShowCom, setIsShowCom] = useState(true);
   // const [isShowRealData, setIsShowRealData] = useState(true);
 
   const toggleShowRealData = params => setIsShowRealData(!isShowRealData);
   useEffect(() => {
     console.log(' useEffect  ： ');
-    // setIsShowCom(!isShowCom)
+    setIsShowCom(!isShowCom)
     let userAgent = navigator.userAgent.toLowerCase();
     if (
       /ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(
@@ -70,16 +70,30 @@ const Home = props => {
     props.getRealStatusAsync();
   }, []);
 
+  const leftCom = <div className="left">
+    <EnergyCalc statistics={props.statistics}></EnergyCalc>
+    <CarbonAssets></CarbonAssets>
+    <PowerInstallLiquid powerInstallInfo={props.powerInstallInfo}></PowerInstallLiquid>
+    <HistoryElecCalc historyElecCalc={props.historyElecCalc}></HistoryElecCalc>
+  </div>
+  const rightCom = <div className="right">
+    <RealData toggleShowRealData={toggleShowRealData}></RealData>
+    {isShowRealData ? (
+      <RealDataDesc realData={props.realData}></RealDataDesc>
+    ) : (
+      <div className="righBlock">
+        <ElectricPie electricFee={props.electricFee}></ElectricPie>
+        <IncomeTrendChart incomeTrendInfo={props.incomeTrendInfo}>></IncomeTrendChart>
+        <PowerLineChart></PowerLineChart>
+      </div>
+    )}
+  </div>
+
   return (
     <div className={`home ${isMobile}`}>
       <SystemTitle></SystemTitle>
 
-      {isShowCom && <div className="left">
-        <EnergyCalc statistics={props.statistics}></EnergyCalc>
-        <CarbonAssets></CarbonAssets>
-        <PowerInstallLiquid powerInstallInfo={props.powerInstallInfo}></PowerInstallLiquid>
-        <HistoryElecCalc historyElecCalc={props.historyElecCalc}></HistoryElecCalc>
-      </div>}
+      {isShowCom && isMobile ? leftCom : leftCom}
 
       <div className="center">
         <div className="centerBox powerInfoWrapper">
@@ -91,18 +105,7 @@ const Home = props => {
         </div>
       </div>
       
-      {isShowCom && <div className="right">
-        <RealData toggleShowRealData={toggleShowRealData}></RealData>
-        {isShowRealData ? (
-          <RealDataDesc realData={props.realData}></RealDataDesc>
-        ) : (
-          <div className="righBlock">
-            <ElectricPie electricFee={props.electricFee}></ElectricPie>
-            <IncomeTrendChart incomeTrendInfo={props.incomeTrendInfo}>></IncomeTrendChart>
-            <PowerLineChart></PowerLineChart>
-          </div>
-        )}
-      </div>}
+      {isShowCom && isMobile ? rightCom : rightCom}
       {/* <PowerLineChart></PowerLineChart> */}
     </div>
   );
