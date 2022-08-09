@@ -48,6 +48,7 @@ const optionHandle = params => {
     title: [
       {
         text: '564252.5',
+        text: params.dataInfo[params.topDataKey],
         left: '48%',
         top: '15%',
         textAlign: 'center',
@@ -70,6 +71,7 @@ const optionHandle = params => {
       },
       {
         text: '112850.5',
+        text: params.dataInfo.capacity,
         left: '48%',
         top: '55%',
         textAlign: 'center',

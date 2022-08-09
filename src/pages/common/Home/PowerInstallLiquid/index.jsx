@@ -7,6 +7,8 @@ const configs = [
     title: '光伏 累计总发电量kWh',
     src: require('@/static/img/home/left/pv.png'),
     val: '689.460',
+    key: 'pv',
+    topDataKey: 'real',
     color: ['#31D4D5'],
     colorIntro: [
       {
@@ -23,6 +25,8 @@ const configs = [
     title: '储能 总装机容量kWh',
     src: require('@/static/img/home/left/storedEnergy.png'),
     val: '552',
+    key: 'ps',
+    topDataKey: 'power',
     color: ['#FC7154'],
     colorIntro: [
       {
@@ -48,8 +52,9 @@ const PowerInstallLiquid = props => {
               <div className="chartTitle">{item.title}</div>
             </div>
           </div>
-          <div className="chartVal">{item.val}</div>
-          <PowerLiquid {...item} {...props}></PowerLiquid>
+          {/* <div className="chartVal">{item.val}</div> */}
+          <div className="chartVal">{props.powerInstallInfo[item.key].power || 0}</div>
+          <PowerLiquid {...item} {...props} dataInfo={props.powerInstallInfo[item.key]}></PowerLiquid>
           <div className="colorIntroWrapper">
             {item.colorIntro.map((v, i) => (
               <div className={`colorIntroItem ${v.class}`} key={i}>

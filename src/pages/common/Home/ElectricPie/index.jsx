@@ -45,12 +45,12 @@ const ElectricPie = props => {
   const { electricFee } = props;
   console.log(' electricFee ： ', electricFee); //
 
-  useEffect(() => {
-    console.log(' ElectricPie useEffect  ： ', props);
-    props.getElectricFeeAsync({
-      sn: '00018469010327',
-    });
-  }, []);
+  // useEffect(() => {
+  //   console.log(' ElectricPie useEffect  ： ', props);
+  //   props.getElectricFeeAsync({
+  //     sn: '00018469010327',
+  //   });
+  // }, []);
 
   return (
     <div className="rightBox electricPie">
@@ -80,5 +80,5 @@ const ElectricPie = props => {
   );
 };
 
-// export default ElectricPie;
-export default connect(mapStateToProps, mapDispatchToProps)(ElectricPie);
+export default ElectricPie;
+// export default connect(mapStateToProps, mapDispatchToProps)(ElectricPie);

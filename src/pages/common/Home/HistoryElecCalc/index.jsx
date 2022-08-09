@@ -26,7 +26,7 @@ const HistoryElecCalc = props => {
         ].map((v, i) => (<div className={`colorIntroItem ${v.class}`} key={i} >{v.text}</div>))}
       </div>
     </div>
-    <HistoryElecChart></HistoryElecChart>
+    <HistoryElecChart {...props}></HistoryElecChart>
   </div>
 };
 

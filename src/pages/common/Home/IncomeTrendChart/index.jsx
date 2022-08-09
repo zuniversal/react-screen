@@ -79,6 +79,7 @@ const optionHandle = params => {
           },
         },
         data: monthArr,
+        // data: params.incomeTrendInfo.xAxisData,
         boundaryGap: false,
       },
     ],
@@ -107,6 +108,7 @@ const optionHandle = params => {
           color: '#00B460',
           color: 'rgba(3, 143, 84,0.7)',
         },
+        // data: params.incomeTrendInfo.incomeData,
       },
     ],
   };

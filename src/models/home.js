@@ -1,6 +1,7 @@
 import { init } from '@/utils/createAction';
 import * as services from '@/services/home';
 import { nowYearMonthDayFull } from '@/utils';
+import moment from 'moment'// 
 // import { powerConfigMap } from '@/pages/common/Home/PowerLineChart';
 
 const namespace = 'home';
@@ -15,6 +16,31 @@ const model = {
     powerlineInfo: {},
     powerlineInfo: [],
     powerlineParams: {},
+    statistics: {
+      today: {},
+      this_month: {},
+      battery: {},
+    },
+    powerInstallInfo: {
+      pv: {},
+      ps: {},
+    },
+    historyElecCalc: {
+      storagEnergy: [],
+      cityEnergy: [],
+      greenEnergy: [],
+      xAxisData: [],
+    },
+    incomeTrendInfo: {
+      incomeData: [],
+      xAxisData: [],
+    },
+    realStatus: {
+      pv: {},
+      ps: {},
+      ld: {},
+      gd: {},
+    },
   },
 
   reducers: {
@@ -69,6 +95,59 @@ const model = {
         powerlineParams: payload,
       };
     },
+    getRealData(state, { payload, data, dtp }) {
+      console.log(' getRealData ： ', state, payload, data, dtp);
+      return {
+        ...state,
+        realData: {
+          ...data,
+          upTime: moment(data.uptime).format('YYYY-MM-DD HH:mm:ss'),
+        },
+      };
+    },
+    getStatistics(state, { payload, data, dtp }) {
+      console.log(' getStatistics ： ', state, payload, data, dtp);
+      return {
+        ...state,
+        statistics: data,
+      };
+    },
+    getPVStatistics(state, { payload, data, dtp }) {
+      console.log(' getPVStatistics ： ', state, payload, data, dtp);
+      return {
+        ...state,
+        powerInstallInfo: data,
+      };
+    },
+    getEle7days(state, { payload, data, dtp }) {
+      console.log(' getEle7days ： ', state, payload, data, dtp);
+      return {
+        ...state,
+        historyElecCalc: {
+          storagEnergy: data.map((v) => v.ps),
+          cityEnergy: data.map((v) => v.se),
+          greenEnergy: data.map((v) => v.ge),
+          xAxisData: data.map((v) => v.date),
+        },
+      };
+    },
+    getGe30days(state, { payload, data, dtp }) {
+      console.log(' getGe30days ： ', state, payload, data, dtp);
+      return {
+        ...state,
+        incomeTrendInfo: {
+          incomeData: data.map((v) => v.fee),
+          xAxisData: data.map((v) => v.date),
+        },
+      };
+    },
+    getRealStatus(state, { payload, data, dtp }) {
+      console.log(' getRealStatus ： ', state, payload, data, dtp);
+      return {
+        ...state,
+        realStatus: data ?? state.realStatus,
+      };
+    },
   },
 
   effects: {
@@ -106,6 +185,66 @@ const model = {
       console.log(' getPowerlineInfoAsync resresres ： ', res); //
       yield put({
         type: 'getPowerlineInfo',
+        ...res,
+        payload,
+      });
+    },
+    *getRealDataAsync({ payload, action, type }, { call, put }) {
+      console.log(' getRealDataAsync ： ', payload, action, type);
+      const res = yield call(services.getRealData, payload);
+      console.log(' getRealDataAsync resresres ： ', res); //
+      yield put({
+        type: 'getRealData',
+        ...res,
+        payload,
+      });
+    },
+    *getStatisticsAsync({ payload, action, type }, { call, put }) {
+      console.log(' getStatisticsAsync ： ', payload, action, type);
+      const res = yield call(services.getStatistics, payload);
+      console.log(' getStatisticsAsync resresres ： ', res); //
+      yield put({
+        type: 'getStatistics',
+        ...res,
+        payload,
+      });
+    },
+    *getPVStatisticsAsync({ payload, action, type }, { call, put }) {
+      console.log(' getPVStatisticsAsync ： ', payload, action, type);
+      const res = yield call(services.getPVStatistics, payload);
+      console.log(' getPVStatisticsAsync resresres ： ', res); //
+      yield put({
+        type: 'getPVStatistics',
+        ...res,
+        payload,
+      });
+    },
+    *getEle7daysAsync({ payload, action, type }, { call, put }) {
+      console.log(' getEle7daysAsync ： ', payload, action, type);
+      const res = yield call(services.getEle7days, payload);
+      console.log(' getEle7daysAsync resresres ： ', res); //
+      yield put({
+        type: 'getEle7days',
+        ...res,
+        payload,
+      });
+    },
+    *getGe30daysAsync({ payload, action, type }, { call, put }) {
+      console.log(' getGe30daysAsync ： ', payload, action, type);
+      const res = yield call(services.getGe30days, payload);
+      console.log(' getGe30daysAsync resresres ： ', res); //
+      yield put({
+        type: 'getGe30days',
+        ...res,
+        payload,
+      });
+    },
+    *getRealStatusAsync({ payload, action, type }, { call, put }) {
+      console.log(' getRealStatusAsync ： ', payload, action, type);
+      const res = yield call(services.getRealStatus, payload);
+      console.log(' getRealStatusAsync resresres ： ', res); //
+      yield put({
+        type: 'getRealStatus',
         ...res,
         payload,
       });

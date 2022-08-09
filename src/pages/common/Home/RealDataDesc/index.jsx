@@ -107,49 +107,49 @@ const configs = [
     key: 'pf',
     val: '1',
   },
-  {
-    label: '总有功电度',
-    key: '',
-    val: '7250kWh',
-  },
-  {
-    label: '感性无功电度',
-    key: '',
-    val: '4108Kvarh',
-  },
-  {
-    label: '电容性',
-    key: '',
-    val: '21.6Kvarh',
-  },
-  {
-    label: '无功电度环境温度',
-    key: '',
-    val: '24.107°C',
-  },
-  {
-    label: '环境湿度',
-    key: '',
-    val: '46.7%',
-  },
-  {
-    label: '温度(柜体)',
-    key: '',
-    val: '21.4°C',
-  },
+  // {
+  //   label: '总有功电度',
+  //   key: '',
+  //   val: '7250kWh',
+  // },
+  // {
+  //   label: '感性无功电度',
+  //   key: '',
+  //   val: '4108Kvarh',
+  // },
+  // {
+  //   label: '电容性',
+  //   key: '',
+  //   val: '21.6Kvarh',
+  // },
+  // {
+  //   label: '无功电度环境温度',
+  //   key: '',
+  //   val: '24.107°C',
+  // },
+  // {
+  //   label: '环境湿度',
+  //   key: '',
+  //   val: '46.7%',
+  // },
+  // {
+  //   label: '温度(柜体)',
+  //   key: '',
+  //   val: '21.4°C',
+  // },
   {
     label: '电网频率',
-    key: '',
+    key: 'f',
     val: '49.95HZ',
   },
   {
     label: '有功需量',
-    key: '',
+    key: 'p_d',
     val: '8.19kW',
   },
   {
     label: '数据时间',
-    key: '',
+    key: 'upTime',
     val: '2021-01-01 10:21:11',
   },
 ];
@@ -158,7 +158,8 @@ const RealDataDesc = props => {
   return <div className='leftBox realDataDesc' >
     {configs.map((v, i) => (<div className='itemBox' key={i} >
       <div className='label'>{v.label}</div>
-      <div className='val'>{v.val}</div>
+      {/* <div className='val'>{v.val}</div> */}
+      <div className='val'>{props.realData[v.key]}</div>
     </div>))}
   </div>
 };

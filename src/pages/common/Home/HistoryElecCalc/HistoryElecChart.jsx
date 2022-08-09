@@ -40,6 +40,22 @@ const dayArr = createIndexArr(7).reverse().map(
   v => `${moment().subtract(v, 'days').format('YYYY-MM-DD')}`
 );
 
+const seriesConfigs = [
+  {
+    name: '储能用电',
+    key: 'storagEnergy',
+  },
+  {
+    name: '市网用电',
+    key: 'cityEnergy',
+  },
+  {
+    name: '绿能用电',
+    key: 'greenEnergy',
+  },
+]
+
+
 const optionHandle = params => {
   const {
     // data = [],
@@ -74,6 +90,7 @@ const optionHandle = params => {
           type: 'shadow',
         },
         data: dayArr,
+        data: params.historyElecCalc.xAxisData,
         axisLabel: {
           // rotate: 10,
           fontSize: 10, 
@@ -130,6 +147,18 @@ const optionHandle = params => {
         barWidth: "5px",
       },
     ],
+    series: seriesConfigs.map((v) => ({
+      type: 'bar',
+      axisLabel: {
+        fontSize: 10, 
+        textStyle: {
+          color: 'rgba(255, 255, 255, 0.2)',  
+        },
+      },
+      barWidth: "5px",
+      name: v.name,
+      data: params.historyElecCalc[v.key],
+    })),
   };
 };
 

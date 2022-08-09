@@ -35,14 +35,13 @@ const configs2 = [
 
 const EnvInfo = props => {
   const {temperatureHumidityInfo, } = props
-  
-  useEffect(() => {
-    console.log(' EnvInfo useEffect  ： ', props, );
-    // props.dispatch({
-    //   type: 'home/getTemperatureHumidityAsync',
-    // })
-    props.getTemperatureHumidityAsync();
-  }, []);
+  // useEffect(() => {
+  //   console.log(' EnvInfo useEffect  ： ', props, );
+  //   // props.dispatch({
+  //   //   type: 'home/getTemperatureHumidityAsync',
+  //   // })
+  //   props.getTemperatureHumidityAsync();
+  // }, []);
 
   return <div className='envInfo '>
     <div className='leftBox '>
@@ -68,6 +67,6 @@ const EnvInfo = props => {
   </div>
 };
 
-// export default EnvInfo;
-export default connect(mapStateToProps, mapDispatchToProps)(EnvInfo);
+export default EnvInfo;
+// export default connect(mapStateToProps, mapDispatchToProps)(EnvInfo);
 

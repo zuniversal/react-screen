@@ -27,11 +27,13 @@ const Home = props => {
   console.log(' Home ： ', props); //
   const [isMobile, setIsMobile] = useState('');
   const [isShowRealData, setIsShowRealData] = useState(false);
+  const [isShowCom, setIsShowCom] = useState(false);
   // const [isShowRealData, setIsShowRealData] = useState(true);
 
   const toggleShowRealData = params => setIsShowRealData(!isShowRealData);
   useEffect(() => {
     console.log(' useEffect  ： ');
+    // setIsShowCom(!isShowCom)
     let userAgent = navigator.userAgent.toLowerCase();
     if (
       /ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(
@@ -48,46 +50,59 @@ const Home = props => {
         window.removeEventListener('resize', resize);
       };
     }
+    setTimeout(() => {
+      console.log('  延时器 ： ',  )
+      setIsShowCom(!isShowCom)
+    }, 5000)
   }, []);
 
   useEffect(() => {
     console.log(' useEffect  ： ');
     props.getTemperatureHumidityAsync();
+    props.getRealDataAsync();
+    props.getElectricFeeAsync({
+      sn: '00018469010327',
+    });
+    props.getStatisticsAsync();
+    props.getPVStatisticsAsync();
+    props.getEle7daysAsync();
+    // props.getGe30daysAsync();
+    props.getRealStatusAsync();
   }, []);
 
   return (
     <div className={`home ${isMobile}`}>
       <SystemTitle></SystemTitle>
 
-      <div className="left">
-        <EnergyCalc></EnergyCalc>
+      {isShowCom && <div className="left">
+        <EnergyCalc statistics={props.statistics}></EnergyCalc>
         <CarbonAssets></CarbonAssets>
-        <PowerInstallLiquid></PowerInstallLiquid>
-        <HistoryElecCalc></HistoryElecCalc>
-      </div>
+        <PowerInstallLiquid powerInstallInfo={props.powerInstallInfo}></PowerInstallLiquid>
+        <HistoryElecCalc historyElecCalc={props.historyElecCalc}></HistoryElecCalc>
+      </div>}
 
       <div className="center">
         <div className="centerBox powerInfoWrapper">
-          <PowerInfo></PowerInfo>
+          <PowerInfo realStatus={props.realStatus}></PowerInfo>
           <EnvInfo
             temperatureHumidityInfo={props.temperatureHumidityInfo}
           ></EnvInfo>
           <div className="factoryTitle ">来宾市城东污水处理厂</div>
         </div>
       </div>
-
-      <div className="right">
+      
+      {isShowCom && <div className="right">
         <RealData toggleShowRealData={toggleShowRealData}></RealData>
         {isShowRealData ? (
-          <RealDataDesc></RealDataDesc>
+          <RealDataDesc realData={props.realData}></RealDataDesc>
         ) : (
           <div className="righBlock">
-            <ElectricPie></ElectricPie>
-            <IncomeTrendChart></IncomeTrendChart>
+            <ElectricPie electricFee={props.electricFee}></ElectricPie>
+            <IncomeTrendChart incomeTrendInfo={props.incomeTrendInfo}>></IncomeTrendChart>
             <PowerLineChart></PowerLineChart>
           </div>
         )}
-      </div>
+      </div>}
       {/* <PowerLineChart></PowerLineChart> */}
     </div>
   );

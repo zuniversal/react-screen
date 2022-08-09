@@ -5,18 +5,26 @@ const configs1 = [
   {
     text: 'PV1电压',
     val: '127.3V',
+    key: 'pv1_voltage',
+    unit: 'V',
   },
   {
     text: 'PV1电流',
     val: '11.OA',
+    key: 'pv1_current',
+    unit: 'A',
   },
   {
     text: 'PV2电压',
     val: '125.4V',
+    key: 'pv2_voltage',
+    unit: 'V',
   },
   {
     text: 'PV2电流',
     val: '10.9A',
+    key: 'pv2_voltage',
+    unit: 'A',
   },
 ];
 
@@ -24,6 +32,8 @@ const configs2 = [
   {
     text: '负载功率',
     val: '227.0W',
+    key: 'pe',
+    unit: 'W',
   },
 ];
 
@@ -31,10 +41,14 @@ const configs3 = [
   {
     text: '电池电流',
     val: '-16.0A',
+    key: 'current',
+    unit: 'A',
   },
   {
     text: '电池电压',
     val: '52.5V',
+    key: 'voltage',
+    unit: 'V',
   },
 ];
 
@@ -42,10 +56,14 @@ const configs4 = [
   {
     text: '电网电流',
     val: '6.5A',
+    key: 'current',
+    unit: 'A',
   },
   {
     text: '电网电压',
     val: '232.6V',
+    key: 'voltage',
+    unit: 'V',
   },
 ];
 
@@ -53,21 +71,25 @@ const configs = [
   {
     infos: configs1,
     src: require('@/static/img/home/center/pvBlue.png'),
+    key: 'pv',
     class: 'pvBlue',
   },
   {
     infos: configs2,
     src: require('@/static/img/home/center/house.png'),
+    key: 'ld',
     class: 'house',
   },
   {
     infos: configs3,
     src: require('@/static/img/home/center/batteryBlue.png'),
+    key: 'ps',
     class: 'batteryBlue',
   },
   {
     infos: configs4,
     src: require('@/static/img/home/center/tower.png'),
+    key: 'gd',
     class: 'tower',
   },
 ];
@@ -97,7 +119,8 @@ const PowerInfo = props => {
           {item.infos.map((v, i) => (
             <div className="powerInfoRow" key={i}>
               <div className="text">{v.text}</div>
-              <div className="val">{v.val}</div>
+              {/* <div className="val">{v.val}</div> */}
+              <div className='val'>{props.realStatus[item.key][v.key] || 0}{v.unit}</div>
             </div>
           ))}
         </div>
