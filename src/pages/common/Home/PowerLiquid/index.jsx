@@ -43,7 +43,6 @@ const optionHandle = params => {
     // data = [],
     data = datas,
   } = params;
-  console.log(' optionoption ： ', params); //
   return {
     title: [
       {
@@ -125,7 +124,6 @@ const optionHandle = params => {
 
 const PowerLiquid = props => {
   const option = optionHandle(props);
-  console.log(' PowerLiquid optionoption  ： ', props, option); //
   return <SmartEchart {...props} option={option}></SmartEchart>;
 };
 

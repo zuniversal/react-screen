@@ -4,36 +4,9 @@ import SmartEchart from '@/common/SmartEchart';
 import { createIndexArr } from '@/utils';
 import { connect } from 'umi';
 import { mapStateToProps, mapDispatchToProps } from '@/models/home';
+import { datas } from '@/configs/datas';
 import { Tabs } from 'antd';
 const { TabPane } = Tabs;
-
-const datas = [
-  353.6,
-  323.9,
-  283.0,
-  213.4,
-  253.7,
-  243.7,
-  213.6,
-  253.2,
-  113.7,
-  183.8,
-  133.0,
-  163.3,
-
-  121.6,
-  151.9,
-  191.0,
-  201.7,
-  231.4,
-  261.7,
-  281.6,
-  221.2,
-  284.3,
-  321.7,
-  371.0,
-  351.8,
-];
 
 const monthArr = createIndexArr(24).map(v => `${v}`);
 
@@ -239,7 +212,7 @@ const optionHandle = params => {
     powerlineParams,
     query,
   } = params;
-  console.log(' optionoptionoptionoption ： ', params, query, configs.find(v => v.key === query)?.yAxisName); //
+  console.log(' optionHandleoptionHandleoptionHandle ： ', params   )// 
   return {
     // grid: {
     //   top: '20%',
@@ -291,7 +264,7 @@ const optionHandle = params => {
             color: 'rgba(255, 255, 255, 0.2)',
           },
         },
-        data: query === powerConfigMap.POWER_CURVE ? monthArr : data.map((v) => v.uptime.split(' ')[1].split('.')[0]),
+        data: query === powerConfigMap.POWER_CURVE ? monthArr : data?.map((v) => v.uptime.split(' ')[1].split('.')[0]),
         boundaryGap: false,
       },
     ],
@@ -364,11 +337,7 @@ const ActionTabs = props => {
   return (
     <Tabs
       defaultActiveKey="1"
-      onChange={key =>
-        props.onChange({
-          query: key,
-        })
-      }
+      onChange={props.onChange}
     >
       {configs.map((v, i) => (
         <TabPane {...v}></TabPane>
@@ -386,15 +355,23 @@ const PowerLineChart = props => {
   });
   console.log(' PowerLineChart optionoption  ： ', props, option); //
 
-  useEffect(() => {
+  const onChange = (key) => {
+    console.log(' onChange ： ',  key   )// 
     props.getPowerlineInfoAsync({
-      query: configs[0].key,
-    });
-  }, []);
+      ...powerlineParams, 
+      query: key,
+    })
+  }
+
+  // useEffect(() => {
+  //   props.getPowerlineInfoAsync({
+  //     query: configs[0].key,
+  //   });
+  // }, []);
 
   return (
     <div className="rightBox powerLineChart">
-      <ActionTabs onChange={props.getPowerlineInfoAsync}></ActionTabs>
+      <ActionTabs onChange={onChange}></ActionTabs>
       <div className="powerLineChartWrapper">
         <SmartEchart {...props} option={option}></SmartEchart>;
       </div>
@@ -402,5 +379,5 @@ const PowerLineChart = props => {
   );
 };
 
-// export default PowerLineChart;
-export default connect(mapStateToProps, mapDispatchToProps)(PowerLineChart);
+export default PowerLineChart;
+// export default connect(mapStateToProps, mapDispatchToProps)(PowerLineChart);

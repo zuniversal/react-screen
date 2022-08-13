@@ -16,10 +16,12 @@ const configs2 = [
   {
     text: '累计有功电量kWh',
     val: '26097284.52',
+    key: 'ep',
   },
   {
     text: '累计无功电量KVarh',
     val: '8584633.07',
+    key: 'eq',
   },
 ]
 
@@ -36,7 +38,7 @@ const RealData = props => {
         {configs1.map((v, i) => <div className='text' key={i} >{v.text}</div>)}
       </div>
       <div className='realDataItem'>
-        {configs2.map((v, i) => <div className='val' key={i} >{v.val}</div>)}
+        {configs2.map((v, i) => <div className='val' key={i} >{props.realDataStatistics[v.key]}</div>)}
       </div>
     </div>
 

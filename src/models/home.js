@@ -1,8 +1,8 @@
 import { init } from '@/utils/createAction';
 import * as services from '@/services/home';
-import { nowYearMonthDayFull } from '@/utils';
+import { nowYearMonthDayFull, toFixed } from '@/utils';
 import moment from 'moment'// 
-// import { powerConfigMap } from '@/pages/common/Home/PowerLineChart';
+import { POWER_CURVE } from '@/pages/common/Home/PowerLineChart';
 
 const namespace = 'home';
 const { createAction, createDispatch } = init(namespace);
@@ -11,11 +11,29 @@ const model = {
   namespace,
 
   state: {
-    temperatureHumidityInfo: {},
-    electricFee: {},
+    realData: {},
+    electricFeeParams: {
+      sn: '00018469010327',
+    },
+    electricFee: {
+      ep: [],
+      fee: [],
+      epSum: 0,
+      feeSum: 0,
+      feeAvg: 0,
+    },
+    powerlineParams: {
+      start_time: `${nowYearMonthDayFull} 00:00:00`,
+      end_time: `${nowYearMonthDayFull} 23:59:59`,
+      query: POWER_CURVE,
+    },
     powerlineInfo: {},
     powerlineInfo: [],
-    powerlineParams: {},
+    realDataStatistics: {
+      ep: 0,
+      ep: 0,
+    },
+    temperatureHumidityInfo: {},
     statistics: {
       today: {},
       this_month: {},
@@ -34,42 +52,26 @@ const model = {
     incomeTrendInfo: {
       incomeData: [],
       xAxisData: [],
+      sum: 0,
     },
     realStatus: {
       pv: {},
       ps: {},
       ld: {},
       gd: {},
+      status: 11,
     },
+    carbonAssets: {},
   },
 
   reducers: {
-    getTemperatureHumidity(state, { payload, data, dtp }) {
-      console.log(' getTemperatureHumidity ： ', state, payload, data, dtp);
+    getRealData(state, { payload, data, dtp }) {
+      console.log(' getRealData ： ', state, payload, data, dtp);
       return {
         ...state,
-        temperatureHumidityInfo: data,
-      };
-    },
-    getElectricFee(state, { payload, data }) {
-      console.log(' getElectricFee ： ', state, payload, data);
-      const c1 = { itemsTyle: { normal: { color: 'rgba(236, 78, 81)' } } };
-      const c2 = { itemsTyle: { normal: { color: 'rgba(231, 178, 69)' } } };
-      const c3 = { itemsTyle: { normal: { color: 'rgba(19, 208, 208)' } } };
-
-      return {
-        ...state,
-        electricFee: {
-          ep: [
-            { value: data.ep.valley, name: '谷时电量', ...c1 },
-            { value: data.ep.usual, name: '平时电量', ...c2 },
-            { value: data.ep.peak, name: '峰时电量', ...c3 },
-          ],
-          fee: [
-            { value: data.fee.valley, name: '谷时电量', ...c1 },
-            { value: data.fee.usual, name: '平时电量', ...c2 },
-            { value: data.fee.peak, name: '峰时电量', ...c3 },
-          ],
+        realData: {
+          ...data,
+          upTime: moment(data.uptime).format('YYYY-MM-DD HH:mm:ss'),
         },
       };
     },
@@ -91,18 +93,51 @@ const model = {
 
       return {
         ...state,
-        powerlineInfo: data,
         powerlineParams: payload,
+        powerlineInfo: data,
       };
     },
-    getRealData(state, { payload, data, dtp }) {
-      console.log(' getRealData ： ', state, payload, data, dtp);
+    getElectricFee(state, { payload, data }) {
+      console.log(' getElectricFee ： ', state, payload, data);
+      const c1 = { itemsTyle: { normal: { color: 'rgba(236, 78, 81)' } } };
+      const c2 = { itemsTyle: { normal: { color: 'rgba(231, 178, 69)' } } };
+      const c3 = { itemsTyle: { normal: { color: 'rgba(19, 208, 208)' } } };
+      const epSum = toFixed(data.ep.valley + data.ep.usual + data.ep.peak)
+      const feeSum = toFixed(data.fee.valley + data.fee.usual + data.fee.peak)
+      const feeAvg = toFixed(feeSum / epSum)
+
       return {
         ...state,
-        realData: {
-          ...data,
-          upTime: moment(data.uptime).format('YYYY-MM-DD HH:mm:ss'),
+        electricFeeParams: payload,
+        electricFee: {
+          ep: [
+            { value: data.ep.valley, name: '谷时电量', ...c1 },
+            { value: data.ep.usual, name: '平时电量', ...c2 },
+            { value: data.ep.peak, name: '峰时电量', ...c3 },
+          ],
+          fee: [
+            { value: data.fee.valley, name: '谷时电费', ...c1 },
+            { value: data.fee.usual, name: '平时电费', ...c2 },
+            { value: data.fee.peak, name: '峰时电费', ...c3 },
+          ],
+          epSum,
+          feeSum,
+          feeAvg,
         },
+      };
+    },
+    getRealDataStatistics(state, { payload, data, dtp }) {
+      console.log(' getRealDataStatistics ： ', state, payload, data, dtp);
+      return {
+        ...state,
+        realDataStatistics: data,
+      };
+    },
+    getTemperatureHumidity(state, { payload, data, dtp }) {
+      console.log(' getTemperatureHumidity ： ', state, payload, data, dtp);
+      return {
+        ...state,
+        temperatureHumidityInfo: data,
       };
     },
     getStatistics(state, { payload, data, dtp }) {
@@ -121,47 +156,98 @@ const model = {
     },
     getEle7days(state, { payload, data, dtp }) {
       console.log(' getEle7days ： ', state, payload, data, dtp);
+      const storagEnergy = []
+      const cityEnergy = []
+      const greenEnergy = []
+      const xAxisData = []
+      data.forEach((v, i) => {
+        storagEnergy.push(v.ps)
+        cityEnergy.push(v.se)
+        greenEnergy.push(v.ge)
+        xAxisData.push(v.date)
+      })
       return {
         ...state,
         historyElecCalc: {
-          storagEnergy: data.map((v) => v.ps),
-          cityEnergy: data.map((v) => v.se),
-          greenEnergy: data.map((v) => v.ge),
-          xAxisData: data.map((v) => v.date),
+          storagEnergy,
+          cityEnergy,
+          greenEnergy,
+          xAxisData,
         },
       };
     },
     getGe30days(state, { payload, data, dtp }) {
       console.log(' getGe30days ： ', state, payload, data, dtp);
+      const incomeData = []
+      const xAxisData = []
+      data.forEach((v, i) => {
+        incomeData.push(v.fee)
+        xAxisData.push(v.date)
+      })
+      const sum = toFixed(data.reduce((total, cuv) => total + cuv.fee, 0) * 0.9419)
       return {
         ...state,
         incomeTrendInfo: {
-          incomeData: data.map((v) => v.fee),
-          xAxisData: data.map((v) => v.date),
+          incomeData,
+          xAxisData,
+          sum,
         },
       };
     },
     getRealStatus(state, { payload, data, dtp }) {
       console.log(' getRealStatus ： ', state, payload, data, dtp);
+      let pvStatus = 0
+      if (data.pv.pv2_current > 0) {
+        pvStatus = 1
+      } else if (data.pv.pv2_current < 0) {
+        pvStatus = 2
+      } else {
+        pvStatus = 0
+      }
+      
       return {
         ...state,
-        realStatus: data ?? state.realStatus,
+        realStatus: {
+          ...data,
+          pvStatus: data.pv.pv2_current > 0 ,
+          psStatus: data.ps.status,
+          status: `${pvStatus}${data.ps.status}`,
+        },
+      };
+    },
+    getCarbonAssets(state, { payload, data, dtp }) {
+      console.log(' getCarbonAssets ： ', state, payload, data, dtp);
+      return {
+        ...state,
+        carbonAssets: data,
       };
     },
   },
 
   effects: {
-    *getTemperatureHumidityAsync(
-      { payload = {}, action, type },
-      { call, put },
-    ) {
-      console.log(' getTemperatureHumidityAsync ： ', payload, action, type);
-      const res = yield call(services.getTemperatureHumidity, payload);
-      console.log(' getTemperatureHumidityAsync resresres ： ', res); //
+    *getRealDataAsync({ payload, action, type }, { call, put }) {
+      console.log(' getRealDataAsync ： ', payload, action, type);
+      const res = yield call(services.getRealData, payload);
+      console.log(' getRealDataAsync resresres ： ', res); //
       yield put({
-        type: 'getTemperatureHumidity',
+        type: 'getRealData',
         ...res,
         payload,
+      });
+    },
+    *getPowerlineInfoAsync({ payload, action, type }, { call, put, select, }) {
+      console.log(' getPowerlineInfoAsync ： ', payload, action, type);
+      const { powerlineParams } = yield select(state => state[namespace]);
+      const params = {
+        ...powerlineParams,
+        ...payload,
+      }
+      const res = yield call(services.getPowerlineInfo, params);
+      console.log(' getPowerlineInfoAsync resresres ： ', res); //
+      yield put({
+        type: 'getPowerlineInfo',
+        ...res,
+        payload: params,
       });
     },
     *getElectricFeeAsync({ payload, action, type }, { call, put }) {
@@ -174,27 +260,25 @@ const model = {
         payload,
       });
     },
-    *getPowerlineInfoAsync({ payload, action, type }, { call, put }) {
-      console.log(' getPowerlineInfoAsync ： ', payload, action, type);
-      const params = {
-        start_time: `${nowYearMonthDayFull} 00:00:00`,
-        end_time: `${nowYearMonthDayFull} 23:59:59`,
-        ...payload,
-      };
-      const res = yield call(services.getPowerlineInfo, params);
-      console.log(' getPowerlineInfoAsync resresres ： ', res); //
+    *getRealDataStatisticsAsync({ payload, action, type }, { call, put }) {
+      console.log(' getRealDataStatisticsAsync ： ', payload, action, type);
+      const res = yield call(services.getRealDataStatistics, payload);
+      console.log(' getRealDataStatisticsAsync resresres ： ', res); //
       yield put({
-        type: 'getPowerlineInfo',
+        type: 'getRealDataStatistics',
         ...res,
         payload,
       });
     },
-    *getRealDataAsync({ payload, action, type }, { call, put }) {
-      console.log(' getRealDataAsync ： ', payload, action, type);
-      const res = yield call(services.getRealData, payload);
-      console.log(' getRealDataAsync resresres ： ', res); //
+    *getTemperatureHumidityAsync(
+      { payload = {}, action, type },
+      { call, put },
+    ) {
+      console.log(' getTemperatureHumidityAsync ： ', payload, action, type);
+      const res = yield call(services.getTemperatureHumidity, payload);
+      console.log(' getTemperatureHumidityAsync resresres ： ', res); //
       yield put({
-        type: 'getRealData',
+        type: 'getTemperatureHumidity',
         ...res,
         payload,
       });
@@ -245,6 +329,16 @@ const model = {
       console.log(' getRealStatusAsync resresres ： ', res); //
       yield put({
         type: 'getRealStatus',
+        ...res,
+        payload,
+      });
+    },
+    *getCarbonAssetsAsync({ payload, action, type }, { call, put }) {
+      console.log(' getCarbonAssetsAsync ： ', payload, action, type);
+      const res = yield call(services.getCarbonAssets, payload);
+      console.log(' getCarbonAssetsAsync resresres ： ', res); //
+      yield put({
+        type: 'getCarbonAssets',
         ...res,
         payload,
       });

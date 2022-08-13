@@ -57,34 +57,44 @@ const Home = props => {
   }, []);
 
   useEffect(() => {
-    console.log(' useEffect  ： ');
-    props.getTemperatureHumidityAsync();
-    props.getRealDataAsync();
-    props.getElectricFeeAsync({
-      sn: '00018469010327',
-    });
-    props.getStatisticsAsync();
-    props.getPVStatisticsAsync();
-    props.getEle7daysAsync();
-    // props.getGe30daysAsync();
-    props.getRealStatusAsync();
+    console.log(' useEffectuseEffect  ： ', props);
+    const req = (props) => {
+      console.log(' useEffect req   ,   ： ', props,  )
+      props.getRealDataAsync();
+      props.getElectricFeeAsync(props.electricFeeParams);
+      // props.getPowerlineInfoAsync(props.powerlineParams);
+      props.getPowerlineInfoAsync();
+      props.getRealDataStatisticsAsync();
+      props.getTemperatureHumidityAsync();
+      props.getStatisticsAsync();
+      props.getPVStatisticsAsync();
+      props.getEle7daysAsync();
+      props.getGe30daysAsync();
+      props.getRealStatusAsync();
+      props.getCarbonAssetsAsync();
+    }
+    setInterval(() => {
+      req(props)
+    // }, 300000)
+    }, 10000)
+    req(props)
   }, []);
 
   const leftCom = <div className="left">
     <EnergyCalc statistics={props.statistics}></EnergyCalc>
-    <CarbonAssets></CarbonAssets>
+    <CarbonAssets carbonAssets={props.carbonAssets}></CarbonAssets>
     <PowerInstallLiquid powerInstallInfo={props.powerInstallInfo}></PowerInstallLiquid>
     <HistoryElecCalc historyElecCalc={props.historyElecCalc}></HistoryElecCalc>
   </div>
   const rightCom = <div className="right">
-    <RealData toggleShowRealData={toggleShowRealData}></RealData>
+    <RealData realDataStatistics={props.realDataStatistics} toggleShowRealData={toggleShowRealData}></RealData>
     {isShowRealData ? (
       <RealDataDesc realData={props.realData}></RealDataDesc>
     ) : (
       <div className="righBlock">
         <ElectricPie electricFee={props.electricFee}></ElectricPie>
-        <IncomeTrendChart incomeTrendInfo={props.incomeTrendInfo}>></IncomeTrendChart>
-        <PowerLineChart></PowerLineChart>
+        <IncomeTrendChart incomeTrendInfo={props.incomeTrendInfo}></IncomeTrendChart>
+        <PowerLineChart powerlineInfo={props.powerlineInfo} powerlineParams={props.powerlineParams} getPowerlineInfoAsync={props.getPowerlineInfoAsync}></PowerLineChart>
       </div>
     )}
   </div>

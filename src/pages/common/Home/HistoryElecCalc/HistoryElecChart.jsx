@@ -2,36 +2,8 @@ import React from 'react';
 import './style.less';
 import SmartEchart from '@/common/SmartEchart';
 import { createIndexArr } from '@/utils';
+import { datas } from '@/configs/datas';
 import moment from 'moment';
-
-const datas = [
-  // 0,
-  121.6,
-  151.9,
-  191.0,
-  201.7,
-  231.4,
-  261.7,
-  281.6,
-  221.2,
-  284.3,
-  321.7,
-  371.0,
-  351.8,
-
-  353.6,
-  323.9,
-  283.0,
-  213.4,
-  253.7,
-  243.7,
-  213.6,
-  253.2,
-  113.7,
-  183.8,
-  133.0,
-  163.3,
-];
 
 const { getDate, getMonth,  } = new Date()
 
@@ -61,7 +33,6 @@ const optionHandle = params => {
     // data = [],
     data = datas,
   } = params;
-  console.log(' optionoption  ', params, ); //
   return {
     // legend: {
     //   data: [
@@ -164,7 +135,6 @@ const optionHandle = params => {
 
 const HistoryElecChart = props => {
   const option = optionHandle(props);
-  console.log(' HistoryElecChart optionoption  ： ', props, option); //
   return <SmartEchart {...props} option={option}></SmartEchart>;
 };
 

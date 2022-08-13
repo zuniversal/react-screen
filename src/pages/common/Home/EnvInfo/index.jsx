@@ -36,7 +36,6 @@ const configs2 = [
 const EnvInfo = props => {
   const {temperatureHumidityInfo, } = props
   // useEffect(() => {
-  //   console.log(' EnvInfo useEffect  ： ', props, );
   //   // props.dispatch({
   //   //   type: 'home/getTemperatureHumidityAsync',
   //   // })

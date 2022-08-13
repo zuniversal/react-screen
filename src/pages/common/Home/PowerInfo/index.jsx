@@ -70,45 +70,44 @@ const configs4 = [
 const configs = [
   {
     infos: configs1,
-    src: require('@/static/img/home/center/pvBlue.png'),
+    // src: require('@/static/img/home/center/pvBlue.png'),
     key: 'pv',
     class: 'pvBlue',
   },
   {
     infos: configs2,
-    src: require('@/static/img/home/center/house.png'),
+    // src: require('@/static/img/home/center/house.png'),
     key: 'ld',
     class: 'house',
   },
   {
     infos: configs3,
-    src: require('@/static/img/home/center/batteryBlue.png'),
+    // src: require('@/static/img/home/center/batteryBlue.png'),
     key: 'ps',
     class: 'batteryBlue',
   },
   {
     infos: configs4,
-    src: require('@/static/img/home/center/tower.png'),
+    // src: require('@/static/img/home/center/tower.png'),
     key: 'gd',
     class: 'tower',
   },
 ];
 
-// const PowerInfo = props => {
-//   return <div className='powerInfo '>
-//     {configs.map(item => (<div className='powerInfoItem '>
-//       <div className='powerInfoIconWrapper'>
-//         <img src={item.src} className="powerInfoIcon"/>
-//       </div>
-//       {item.infos.map(v => (<div className='powerInfoRow'>
-//         <div className='text'>{v.text}</div>
-//         <div className='val'>{v.val}</div>
-//       </div>))}
-//     </div>))}
-//   </div>
-// };
+const statusMap = {
+  '00': require('@/static/img/home/center/00.png'),
+  '01': require('@/static/img/home/center/01.png'),
+  '02': require('@/static/img/home/center/02.png'),
+  '10': require('@/static/img/home/center/10.png'),
+  '11': require('@/static/img/home/center/11.png'),
+  '12': require('@/static/img/home/center/12.png'),
+  '20': require('@/static/img/home/center/20.png'),
+  '21': require('@/static/img/home/center/21.png'),
+  '22': require('@/static/img/home/center/22.png'),
+}
 
 const PowerInfo = props => {
+  console.log(' PowerInfoPowerInfo   ： ', props, ); //
   return (
     <div className="machineCircleWrapper ">
       {configs.map((item, index) => (
@@ -140,7 +139,7 @@ const PowerInfo = props => {
         {/* <img src={require('@/static/img/home/center/circle1.png')} className="circleRing"/></div> */}
         <div className="circleRingWrapper circleRingWrapper2">
           <img
-            src={require('@/static/img/home/center/blueBlue.png')}
+            src={statusMap[props.realStatus.status]}
             className="circleRing2"
           />
         </div>

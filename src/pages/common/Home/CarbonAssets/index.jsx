@@ -10,7 +10,7 @@ const CarbonAssets = props => {
     </div>
     <div className="chartTitle">累计碳资产</div>
     <div className="carbonValWrapper">
-      <div className="carbonVal">566854</div>
+      <div className="carbonVal">{props.carbonAssets.carbon_assets}</div>
       <img src={shine} className="shine" />
     </div>
   </div>

@@ -4,36 +4,9 @@ import SmartEchart from '@/common/SmartEchart';
 import { createIndexArr } from '@/utils';
 import { connect } from 'umi';
 import { mapStateToProps, mapDispatchToProps, } from '@/models/home';
+import { datas } from '@/configs/datas';
 import { Tabs,  } from 'antd';
 const { TabPane } = Tabs;
-
-const datas = [
-  353.6,
-  323.9,
-  283.0,
-  213.4,
-  253.7,
-  243.7,
-  213.6,
-  253.2,
-  113.7,
-  183.8,
-  133.0,
-  163.3,
-
-  121.6,
-  151.9,
-  191.0,
-  201.7,
-  231.4,
-  261.7,
-  281.6,
-  221.2,
-  284.3,
-  321.7,
-  371.0,
-  351.8,
-];
 
 const monthArr = createIndexArr(24).map(
   v => `${v}`
@@ -44,7 +17,6 @@ const optionHandle = params => {
     // data = [],
     data = datas,
   } = params;
-  console.log(' optionoption ： ', params); //
   return {
     color: ['#EBAE3E', color2Day, color5Day],
     xAxis: [

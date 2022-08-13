@@ -11,9 +11,10 @@ const configs = [
     dataKey: 'ep',
     infos: [
       {
-        text: '总电费 : ',
-        val: '2294.47',
-        unit: '元',
+        text: '总电量 : ',
+        val: '2916.00',
+        key: 'epSum',
+        unit: '度',
       },
       {
         text: ' ',
@@ -28,13 +29,15 @@ const configs = [
     dataKey: 'fee',
     infos: [
       {
-        text: '总电量 : ',
-        val: '2916.00',
-        unit: '度',
+        text: '总电费 : ',
+        val: '2294.47',
+        key: 'feeSum',
+        unit: '元',
       },
       {
         text: '平均电费 : ',
         val: '0.79',
+        key: 'feeAvg',
         unit: '元/度',
       },
     ],
@@ -43,10 +46,7 @@ const configs = [
 
 const ElectricPie = props => {
   const { electricFee } = props;
-  console.log(' electricFee ： ', electricFee); //
-
   // useEffect(() => {
-  //   console.log(' ElectricPie useEffect  ： ', props);
   //   props.getElectricFeeAsync({
   //     sn: '00018469010327',
   //   });
@@ -68,9 +68,8 @@ const ElectricPie = props => {
             {item.infos.map((v, i) => (
               <div className="electricPieInfoRow" key={i}>
                 <div className="text">{v.text}</div>
-                <div className="val">
-                  {v.val} {v.unit}
-                </div>
+                {/* <div className="val">{v.val} {v.unit}</div> */}
+                <div className="val">{props.electricFee[v.key]} {v.unit}</div>
               </div>
             ))}
           </div>

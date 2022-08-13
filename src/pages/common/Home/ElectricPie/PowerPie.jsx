@@ -54,7 +54,6 @@ const optionHandle = props => {
 
 const PowerPie = props => {
   const option = optionHandle(props);
-  console.log(' PowerPie optionoption  ： ', props, option); //
   return <SmartEchart {...props} option={option}></SmartEchart>;
 };
 
