@@ -127,6 +127,14 @@ const createSeries = ({ data, params }) => {
       lineStyle: {
         width: 2,
       },
+      // splitLine: {
+      //   show: true,  
+      //   lineStyle: {
+      //     color: 'red'
+      //   }
+      // },
+      min: value => value.min,
+      max: value => value.max,
       // areaStyle: {
       //   color: areaColors[i],
       // },
@@ -214,11 +222,14 @@ const optionHandle = params => {
   } = params;
   console.log(' optionHandleoptionHandleoptionHandle ： ', params   )// 
   return {
-    // grid: {
-    //   top: '20%',
-    // },
+    grid: {
+      top: '18%',
+      left: '40px',
+      right: '2%',
+      bottom: '25%',
+    },
     legend: {
-      bottom: 0,
+      bottom: -5,
       right: 0,
       itemGap: 40,
       itemWidth: 10,
@@ -278,6 +289,11 @@ const optionHandle = params => {
         fontSize: 10,
         textStyle: {
           color: 'rgba(255, 255, 255, 0.2)',
+        },
+      },
+      splitLine: {
+        lineStyle: {
+          color: '#fff',
         },
       },
       min: value => value.min,
