@@ -128,7 +128,7 @@ const createSeries = ({ data, params }) => {
         width: 2,
       },
       // splitLine: {
-      //   show: true,  
+      //   show: true,
       //   lineStyle: {
       //     color: 'red'
       //   }
@@ -220,7 +220,7 @@ const optionHandle = params => {
     powerlineParams,
     query,
   } = params;
-  console.log(' optionHandleoptionHandleoptionHandle ： ', params   )// 
+  console.log(' optionHandleoptionHandleoptionHandle ： ', params); //
   return {
     grid: {
       top: '18%',
@@ -248,12 +248,12 @@ const optionHandle = params => {
         {
           name: '工作日',
           icon:
-            'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAKtJREFUGBmNkDsOwjAMhv2XIi7EihSae3CLLiA6IISouAX3CFRizYUQNMZ5VYWFerBs58vvBygZa72inmsiXsYSLM1wgTEPn8M7XustsTvm3NeCAU6QPe7mhKDkuJOHNzE1tJhfA/R8bUTmIHFJBVSZ2hXys0F3awMUXcuqkojP1FMtQJopK43IQV0YAaeZb2kD6mf6taEGO3mZeB5V7cKGzN+jjM+Tu/07+Acd2kyRiHTNUwAAAABJRU5ErkJggg==',
+            'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAI9JREFUGBmNkIEJwzAMBEUgJnSDDtNVukYh2apzdA7vELCk6pSmEENDDcLS//tlSeRzJvdbafYsajUjcrCdz7uoz6OajU39EGoKlyJehUgj1gAfF/crQQ4Gl860wwXi0CaKFMOFJgqrCHHphWCbidWhJ3/Vg7i8IJvJvRd9MTR/D4NLfHrJyc/Ws7fD+Wzhb4FFqS8uIKsnAAAAAElFTkSuQmCC',
         },
         {
           name: '周末',
           icon:
-            'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAI9JREFUGBmNkIEJwzAMBEUgJnSDDtNVukYh2apzdA7vELCk6pSmEENDDcLS//tlSeRzJvdbafYsajUjcrCdz7uoz6OajU39EGoKlyJehUgj1gAfF/crQQ4Gl860wwXi0CaKFMOFJgqrCHHphWCbidWhJ3/Vg7i8IJvJvRd9MTR/D4NLfHrJyc/Ws7fD+Wzhb4FFqS8uIKsnAAAAAElFTkSuQmCC',
+            'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAKtJREFUGBmNkDsOwjAMhv2XIi7EihSae3CLLiA6IISouAX3CFRizYUQNMZ5VYWFerBs58vvBygZa72inmsiXsYSLM1wgTEPn8M7XustsTvm3NeCAU6QPe7mhKDkuJOHNzE1tJhfA/R8bUTmIHFJBVSZ2hXys0F3awMUXcuqkojP1FMtQJopK43IQV0YAaeZb2kD6mf6taEGO3mZeB5V7cKGzN+jjM+Tu/07+Acd2kyRiHTNUwAAAABJRU5ErkJggg==',
         },
       ],
       textStyle: {
@@ -262,6 +262,16 @@ const optionHandle = params => {
     },
     tooltip: {
       trigger: 'axis',
+      ...(query === powerConfigMap.POWER_CURVE
+        ? {
+            formatter: params => {
+              console.log(' paramsparams ： ', params); //
+              return params
+                .map(v => `${v.marker} ${v.seriesName} ${v.value} kWh<br/>`)
+                .join(' ');
+            },
+          }
+        : {}),
     },
     xAxis: [
       {
@@ -275,7 +285,10 @@ const optionHandle = params => {
             color: 'rgba(255, 255, 255, 0.2)',
           },
         },
-        data: query === powerConfigMap.POWER_CURVE ? monthArr : data?.map((v) => v.uptime.split(' ')[1].split('.')[0]),
+        data:
+          query === powerConfigMap.POWER_CURVE
+            ? monthArr
+            : data?.map(v => v.uptime.split(' ')[1].split('.')[0]),
         boundaryGap: false,
       },
     ],
@@ -351,10 +364,7 @@ const optionHandle = params => {
 
 const ActionTabs = props => {
   return (
-    <Tabs
-      defaultActiveKey="1"
-      onChange={props.onChange}
-    >
+    <Tabs defaultActiveKey="1" onChange={props.onChange}>
       {configs.map((v, i) => (
         <TabPane {...v}></TabPane>
       ))}
@@ -371,13 +381,13 @@ const PowerLineChart = props => {
   });
   console.log(' PowerLineChart optionoption  ： ', props, option); //
 
-  const onChange = (key) => {
-    console.log(' onChange ： ',  key   )// 
+  const onChange = key => {
+    console.log(' onChange ： ', key); //
     props.getPowerlineInfoAsync({
-      ...powerlineParams, 
+      ...powerlineParams,
       query: key,
-    })
-  }
+    });
+  };
 
   // useEffect(() => {
   //   props.getPowerlineInfoAsync({
