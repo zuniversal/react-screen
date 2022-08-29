@@ -37,7 +37,7 @@ const optionHandle = params => {
       trigger: 'axis',
       formatter: params => {
         console.log(' paramsparams ： ', params); //
-        return `${params[0].marker}: ${params[0].seriesName} ${params[0].value} kWh<br/>`
+        return `${params[0].marker} ${params[0].seriesName} ${params[0].value} kWh<br/>`
       },
     },
     xAxis: [
