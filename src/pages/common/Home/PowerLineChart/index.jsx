@@ -267,7 +267,7 @@ const optionHandle = params => {
             formatter: params => {
               console.log(' paramsparams ： ', params); //
               return params
-                .map(v => `${v.marker} ${v.seriesName} ${v.value} kWh<br/>`)
+                .map(v => `${v.marker} ${v.seriesName} ${v.value ?? '-'} kWh<br/>`)
                 .join(' ');
             },
           }

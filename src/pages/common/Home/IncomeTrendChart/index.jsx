@@ -33,6 +33,13 @@ const optionHandle = params => {
     //     color: '#fff',
     //   },
     // },
+    tooltip: {
+      trigger: 'axis',
+      formatter: params => {
+        console.log(' paramsparams ： ', params); //
+        return `${params[0].marker}: ${params[0].seriesName} ${params[0].value} kWh<br/>`
+      },
+    },
     xAxis: [
       {
         type: 'category',
@@ -61,7 +68,7 @@ const optionHandle = params => {
     },
     series: [
       {
-        name: '有功电量:kWh',
+        name: '有功电量',
         type: 'line',
         yAxisIndex: 0,
         symbol: 'circle',
