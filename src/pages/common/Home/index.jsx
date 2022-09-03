@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './style.less';
 import { connect } from 'umi';
 import { mapStateToProps, mapDispatchToProps } from '@/models/home';
+import usePlatform from '@/hooks/usePlatform';
 import SystemTitle from './SystemTitle';
 import IncomeTrendChart from './IncomeTrendChart';
 import PowerLineChart from './PowerLineChart';
@@ -25,7 +26,9 @@ const resize = debounce(() => {
 
 const Home = props => {
   console.log(' Home ： ', props); //
-  const [isMobile, setIsMobile] = useState('');
+  // const [isMobile, setIsMobile] = useState('');
+  const { isMobile, } = usePlatform()
+  console.log(' isMobile ： ', isMobile,  )// 
   const [isShowRealData, setIsShowRealData] = useState(false);
   const [isShowCom, setIsShowCom] = useState(true);
   // const [isShowRealData, setIsShowRealData] = useState(true);
@@ -34,22 +37,22 @@ const Home = props => {
   useEffect(() => {
     console.log(' useEffect  ： ');
     setIsShowCom(!isShowCom)
-    let userAgent = navigator.userAgent.toLowerCase();
-    if (
-      /ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(
-        userAgent,
-      )
-    ) {
-      console.log('前端是移动端');
-      setIsMobile('mobile');
-    } else {
-      console.log('前端是pc端');
-      window.addEventListener('resize', resize);
-      return () => {
-        console.log(' useEffect 卸载 ： ');
-        window.removeEventListener('resize', resize);
-      };
-    }
+    // let userAgent = navigator.userAgent.toLowerCase();
+    // if (
+    //   /ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(
+    //     userAgent,
+    //   )
+    // ) {
+    //   console.log('前端是移动端');
+    //   setIsMobile('mobile');
+    // } else {
+    //   console.log('前端是pc端');
+    //   window.addEventListener('resize', resize);
+    //   return () => {
+    //     console.log(' useEffect 卸载 ： ');
+    //     window.removeEventListener('resize', resize);
+    //   };
+    // }
     setTimeout(() => {
       console.log('  延时器 ： ',  )
       setIsShowCom(!isShowCom)
