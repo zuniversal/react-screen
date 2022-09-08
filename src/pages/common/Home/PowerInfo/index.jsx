@@ -23,7 +23,7 @@ const configs1 = [
   {
     text: 'PV2电流',
     val: '10.9A',
-    key: 'pv2_voltage',
+    key: 'pv2_current',
     unit: 'A',
   },
 ];
