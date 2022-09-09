@@ -9,6 +9,7 @@ const configs = [
     val: '689.460',
     key: 'pv',
     topDataKey: 'real',
+    totalKey: 'power',
     color: ['#31D4D5'],
     colorIntro: [
       {
@@ -27,6 +28,7 @@ const configs = [
     val: '552',
     key: 'ps',
     topDataKey: 'power',
+    totalKey: 'capacity',
     color: ['#FC7154'],
     colorIntro: [
       {
@@ -53,7 +55,7 @@ const PowerInstallLiquid = props => {
             </div>
           </div>
           {/* <div className="chartVal">{item.val}</div> */}
-          <div className="chartVal">{props.powerInstallInfo[item.key].power || 0}</div>
+          <div className="chartVal">{props.powerInstallInfo[item.key][item.totalKey] || 0}</div>
           <PowerLiquid {...item} {...props} dataInfo={props.powerInstallInfo[item.key]}></PowerLiquid>
           <div className="colorIntroWrapper">
             {item.colorIntro.map((v, i) => (
