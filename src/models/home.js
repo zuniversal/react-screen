@@ -347,7 +347,11 @@ const model = {
 };
 
 export const actions = createAction(model);
-export const mapStateToProps = state => state[namespace];
+// export const mapStateToProps = state => state[namespace];
+export const mapStateToProps = state => ({
+  ...state[namespace],
+  loading: state.loading,
+});
 export const mapDispatchToProps = createDispatch(model);
 
 export default model;

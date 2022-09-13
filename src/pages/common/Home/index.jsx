@@ -81,7 +81,7 @@ const Home = props => {
       <div className="righBlock">
         <ElectricPie electricFee={props.electricFee}></ElectricPie>
         <IncomeTrendChart incomeTrendInfo={props.incomeTrendInfo}></IncomeTrendChart>
-        <PowerLineChart powerlineInfo={props.powerlineInfo} powerlineParams={props.powerlineParams} getPowerlineInfoAsync={props.getPowerlineInfoAsync}></PowerLineChart>
+        <PowerLineChart loading={props.loading} powerlineInfo={props.powerlineInfo} powerlineParams={props.powerlineParams} getPowerlineInfoAsync={props.getPowerlineInfoAsync}></PowerLineChart>
       </div>
     )}
   </div>

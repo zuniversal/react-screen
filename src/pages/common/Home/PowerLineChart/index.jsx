@@ -5,7 +5,7 @@ import { createIndexArr } from '@/utils';
 import { connect } from 'umi';
 import { mapStateToProps, mapDispatchToProps } from '@/models/home';
 import { datas } from '@/configs/datas';
-import { Tabs } from 'antd';
+import { Tabs, Spin, } from 'antd';
 const { TabPane } = Tabs;
 
 const monthArr = createIndexArr(24).map(v => `${v}`);
@@ -399,8 +399,12 @@ const PowerLineChart = props => {
     <div className="rightBox powerLineChart">
       <ActionTabs onChange={onChange}></ActionTabs>
       <div className="powerLineChartWrapper">
-        <SmartEchart {...props} option={option}></SmartEchart>;
+        <SmartEchart {...props} option={option}></SmartEchart>
       </div>
+      <Spin spinning={props.loading.effects['home/getPowerlineInfoAsync']} className='loadingSpin'></Spin>
+      {/* <Spin spinning={props.loading.effects['home/getPowerlineInfoAsync']}>
+        <SmartEchart {...props} option={option}></SmartEchart>
+      </Spin> */}
     </div>
   );
 };
