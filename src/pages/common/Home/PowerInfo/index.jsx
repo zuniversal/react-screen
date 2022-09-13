@@ -108,6 +108,7 @@ const statusMap = {
 
 const PowerInfo = props => {
   console.log(' PowerInfoPowerInfo   ： ', props, ); //
+  const isPositiveCls = props.realStatus.ps.current > 0 ? 'inner1R' : ''
   return (
     <div className="machineCircleWrapper ">
       {configs.map((item, index) => (
@@ -126,7 +127,7 @@ const PowerInfo = props => {
       ))}
       <div className="machineCircle ">
         <div className="innerWrapper">
-          <div className="inner inner1"></div>
+          <div className={`inner inner1 ${isPositiveCls}`}></div>
           <div className="inner inner2"></div>
           <div className="inner inner3"></div>
           <div className="inner inner4"></div>

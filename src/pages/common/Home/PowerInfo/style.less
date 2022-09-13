@@ -99,24 +99,26 @@
     left: 10%;
     left: 20%;
     transform: rotate(45deg) scale(3);
-    animation: translateLeft 5s infinite linear;
+    animation: translateLeft 3.5s infinite linear;
+    &.inner1R {
+      animation-name: translateLeftR;
+      animation-duration: 3s;
+    }
   }
   .inner2 {
     left: 400px;
     left: 90%;
     left: 80%;
     transform: rotate(-45deg) scale(3);
-    animation: translateRight 5s infinite linear;
+    animation: translateRight 3.5s infinite linear;
   }
   .inner3 {
     left: 20%;
     transform: rotate(45deg) scale(3);
-    animation: translateLeftR 5s infinite linear;
   }
   .inner4 {
     left: 80%;
     transform: rotate(-45deg) scale(3);
-    animation: translateRightR 5s infinite linear;
   }
 
   .powerInfoItem {
