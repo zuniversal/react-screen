@@ -17,8 +17,6 @@ const monthArr = createIndexArr(31)
         .format('MM-DD')}`,
   );
 
-const Title = () => 'Title';
-
 const optionHandle = params => {
   const {
     // data = [],
@@ -36,7 +34,6 @@ const optionHandle = params => {
     tooltip: {
       trigger: 'axis',
       formatter: params => {
-        console.log(' paramsparams ： ', params); //
         return `${params[0].marker} ${params[0].seriesName} ${params[0].value} kWh<br/>`
       },
     },

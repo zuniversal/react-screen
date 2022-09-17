@@ -20,7 +20,6 @@ import debounce from 'lodash/debounce';
 // const mapStateToProps = ({ home }) => home;
 
 const resize = debounce(() => {
-  console.log('useEffect resize debounce ： ');
   window.location.reload();
 }, 500);
 
@@ -31,7 +30,6 @@ const Home = props => {
   console.log(' isMobile ： ', isMobile,  )// 
   const [isShowRealData, setIsShowRealData] = useState(false);
   const [isShowCom, setIsShowCom] = useState(true);
-  // const [isShowRealData, setIsShowRealData] = useState(true);
 
   const toggleShowRealData = params => setIsShowRealData(!isShowRealData);
   useEffect(() => {
@@ -103,7 +101,6 @@ const Home = props => {
       </div>
       
       {isShowCom && isMobile ? rightCom : rightCom}
-      {/* <PowerLineChart></PowerLineChart> */}
     </div>
   );
 };

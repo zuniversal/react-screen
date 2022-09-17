@@ -2,11 +2,7 @@ import React from 'react';
 import './style.less';
 import SmartEchart from '@/common/SmartEchart';
 import { createIndexArr } from '@/utils';
-import { connect } from 'umi';
-import { mapStateToProps, mapDispatchToProps, } from '@/models/home';
 import { datas } from '@/configs/datas';
-import { Tabs,  } from 'antd';
-const { TabPane } = Tabs;
 
 const monthArr = createIndexArr(24).map(
   v => `${v}`
@@ -67,7 +63,6 @@ const optionHandle = params => {
 
 const PowerLineChart = props => {
   const option = optionHandle(props);
-  console.log(' PowerLineChart optionoption  ： ', props, option); //
   return <SmartEchart {...props} option={option}></SmartEchart>;
 };
 

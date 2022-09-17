@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './style.less';
-import { connect } from 'umi';
-import { mapStateToProps, mapDispatchToProps } from '@/models/home';
 import PowerPie from './PowerPie';
 
 const configs = [
@@ -46,11 +44,6 @@ const configs = [
 
 const ElectricPie = props => {
   const { electricFee } = props;
-  // useEffect(() => {
-  //   props.getElectricFeeAsync({
-  //     sn: '00018469010327',
-  //   });
-  // }, []);
 
   return (
     <div className="rightBox electricPie">
@@ -80,4 +73,3 @@ const ElectricPie = props => {
 };
 
 export default ElectricPie;
-// export default connect(mapStateToProps, mapDispatchToProps)(ElectricPie);

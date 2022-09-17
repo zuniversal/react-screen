@@ -107,7 +107,6 @@ export const configs = [
 ];
 
 const createSeries = ({ data, params }) => {
-  console.log(' createSeries   ,   ： ', data, params);
   const seriesItem = {
     type: 'line',
     yAxisIndex: 0,
@@ -117,7 +116,6 @@ const createSeries = ({ data, params }) => {
   };
   let series = [];
   if (params.query === powerConfigMap.POWER_CURVE) {
-    console.log(' series Array.isArray(data) ： ', Array.isArray(data), data); //
     series = Object.keys(powerCurveMap).map((key, i) => ({
       ...seriesItem,
       ...powerCurveMap[key],
@@ -139,7 +137,6 @@ const createSeries = ({ data, params }) => {
       //   color: areaColors[i],
       // },
     }));
-    console.log(' createSeries series ： ', series); //
   }
   if (params.query === powerConfigMap.POWER_VOLTAGE) {
     const datas = {};
@@ -150,7 +147,6 @@ const createSeries = ({ data, params }) => {
       })
       .map((key, i) => {
         datas[key] = data.map((item, i) => item[key]);
-        console.log(' datas seriesseries ： ', datas); //
         return {
           ...seriesItem,
           symbol: 'circle',
@@ -161,7 +157,6 @@ const createSeries = ({ data, params }) => {
           },
         };
       });
-    console.log(' datas seriesseries  series ： ', datas, series); //
   }
   if (params.query === powerConfigMap.POWER_CURRENT) {
     const datas = {};
@@ -208,7 +203,6 @@ const createSeries = ({ data, params }) => {
         };
       });
   }
-  console.log(' datas series ： ', series);
   return series;
 };
 
@@ -220,7 +214,6 @@ const optionHandle = params => {
     powerlineParams,
     query,
   } = params;
-  console.log(' optionHandleoptionHandleoptionHandle ： ', params); //
   return {
     grid: {
       top: '18%',
@@ -265,7 +258,6 @@ const optionHandle = params => {
       ...(query === powerConfigMap.POWER_CURVE
         ? {
             formatter: params => {
-              console.log(' paramsparams ： ', params); //
               return params
                 .map(v => `${v.marker} ${v.seriesName} ${v.value ?? '-'} kWh<br/>`)
                 .join(' ');
@@ -379,10 +371,8 @@ const PowerLineChart = props => {
     data: powerlineInfo,
     ...powerlineParams,
   });
-  console.log(' PowerLineChart optionoption  ： ', props, option); //
 
   const onChange = key => {
-    console.log(' onChange ： ', key); //
     props.getPowerlineInfoAsync({
       ...powerlineParams,
       query: key,

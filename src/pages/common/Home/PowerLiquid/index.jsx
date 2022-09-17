@@ -2,34 +2,7 @@ import React from 'react';
 import './style.less';
 import SmartEchart from '@/common/SmartEchart';
 import { createIndexArr, vh, } from '@/utils';
-
-const datas = [
-  121.6,
-  151.9,
-  191.0,
-  201.7,
-  231.4,
-  261.7,
-  281.6,
-  221.2,
-  284.3,
-  321.7,
-  371.0,
-  351.8,
-
-  353.6,
-  323.9,
-  283.0,
-  213.4,
-  253.7,
-  243.7,
-  213.6,
-  253.2,
-  113.7,
-  183.8,
-  133.0,
-  163.3,
-];
+import { datas } from '@/configs/datas';
 
 const monthArr = createIndexArr(24).map(v => `${v}`);
 
@@ -43,6 +16,7 @@ const optionHandle = params => {
     // data = [],
     data = datas,
   } = params;
+  const percent = params.dataInfo[params.topDataKey] / params.dataInfo.capacity
   return {
     title: [
       {
@@ -104,7 +78,7 @@ const optionHandle = params => {
         color: ['#31D4D5'],
         color: params.color,
         // data个数代表波浪数
-        data: [value],
+        data: [percent],
         label: {
           normal: {
             formatter: '',

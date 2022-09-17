@@ -5,8 +5,6 @@ import { createIndexArr } from '@/utils';
 import { datas } from '@/configs/datas';
 import moment from 'moment';
 
-const { getDate, getMonth,  } = new Date()
-
 const dayArr = createIndexArr(7).reverse().map(
   // v => `2022-${moment().subtract(v, 'days').format('YYYY-MM-DD')}-` + `${v + 1}`.padStart(2, '0'),
   v => `${moment().subtract(v, 'days').format('YYYY-MM-DD')}`

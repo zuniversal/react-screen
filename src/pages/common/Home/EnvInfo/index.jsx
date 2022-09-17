@@ -1,9 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './style.less';
-import { connect } from 'umi';
-import { mapStateToProps, mapDispatchToProps, } from '@/models/home';
-
-// const mapStateToProps = ({ home }) => home;
 
 const configs1 = [
   {
@@ -67,5 +63,3 @@ const EnvInfo = props => {
 };
 
 export default EnvInfo;
-// export default connect(mapStateToProps, mapDispatchToProps)(EnvInfo);
-
