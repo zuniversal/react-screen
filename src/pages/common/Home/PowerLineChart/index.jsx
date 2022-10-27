@@ -102,7 +102,7 @@ export const configs = [
   {
     tab: '负荷',
     key: powerConfigMap.POWER_LOAD,
-    yAxisName: 'KW',
+    yAxisName: 'kW',
   },
 ];
 
