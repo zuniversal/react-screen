@@ -73,6 +73,92 @@
     // transform: rotate(45deg) scale(1) translate(0px, -9%);
     // transform-origin: bottom center;
   }
+  .lightDotWrapper {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .lightDot {
+    width: 7px;
+    height: 3px;
+    width: 10px;
+    height: 4px;
+    height: 2px;
+    margin: 2px;
+    display: inline-block;
+    background: #0dd0d2;
+    &.noLightBg {
+      background: none;
+    }
+  }
+  
+  .lightWrapper {
+    position: absolute;
+    top: 20%;
+    right: 20%;
+    bottom: 23%;
+    left: 20%;
+    overflow: hidden;
+
+    flex-wrap: wrap;
+    .dashLine{
+      width: 93%;
+      width: 100%;
+      height: 2px;
+      position: absolute;
+      background: rgba(190, 190, 190, 0.7);
+      margin: 11px 0;
+    }
+    .lightTracker{
+      width: 100%;
+      height: 100%;
+    }
+    .lightsBox{
+      display: inline-flex;
+      flex: 1;
+      width: 50%;
+      height: 50%;
+      position: relative;
+      
+      .lightMarquee{
+        z-index: 2;
+        
+        width: 100%;
+        height: 15px;
+        overflow: hidden;
+        white-space: nowrap;
+        // +div{
+        //   height: 15px;
+        //   white-space: nowrap;
+        // }
+        
+        // &::after {
+        //   content: " ";
+        //   display: inline-block;
+        //   width: 0px;
+        //   height: 100%;
+        //   font-size: 20px;
+        //   border-left: 1px dashed #0dd0d2;
+        //   transform: rotate(45deg);
+        // }
+      }
+      &.lightsBox1 {
+        transform: rotate(45deg) translate(0, 40%);
+      }
+      &.lightsBox2 {
+        transform: rotate(-45deg) translate(0, 40%);
+      }
+      &.lightsBox3 {
+        // transform: rotate(135deg) translate(0, 40%);
+        transform: rotate(-45deg) translate(0, 40%);
+      }
+      &.lightsBox4 {
+        // transform: rotate(-135deg) translate(0, 40%);
+        transform: rotate(45deg) translate(0, 40%);
+      }
+    }
+    
+  }
   .innerWrapper {
     position: absolute;
     top: 20%;
@@ -93,32 +179,63 @@
     font-size: 20px;
     border-left: 1px dashed #0dd0d2;
     transform: rotate(45deg) scale(2);
+    &.noAnimate {
+      animation: none;
+    }
   }
   .inner1 {
     left: 23%;
     left: 10%;
     left: 20%;
     transform: rotate(45deg) scale(3);
-    animation: translateLeft 3.5s infinite linear;
-    &.inner1R {
-      animation-name: translateLeftR;
-      animation-duration: 3s;
-    }
   }
   .inner2 {
     left: 400px;
     left: 90%;
     left: 80%;
     transform: rotate(-45deg) scale(3);
-    animation: translateRight 3.5s infinite linear;
+    // animation: translateRight 3.5s infinite linear;
   }
   .inner3 {
     left: 20%;
     transform: rotate(45deg) scale(3);
+    z-index: 13;
+    animation: translateLeftR 3.5s infinite linear;
+    &::before {
+      content: " ";
+      display: inline-block;
+      z-index: 100;
+      background: #0f5759;
+    }
   }
   .inner4 {
     left: 80%;
     transform: rotate(-45deg) scale(3);
+    // animation: translateRightR 3.5s infinite linear;
+  }
+  .inner1bg {
+    left: 20%;
+    transform: rotate(45deg) scale(2) translate(0px, -35%);
+    z-index: 21;
+    border-left: 1px solid orange;
+  }
+  .inner2bg {
+    left: 80%;
+    transform: rotate(-45deg) scale(2) translate(0px, -35%);
+    z-index: 22;
+    border-left: 1px solid pink;
+  }
+  .inner3bg {
+    left: 20%;
+    transform: rotate(45deg) scale(2) translate(0px, 35%);
+    z-index: 23;
+    border-left: 1px solid red;
+  }
+  .inner4bg {
+    left: 80%;
+    transform: rotate(-45deg) scale(2) translate(0px, 35%);
+    z-index: 24;
+    border-left: 1px solid blue;
   }
 
   .powerInfoItem {
@@ -176,6 +293,19 @@
     background-size: 80%;
     background: url(~@/static/img/home/center/text.png) no-repeat 50% 97%;
     background-size: 78%;
+    background-size: 83%;
+    &.textBg0 {
+      background: url(~@/static/img/home/center/e0.png) no-repeat 50% 97%;
+      background-size: 83%;
+    }
+    &.textBg1 {
+      background: url(~@/static/img/home/center/e1.png) no-repeat 50% 97%;
+      background-size: 83%;
+    }
+    &.textBg2 {
+      background: url(~@/static/img/home/center/e2.png) no-repeat 50% 97%;
+      background-size: 83%;
+    }
     // background: url(~@/static/img/home/center/text.png) no-repeat 50% 83%;
     // background-size: 78%;
     // &::before {
@@ -254,7 +384,7 @@
     // top: 48%;
     // top: 54%;
     left: 50%;
-    z-index: 1;
+    z-index: 100;
     display: flex;
     flex-direction: column;
     // padding: 12px;

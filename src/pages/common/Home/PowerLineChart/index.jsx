@@ -2,10 +2,8 @@ import React, { useEffect } from 'react';
 import './style.less';
 import SmartEchart from '@/common/SmartEchart';
 import { createIndexArr } from '@/utils';
-import { connect } from 'umi';
-import { mapStateToProps, mapDispatchToProps } from '@/models/home';
 import { datas } from '@/configs/datas';
-import { Tabs, Spin, } from 'antd';
+import { Tabs,  } from 'antd';
 const { TabPane } = Tabs;
 
 const monthArr = createIndexArr(24).map(v => `${v}`);
@@ -206,6 +204,40 @@ const createSeries = ({ data, params }) => {
   return series;
 };
 
+const legendOptions = {
+  legend: {
+    bottom: -5,
+    right: 0,
+    itemGap: 40,
+    itemWidth: 10,
+    itemHeight: 10,
+    selected: {
+      今日: true,
+      工作日: true,
+      周末: true,
+    },
+    data: [
+      {
+        name: '今日',
+        icon:
+          'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAALhJREFUGBmNkDsOwjAMhm2rA11Rj8JKyxFyAm7BAoKhQoiKW3AAlCNQWDlKxFoGFGNHtVQYAA+JH1/+2Ebo7e6raWRYMPNEU4h4I4TD2LXXFOsRfLUE5i0zoMZmEkQgXBeu3WFSinyW4hMINvkoPyrYPbq5YLW4GRHOsvQdyDuBCndpFOqtCb4EjrBXhqwnUzJKb8spQ8PCN590OgVSTx+k5ZT5e5i0jnAqVyJWsww1FH1bjxV+LfwFfsZeQpKLo6sAAAAASUVORK5CYII=',
+      },
+      {
+        name: '工作日',
+        icon:
+          'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAI9JREFUGBmNkIEJwzAMBEUgJnSDDtNVukYh2apzdA7vELCk6pSmEENDDcLS//tlSeRzJvdbafYsajUjcrCdz7uoz6OajU39EGoKlyJehUgj1gAfF/crQQ4Gl860wwXi0CaKFMOFJgqrCHHphWCbidWhJ3/Vg7i8IJvJvRd9MTR/D4NLfHrJyc/Ws7fD+Wzhb4FFqS8uIKsnAAAAAElFTkSuQmCC',
+      },
+      {
+        name: '周末',
+        icon:
+          'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAKtJREFUGBmNkDsOwjAMhv2XIi7EihSae3CLLiA6IISouAX3CFRizYUQNMZ5VYWFerBs58vvBygZa72inmsiXsYSLM1wgTEPn8M7XustsTvm3NeCAU6QPe7mhKDkuJOHNzE1tJhfA/R8bUTmIHFJBVSZ2hXys0F3awMUXcuqkojP1FMtQJopK43IQV0YAaeZb2kD6mf6taEGO3mZeB5V7cKGzN+jjM+Tu/07+Acd2kyRiHTNUwAAAABJRU5ErkJggg==',
+      },
+    ],
+    textStyle: {
+      color: '#ffffff',
+    },
+  }
+}
 const optionHandle = params => {
   const {
     // data = [],
@@ -221,49 +253,26 @@ const optionHandle = params => {
       right: '2%',
       bottom: '25%',
     },
-    legend: {
-      bottom: -5,
-      right: 0,
-      itemGap: 40,
-      itemWidth: 10,
-      itemHeight: 10,
-      selected: {
-        今日: true,
-        工作日: true,
-        周末: true,
-      },
-      data: [
-        {
-          name: '今日',
-          icon:
-            'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAALhJREFUGBmNkDsOwjAMhm2rA11Rj8JKyxFyAm7BAoKhQoiKW3AAlCNQWDlKxFoGFGNHtVQYAA+JH1/+2Ebo7e6raWRYMPNEU4h4I4TD2LXXFOsRfLUE5i0zoMZmEkQgXBeu3WFSinyW4hMINvkoPyrYPbq5YLW4GRHOsvQdyDuBCndpFOqtCb4EjrBXhqwnUzJKb8spQ8PCN590OgVSTx+k5ZT5e5i0jnAqVyJWsww1FH1bjxV+LfwFfsZeQpKLo6sAAAAASUVORK5CYII=',
-        },
-        {
-          name: '工作日',
-          icon:
-            'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAI9JREFUGBmNkIEJwzAMBEUgJnSDDtNVukYh2apzdA7vELCk6pSmEENDDcLS//tlSeRzJvdbafYsajUjcrCdz7uoz6OajU39EGoKlyJehUgj1gAfF/crQQ4Gl860wwXi0CaKFMOFJgqrCHHphWCbidWhJ3/Vg7i8IJvJvRd9MTR/D4NLfHrJyc/Ws7fD+Wzhb4FFqS8uIKsnAAAAAElFTkSuQmCC',
-        },
-        {
-          name: '周末',
-          icon:
-            'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAAXNSR0IArs4c6QAAAKtJREFUGBmNkDsOwjAMhv2XIi7EihSae3CLLiA6IISouAX3CFRizYUQNMZ5VYWFerBs58vvBygZa72inmsiXsYSLM1wgTEPn8M7XustsTvm3NeCAU6QPe7mhKDkuJOHNzE1tJhfA/R8bUTmIHFJBVSZ2hXys0F3awMUXcuqkojP1FMtQJopK43IQV0YAaeZb2kD6mf6taEGO3mZeB5V7cKGzN+jjM+Tu/07+Acd2kyRiHTNUwAAAABJRU5ErkJggg==',
-        },
-      ],
-      textStyle: {
-        color: '#ffffff',
-      },
-    },
+    ...(query === powerConfigMap.POWER_CURVE ? legendOptions : {}),
+    // tooltip: {
+    //   trigger: 'axis',
+    //   ...(query === powerConfigMap.POWER_CURVE
+    //     ? {
+    //         formatter: params => {
+    //           return params
+    //             .map(v => `${v.marker} ${v.seriesName} ${v.value ?? '-'} kWh<br/>`)
+    //             .join(' ');
+    //         },
+    //       }
+    //     : {}),
+    // },
     tooltip: {
       trigger: 'axis',
-      ...(query === powerConfigMap.POWER_CURVE
-        ? {
-            formatter: params => {
-              return params
-                .map(v => `${v.marker} ${v.seriesName} ${v.value ?? '-'} kWh<br/>`)
-                .join(' ');
-            },
-          }
-        : {}),
+      formatter: params => {
+        return params
+          .map(v => `${v.marker} ${query === powerConfigMap.POWER_LOAD ? '' : v.seriesName} ${v.value ?? '-'} ${configs.find(v => v.key === query).yAxisName}<br/>`)
+          .join(' ');
+      },
     },
     xAxis: [
       {
@@ -356,7 +365,7 @@ const optionHandle = params => {
 
 const ActionTabs = props => {
   return (
-    <Tabs defaultActiveKey="1" onChange={props.onChange}>
+    <Tabs defaultActiveKey="1" onChange={props.onChange} activeKey={props.activeKey}>
       {configs.map((v, i) => (
         <TabPane {...v}></TabPane>
       ))}
@@ -365,6 +374,7 @@ const ActionTabs = props => {
 };
 
 const PowerLineChart = props => {
+  console.log(' PowerLineChart ： ', props   )// 
   const { powerlineInfo, powerlineParams } = props;
   const option = optionHandle({
     ...props,
@@ -373,6 +383,7 @@ const PowerLineChart = props => {
   });
 
   const onChange = key => {
+    console.log(' onChangeonChange ： ', key   )// 
     props.getPowerlineInfoAsync({
       ...powerlineParams,
       query: key,
@@ -387,14 +398,10 @@ const PowerLineChart = props => {
 
   return (
     <div className="rightBox powerLineChart">
-      <ActionTabs onChange={onChange}></ActionTabs>
+      <ActionTabs onChange={onChange} activeKey={powerlineParams.query}></ActionTabs>
       <div className="powerLineChartWrapper">
-        <SmartEchart {...props} option={option}></SmartEchart>
+        <SmartEchart {...props} option={option} key={powerlineParams.query}></SmartEchart>
       </div>
-      <Spin spinning={props.loading.effects['home/getPowerlineInfoAsync']} className='loadingSpin'></Spin>
-      {/* <Spin spinning={props.loading.effects['home/getPowerlineInfoAsync']}>
-        <SmartEchart {...props} option={option}></SmartEchart>
-      </Spin> */}
     </div>
   );
 };

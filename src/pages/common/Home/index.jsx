@@ -16,6 +16,8 @@ import RealData from './RealData';
 import RealDataDesc from './RealDataDesc';
 import ElectricPie from './ElectricPie';
 import debounce from 'lodash/debounce';
+import { POWER_CURVE, configs } from './PowerLineChart';
+import '@/static/css/index.less'
 
 // const mapStateToProps = ({ home }) => home;
 
@@ -23,8 +25,10 @@ const resize = debounce(() => {
   window.location.reload();
 }, 500);
 
+let reqInterval, getPowerlineInfoAsyncInterval, isShowComTimer, query = POWER_CURVE;
+
 const Home = props => {
-  console.log(' Home ： ', props); //
+  console.log(' Home ： ', props, props.powerlineParams.query); //
   // const [isMobile, setIsMobile] = useState('');
   const { isMobile, } = usePlatform()
   console.log(' isMobile ： ', isMobile,  )// 
@@ -32,23 +36,22 @@ const Home = props => {
   const [isShowCom, setIsShowCom] = useState(true);
 
   const toggleShowRealData = params => setIsShowRealData(!isShowRealData);
-  useEffect(() => {
-    console.log(' useEffect  ： ');
-    setIsShowCom(!isShowCom)
-    setTimeout(() => {
-      console.log('  延时器 ： ',  )
-      setIsShowCom(!isShowCom)
-    }, 5000)
-  }, []);
 
-  useEffect(() => {
-    console.log(' useEffectuseEffect  ： ', props);
+  const getPowerlineInfoAsyncReq = () => {
+    // const loopIndex = configs.findIndex(v => v.key === props.powerlineParams.query)
+    const loopIndex = configs.findIndex(v => v.key === query)
+    const nextIndex = loopIndex < configs.length - 1 ? loopIndex + 1 : 0
+    console.log('  loopIndex ： ', query, loopIndex, nextIndex, configs, configs[nextIndex].key, props.powerlineParams, props, props.powerlineParams.query, )
+    query = configs[nextIndex].key
+    props.getPowerlineInfoAsync({
+      ...props.powerlineParams,
+      query: configs[nextIndex].key,
+    });
+  }
+  const ajax = () => {
     const req = (props) => {
-      console.log(' useEffect req   ,   ： ', props,  )
       props.getRealDataAsync();
       props.getElectricFeeAsync(props.electricFeeParams);
-      // props.getPowerlineInfoAsync(props.powerlineParams);
-      props.getPowerlineInfoAsync();
       props.getRealDataStatisticsAsync();
       props.getTemperatureHumidityAsync();
       props.getStatisticsAsync();
@@ -58,11 +61,29 @@ const Home = props => {
       props.getRealStatusAsync();
       props.getCarbonAssetsAsync();
     }
-    setInterval(() => {
+
+    reqInterval = setInterval(() => {
       req(props)
     // }, 300000)
     }, 10000)
+    getPowerlineInfoAsyncInterval = setInterval(getPowerlineInfoAsyncReq, 5000)
     req(props)
+  }
+
+  useEffect(() => {
+    console.log(' useEffectuseEffect  ： ', props);
+    props.getPowerlineInfoAsync();
+    ajax()
+    setIsShowCom(!isShowCom)
+    isShowComTimer = setTimeout(() => {
+      console.log('  延时器 ： ',  )
+      setIsShowCom(!isShowCom)
+    }, 5000)
+    return () => {
+      clearInterval(reqInterval);
+      clearInterval(getPowerlineInfoAsyncInterval);
+      clearTimeout(isShowComTimer);
+    }
   }, []);
 
   const leftCom = <div className="left">

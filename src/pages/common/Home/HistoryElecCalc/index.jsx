@@ -1,12 +1,13 @@
 import React from 'react';
 import './style.less';
 import HistoryElecChart from './HistoryElecChart';
+import historyElecCalc from '@/static/img/home/left/historyElecCalc.png'
   
 const HistoryElecCalc = props => {
   return <div className='leftBox historyElecCalc'>
     <div className='iconTitle'>
       <div className=''>
-        <img src={require('@/static/img/home/left/historyElecCalc.png')} className="icon"/>
+        <img src={historyElecCalc} className="icon"/>
         <div className='chartTitle'>历史7天电量统计</div>
       </div>
       <div className='colorIntroWrapper'>

@@ -5,6 +5,7 @@ import { vh } from '@/utils';
 const optionHandle = props => {
   const { data, title = '' } = props;
   return {
+    // ...gridZero,
     // animation: false,
     // title: {
     //   text: title,
@@ -37,6 +38,8 @@ const optionHandle = props => {
           // fontSize: '8',
           color: '#fff',
           formatter: '{b}\n{c}' + props.unit,
+          alignTo: 'labelLine',  
+          overflow: 'none',
         },
         data: [
           { value: 335, name: '谷时电量' },
@@ -45,6 +48,7 @@ const optionHandle = props => {
           // { value: 135, name: '其他电量', },
         ],
         data,
+        // startAngle: 45
       },
     ],
   };

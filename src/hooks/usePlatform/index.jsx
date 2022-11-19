@@ -12,8 +12,9 @@ const usePlatform = (config = {}) => {
   } = config;
   const [isMobile, setIsMobile] = useState('');
 
-  useEffect(() => {
+  const isMobileListener = (cb) => {
     let userAgent = navigator.userAgent.toLowerCase();
+    console.log(' isMobile isMobileListener ： ', userAgent,   )// 
     if (
       /ipad|iphone|midp|rv:1.2.3.4|ucweb|android|windows ce|windows mobile/.test(
         userAgent,
@@ -24,12 +25,21 @@ const usePlatform = (config = {}) => {
       mobileCb()
     } else {
       console.log('前端是pc端');
-      window.addEventListener('resize', resize);
-      return () => {
-        console.log(' useEffect 卸载 ： ');
-        window.removeEventListener('resize', resize);
-      };
+      setIsMobile('');
     }
+  }
+
+  // isMobileListener()
+  console.log(' isMobileListenerisMobileListener ： ',    )// 
+
+  useEffect(() => {
+    isMobileListener()
+    console.log(' isMobileListenerisMobileListener 2： ',    )// 
+    window.addEventListener('resize', isMobileListener);
+    return () => {
+      console.log(' isMobile useEffect 卸载 ： ');
+      window.removeEventListener('resize', isMobileListener);
+    };
   }, []);
 
   return {

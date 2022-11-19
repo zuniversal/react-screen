@@ -1,16 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import './style.less';
+import smoke from '@/static/img/home/center/smoke.png'
+import water from '@/static/img/home/center/water.png'
+import temperature from '@/static/img/home/center/temperature.png'
+import humidity from '@/static/img/home/center/humidity.png'
 
 const configs1 = [
   {
     text: '烟感',
     val: '正常',
-    src: require('@/static/img/home/center/smoke.png')
+    src: smoke
   },
   {
     text: '水浸',
     val: '正常',
-    src: require('@/static/img/home/center/water.png')
+    src: water
   },
 ]
 
@@ -19,13 +23,13 @@ const configs2 = [
     text: '环境温度°C ',
     val: '18',
     key: 'temperature',
-    src: require('@/static/img/home/center/temperature.png')
+    src: temperature
   },
   {
     text: '环境湿度%',
     val: '72',
     key: 'humidity',
-    src: require('@/static/img/home/center/humidity.png')
+    src: humidity
   },
 ]
 

@@ -64,12 +64,12 @@ class SmartEcharts extends React.PureComponent {
 
   render() {
     const { data, type, legend, tabData, option } = this.props;
-    console.log(
-      ' %c SmartEchart 组件 this.state, this.props ： ',
-      `color: #333; font-weight: bold`,
-      this.state,
-      this.props,
-    );
+    // console.log(
+    //   ' %c SmartEchart 组件 this.state, this.props ： ',
+    //   `color: #333; font-weight: bold`,
+    //   this.state,
+    //   this.props,
+    // );
     let onEvents = {
       click: this.onChartClick,
       legendselectchanged: this.onChartLegendselectchanged,
@@ -92,7 +92,7 @@ class SmartEcharts extends React.PureComponent {
     // );
 
     // return null
-    console.log(' optionConfig ： ', optionConfig, common, option, )// 
+    // console.log(' optionConfig ： ', optionConfig, common, option, )// 
     return (
       <ReactEcharts
         echarts={echarts}
