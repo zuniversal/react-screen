@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: laibin-screen
+  name: laibin-screen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: laibin-screen
+  template:
+    metadata:
+      labels:
+        app: laibin-screen
+      name: laibin-screen
+    spec:
+      nodeName: master
+      imagePullSecrets:
+      - name: harbor
+      containers:
+      - image: 172.25.148.179:8008/laibin/screen:1.0
+        name: laibin-screen
+        ports:
+        - containerPort: 80
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /etc/nginx/nginx.conf
+          name: laibin-screen-config-volume
+          subPath: nginx.conf
+        - mountPath: /etc/nginx/conf.d/default.conf
+          name: laibin-screen-config-volume
+          subPath: default.conf
+      volumes:
+      - name: laibin-screen-config-volume
+        configMap:
+          name: laibin-screen-config
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 90
+            preference:
+              matchExpressions:
+              - key: kubernetes.io/role
+                operator: In
+                values:
+                - busi
