@@ -202,7 +202,7 @@ const PowerInfo = (props) => {
   const energyStatus = realStatus.ps.status;
   const loadStatus = realStatus.ld.pe != 0 ? 2 : 0;
   const electricStatus =
-    realStatus.gd.current == 0 || realStatus.gd.current < 0 ? 0 : realStatus.gd.current > 0 ? 2 : 1;
+    realStatus.gd.current == 0 ? 0 : realStatus.gd.current > 0 ? 2 : 1;
 
   return (
     <div className="machineCircleWrapper ">
