@@ -16,6 +16,8 @@ git pull origin $v
 if [ $a -eq 1 ];then
     docker build . -f Dockerfile -t $image:$version --no-cache
 fi
+npm install
+npm run build
 docker build . -f Dockerfile -t $image:$version --no-cache &&\
 docker push $image:$version
 docker rmi $(docker images -f "dangling=true" -q)
