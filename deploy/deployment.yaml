@@ -15,7 +15,7 @@ spec:
         app: laibin-screen
       name: laibin-screen
     spec:
-      nodeName: master
+      nodeName: izuf6ed3gi3u5cnh24iamaz
       imagePullSecrets:
       - name: harbor
       containers:
