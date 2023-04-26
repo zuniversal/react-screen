@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.less';
 import SmartEchart from '@/common/SmartEchart';
-import { createIndexArr, vh, } from '@/utils';
+import { createIndexArr, vh } from '@/utils';
 
 const datas = [
   121.6,
@@ -43,7 +43,7 @@ const optionHandle = params => {
     // data = [],
     data = datas,
   } = params;
-  const percent = params.dataInfo[params.topDataKey] / params.dataInfo.capacity
+  const percent = params.dataInfo[params.topDataKey] / params.dataInfo.capacity;
   return {
     title: [
       {
@@ -82,7 +82,7 @@ const optionHandle = params => {
         },
       },
       {
-        text: 'kWh',
+        text: 'kWp',
         left: '48%',
         top: '70%',
         textAlign: 'center',
