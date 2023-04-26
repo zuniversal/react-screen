@@ -82,7 +82,7 @@ const optionHandle = params => {
         },
       },
       {
-        text: 'kWp',
+        text: params.topUnit,
         left: '48%',
         top: '70%',
         textAlign: 'center',
