@@ -4,46 +4,42 @@
 #root {
   min-height: 100%;
 }
+
+.ant-layout-header {
+  // position: fixed;
+}
+
 .ant-layout-has-sider {
   .ant-layout {
-    overflow: scroll;
+    // overflow: scroll;
   }
+
   & > .ant-layout {
     // overflow: scroll;
   }
+
   .ant-layout > div {
     height: 100%;
     min-height: 100%;
     min-height: initial !important;
+    min-height: calc(100vh - 94px) !important;
+    overflow-x: hidden;
+    overflow-y: scroll;
     max-height: 100%;
     margin: 15px;
     background: white;
+    // margin-top: 80px;
 
     // overflow: scroll;
     // min-height: initial!important;
   }
+
   .ant-pro-basicLayout-has-header {
     .ant-pro-basicLayout-children-content-wrap {
       display: flex;
       flex: 1;
     }
   }
-}
-
-.w-64 {
-  width: 78px !important;
-}
-.w-78 {
-  width: 78px !important;
-}
-.w-96 {
-  width: 96px !important;
-}
-
-.homeTitle {
-  color: #333333;
-  font-weight: bold;
-  font-size: 14px;
 }
 
 .spinWrapper {
@@ -59,22 +55,27 @@
   .anticon {
     margin-right: 0;
   }
+
   .navItem {
     display: flex;
     align-items: center;
   }
+
   span {
-    color: #ffffff;
+    color: #fff;
   }
+
   .subIcon.icons {
     margin-right: 0;
     visibility: hidden;
   }
+
   .icons {
     width: 16px;
     height: 16px;
     margin-right: 10px;
   }
+
   .ant-menu-submenu-title > span {
     display: flex;
     align-items: center;
@@ -94,12 +95,14 @@
 .layoutContainer {
   width: 100%;
   height: 100%;
+
   .actionItem {
     margin-right: 20px;
     font-size: 20px;
   }
+
   .userName {
-    color: #333333;
+    color: #333;
     font-weight: 400;
     font-size: 14px;
   }
@@ -114,13 +117,16 @@
     width: 130px;
     height: 25px;
   }
+
   .menuHeaderWrapper {
     .logoWrapper {
       height: 64px;
+
       .searchForm {
         margin-right: 0;
       }
     }
+
     .searchForm {
       width: 150px;
     }
@@ -149,6 +155,7 @@
   .content {
     height: 100%;
   }
+
   .actionItem {
     margin-right: 30px;
     font-size: 20px;

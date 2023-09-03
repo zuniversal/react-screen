@@ -1,6 +1,6 @@
 import { defineConfig } from 'umi';
-import routes from './routes';
-// import common from './routes/common';
+import common from './src/routes/common';
+import routes from './src/routes';
 
 export default defineConfig({
   // mfsu: { production: { output: '.mfsu-production' } },
@@ -17,7 +17,7 @@ export default defineConfig({
   links: [{ rel: 'icon', href: 'favicon.ico' }],
   locale: {
     antd: true,
-    default: 'zh-CN', //
+    default: 'zh-CN',
   },
 
   dynamicImport: {
@@ -48,12 +48,21 @@ export default defineConfig({
     // { path: '/userCenter', component: '@/pages/UserCenter' },
 
     // ...common,
-    { path: '/urgent', component: '@/pages/common/Urgent' },
+    // { path: '/urgent', component: '@/pages/common/Urgent' },
+    // {
+    //   path: '/',
+    //   // component: '@/layouts/index',
+    //   component: '@/pages/common/Home',
+    //   routes: [{ path: '/om/test', component: '@/pages/Test' }, ...routes],
+    // },
+    ...common,
     {
       path: '/',
-      // component: '@/layouts/index',
-      component: '@/pages/common/Home',
-      routes: [{ path: '/om/test', component: '@/pages/Test' }, ...routes],
+      component: '@/layouts/index',
+      routes: [
+        // { path: '/om/test', component: '@/pages/Test' },
+        ...routes,
+      ],
     },
   ],
   theme: {

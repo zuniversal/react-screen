@@ -155,13 +155,23 @@ const configs = [
 ];
 
 const RealDataDesc = props => {
-  return <div className='leftBox realDataDesc' >
-    {configs.map((v, i) => (<div className='itemBox' key={i} >
-      <div className='label'>{v.label}</div>
-      {/* <div className='val'>{v.val}</div> */}
-      <div className='val'>{props.realData[v.key]}</div>
-    </div>))}
-  </div>
+  const { boxCls } = props;
+  return (
+    <div className={`${boxCls} realDataDesc`}>
+      {configs.map((v, i) => (
+        <div className="itemBox" key={i}>
+          <div className="label">{v.label}</div>
+          {/* <div className='val'>{v.val}</div> */}
+          <div className="val">{props.realData[v.key]}</div>
+        </div>
+      ))}
+    </div>
+  );
+};
+
+RealDataDesc.defaultProps = {
+  boxCls: 'leftBox',
+  realData: {},
 };
 
 export default RealDataDesc;

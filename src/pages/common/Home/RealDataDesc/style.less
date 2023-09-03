@@ -4,10 +4,13 @@
   display: block;
   width: 100%;
   transition: all 1s linear !important;
+  flex-wrap: wrap;
+
   .itemBox {
     flex: 1;
     display: flex;
     display: inline-block;
+    flex: 0 0 20%;
     font-size: 12px;
     font-weight: 400;
     color: #fff;
@@ -16,19 +19,21 @@
     margin-bottom: 15px;
     vertical-align: top;
   }
+
   .label {
     width: fit-content;
     font-size: 12px;
     opacity: 0.6;
     white-space: nowrap;
     padding-bottom: 5px;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid rgb(255 255 255 / 20%);
   }
+
   .val {
     font-size: 12px;
     font-weight: bold;
     font-style: italic;
-    color: #10E9A8;
+    color: #10e9a8;
     margin: 10px 0;
   }
 }

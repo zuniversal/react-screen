@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
-import './style.less';
+import React from 'react';
 import { Form, Button } from 'antd';
 import { history, connect } from 'umi';
 import loginAvatar from '@/static/assets/loginAvatar.png';
-import LoginForm from './LoginForm';
+import ResetPwdForm from './ResetPwdForm';
 
-const Login = props => {
+const ResetPwd = props => {
   const [form] = Form.useForm();
 
   const goPage = path => {
@@ -13,20 +12,13 @@ const Login = props => {
     history.push(path);
   };
 
-  // props.dispatch({
-  //   type: 'user/getNotifyAsync',
-  //   payload: {
-  //     name: 'zyb',
-  //   },
-  // });
   const onFinish = values => {
-    console.log('onFinish 提交 : ', values, props);
+    console.log('Received values of form: ', values, props);
     const { username, password } = values;
-    props.dispatch({
-      type: 'user/loginAsync',
-      // payload: values,
-      payload: values.values,
-    });
+    // props.dispatch({
+    //   type: 'user/loginAsync',
+    //   payload: values,
+    // });
   };
 
   return (
@@ -35,14 +27,12 @@ const Login = props => {
         <div className="f1"></div>
         <div className="loginForm">
           <div className="loginRow">
-            {/* <img src={loginAvatar} className="loginAvatar" /> */}
-            <div className="sysystemTitle">欢迎登录</div>
+            <img src={loginAvatar} className="loginAvatar" />
+            <div className="sysystemTitle">欢迎登录电管家平台</div>
           </div>
 
-          <LoginForm
+          <ResetPwdForm
             className="login-form"
-            // name="normal_login"
-            name="loginForm"
             initialValues={{
               remember: true,
               username: 'admin',
@@ -51,24 +41,18 @@ const Login = props => {
               password: '',
             }}
             onSubmit={onFinish}
-            // onFinish={onFinish}
           >
             <Form.Item className={`btnFormItem`} noStyle>
               <Button type="primary" htmlType="submit" className="actionBtn">
-                登录
+                确认
               </Button>
-              <div className="forgetPwdRow">
-                <div className="forgetPwd" onClick={() => goPage('forgetPwd')}>
-                  忘记密码
-                </div>
-              </div>
             </Form.Item>
-          </LoginForm>
+          </ResetPwdForm>
         </div>
       </div>
     </div>
   );
 };
 
-// export default Login;
-export default connect()(Login);
+// export default ResetPwd;
+export default connect()(ResetPwd);

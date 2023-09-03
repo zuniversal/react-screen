@@ -17,6 +17,7 @@ const RightContent = props => {
       params.getRealDataStatisticsAsync();
       params.getElectricFeeAsync();
       params.getPowerlineInfoAsync();
+      params.getRealDataAsync();
     };
     setInterval(() => {
       req(props);
@@ -42,7 +43,10 @@ const RightContent = props => {
         toggleShowRealData={toggleShowRealData}
       ></RealData>
       {isShowRealData ? (
-        <RealDataDesc realData={props.realData}></RealDataDesc>
+        <RealDataDesc
+          realData={props.realData}
+          boxCls={`rightBox`}
+        ></RealDataDesc>
       ) : (
         <div className="righBlock">
           <ElectricPie electricFee={props.electricFee}></ElectricPie>
