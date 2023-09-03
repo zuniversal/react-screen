@@ -1,0 +1,91 @@
+.rightContent {
+  z-index: 100;
+  z-index: 999;
+  position: fixed;
+  // right: 20px;
+  right: 0;
+  top: 35px;
+  bottom: 0;
+  width: 380px;
+  width: 420px;
+  // height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+  padding: 8px;
+  box-sizing: border-box;
+  // .realData,
+  // .electricPie,
+  // .powerLineChart {
+  // 	margin-bottom: 0;
+  // }
+
+  .righBlock {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    flex-direction: column;
+    transition: all 1s linear !important;
+    // padding-bottom: 90px;
+  }
+
+  .infoBox {
+    display: flex;
+    flex: 1;
+    padding: 20px;
+
+    .leftBox {
+      margin-right: 10px;
+    }
+
+    .rightBox {
+      margin-left: 10px;
+    }
+  }
+
+  .realData {
+    flex: 0 0 58px;
+  }
+  // .powerLineChart {
+  // 	flex: 1;
+  // }
+  // .electricPie {
+  // 	flex: 1;
+  // }
+  // .alarmSeamlessScroll {
+  // 	flex: 1;
+  // }
+}
+
+// ------------------------------------------------
+.lightBox {
+  padding: 2px 12px;
+  color: #fff;
+  font-size: 12px;
+  white-space: nowrap;
+  background: rgb(7 255 220 / 30%);
+  border: 1px solid #07ffdc;
+  cursor: default;
+}
+
+.leftBox {
+  display: flex;
+  // overflow: hidden;
+  width: 100%;
+  padding: 10px 12px;
+  // overflow: hidden;
+  background: url('/border.png');
+  background: url(~@/static/img/home/leftBox.png);
+  background-size: cover;
+}
+
+.rightBox {
+  display: flex;
+  // overflow: hidden;
+  width: 100%;
+  padding: 10px 12px;
+  // overflow: hidden;
+  background: url('/border.png');
+  background: url(~@/static/img/home/rightBox.png);
+  background-size: cover;
+}

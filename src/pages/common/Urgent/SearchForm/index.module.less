@@ -1,0 +1,87 @@
+.searchFormSelect {
+  :global {
+    background: rgba(49, 212, 213, 0.5);
+    .ant-select-item-option-active {
+      background: rgba(49, 212, 213, 0.8);
+    }
+    .ant-select-item-option:hover {
+      background: rgba(49, 212, 213, 0.6);
+    }
+    .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+      background: rgba(49, 212, 213, 0.8);
+    }
+  }
+}
+
+.urgentSearchForm {
+  z-index: 1;
+  // width: 100%;
+  position: fixed;
+  top: 80px;
+  left: 410px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+
+  .select1 {
+    width: 130px;
+    margin: 0;
+    border-bottom: 1px solid #31d4d5;
+
+    .ant-select-selector {
+      padding: 0 8px;
+    }
+  }
+
+  .select2 {
+    width: 100%;
+    border-bottom: 1px solid #31d4d5;
+  }
+
+  :global {
+    .ant-select {
+      margin: 10px;
+    }
+
+    .ant-select-selector {
+      padding: 0 !important;
+    }
+    .ant-select-item-option-active:not(.ant-select-item-option-disabled) {
+      background: rgba(49, 212, 213, 0.8);
+    }
+
+    .ant-input-group {
+      // border-bottom: 1px solid #31d4d5;
+      // background-color: rgba(49, 212, 213, 0.2);
+      height: 34px;
+      display: flex;
+      align-items: center;
+
+      .ant-select-selection-placeholder {
+        color: #31d4d5;
+        padding-right: 40px;
+      }
+
+      .ant-select-selection-item {
+        color: #fff;
+        color: #31d4d5;
+        opacity: 1 !important;
+      }
+
+      .ant-select-arrow {
+        color: white;
+        color: #31d4d5;
+      }
+
+      .divider {
+        height: 27px;
+        width: 2px;
+        background: rgb(49 212 213 / 50%);
+      }
+    }
+  }
+
+  .imgIcon {
+    margin-top: -6px;
+  }
+}

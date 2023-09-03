@@ -48,6 +48,7 @@ export default defineConfig({
     // { path: '/userCenter', component: '@/pages/UserCenter' },
 
     // ...common,
+    { path: '/urgent', component: '@/pages/common/Urgent' },
     {
       path: '/',
       // component: '@/layouts/index',

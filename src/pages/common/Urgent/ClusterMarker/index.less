@@ -1,0 +1,130 @@
+@import '../mixins.less';
+
+.box {
+  .active {
+    display: none;
+  }
+
+  &:hover,
+  &.hover {
+    .active {
+      display: flex;
+    }
+
+    .normal {
+      display: none;
+    }
+  }
+}
+
+.marker {
+  position: relative;
+
+  .cell {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    color: #fff;
+    background: @color-wave;
+    border-radius: 50%;
+    text-align: center;
+    box-shadow: 5px 5px 30px 5px rgb(0 255 235 / 30%);
+
+    &::before {
+      .wave-cell;
+
+      animation: wave 1.8s ease-in 0.6s infinite;
+    }
+
+    &::after {
+      .wave-cell;
+
+      animation: wave 1.8s ease-in 0s infinite;
+    }
+  }
+
+  &.active {
+    .cell {
+      width: 90px;
+      height: 90px;
+      font-size: 15px;
+      transition: all 0.2s;
+      position: relative;
+      background: @color-wave-active;
+      right: 20px;
+      bottom: 20px;
+      box-shadow: 5px 5px 50px 5px rgb(0 255 235 / 30%);
+
+      &::before {
+        .wave-cell(@color-wave-active);
+
+        animation: wave 1.8s ease-in 0.6s infinite;
+      }
+
+      &::after {
+        .wave-cell(@color-wave-active);
+
+        animation: wave 1.8s ease-in 0s infinite;
+      }
+    }
+  }
+
+  .marker-icon {
+    // border-top: solid 1px #fff;
+    width: 65px;
+
+    &::before {
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      background-repeat: no-repeat;
+      background-position: center;
+      position: relative;
+      top: 2px;
+      margin-right: 5px;
+    }
+
+    &-vehicle {
+      &::before {
+        .screen-bg('icon_vehicle');
+      }
+    }
+
+    &-people {
+      &::before {
+        .screen-bg('icon_people');
+      }
+    }
+
+    &-customer {
+      &::before {
+        .screen-bg('icon_location');
+      }
+    }
+
+    &:first-child {
+      border-top: none;
+    }
+  }
+}
+
+@keyframes wave {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+}

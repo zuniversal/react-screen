@@ -1,0 +1,125 @@
+.detailPopover {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 400px;
+  // height: 400px;
+  background: #00000090;
+  // position: absolute;
+  z-index: 999;
+  padding: 22px;
+  border: 2px solid #169191;
+
+  .point {
+    font-size: 2.5vh;
+    font-weight: bold;
+    color: #31d4d5;
+    padding-bottom: 25px;
+  }
+
+  .detailPopoverColWrapper {
+    display: flex;
+  }
+
+  .detailPopoverCol {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .infoItem {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    color: #fff;
+    opacity: 0.8;
+    margin-bottom: 11px;
+    padding: 0 15px;
+
+    .val {
+      font-size: 2.2vh;
+      font-style: italic;
+      color: #fd6d4f;
+    }
+
+    .label {
+      color: #fff;
+      font-size: 1.8vh;
+      font-weight: 400;
+      display: flex;
+      white-space: nowrap;
+      padding-right: 10px;
+      justify-content: flex-start;
+      user-select: none;
+    }
+  }
+
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: #10676e;
+  }
+}
+
+.detailEnvInfo {
+  // flex: 1;
+  display: flex;
+  padding: 20px;
+  padding: 16px;
+  padding-bottom: 0;
+
+  & > div {
+    padding-bottom: 5px;
+  }
+
+  .leftBox {
+    flex: 1;
+    margin-right: 5px;
+    margin-left: 30px;
+  }
+
+  .rightBox {
+    flex: 1;
+    margin-right: 30px;
+    margin-left: 5px;
+  }
+
+  .envInfoIconWrapper {
+    height: 30px;
+  }
+
+  .envInfoItem {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    font-weight: 400;
+  }
+
+  .envInfoIcon {
+    // width: fit-content;
+    // width: 70%;
+    // width: 20px;
+    // height: initial;
+  }
+
+  .text {
+    // padding-bottom: 5px;
+    width: fit-content;
+    margin-bottom: 5px;
+    font-size: 2vh;
+    font-size: 1.6vh;
+    white-space: nowrap;
+    border-bottom: 2px solid #27e4c2;
+  }
+
+  .val {
+    font-weight: 500;
+    font-size: 3vh;
+    font-size: 2vh;
+  }
+}

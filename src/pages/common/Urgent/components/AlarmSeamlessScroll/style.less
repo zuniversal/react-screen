@@ -1,0 +1,71 @@
+.alarmSeamlessScroll {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+
+  .alarmSeamlessScrollWrapper {
+    flex: 1;
+    height: 100%;
+    overflow: hidden;
+    overflow: hidden;
+  }
+
+  .iconTitle {
+    padding-bottom: 20px;
+  }
+
+  .alarmSeamlessScrollContainer {
+    flex: 1;
+    // max-height: 33%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .alarmSeamlessItem {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 35px;
+    color: #fff;
+    opacity: 0.8;
+    margin-bottom: 11px;
+    padding: 0 20px;
+
+    &.warn {
+      background: #ffae3250;
+      border: 1px solid #ffae32;
+    }
+
+    &.error {
+      background: #fb2d0450;
+      border: 1px solid #fb2d04;
+    }
+
+    .val {
+      font-size: 16px;
+      font-style: italic;
+    }
+
+    .f2 {
+      flex: 1;
+      margin-left: 20px;
+    }
+
+    .item3 {
+      justify-content: flex-end;
+    }
+
+    .label {
+      font-size: 14px;
+      font-weight: 400;
+      display: flex;
+      white-space: nowrap;
+      padding-right: 10px;
+      justify-content: flex-start;
+      user-select: none;
+    }
+  }
+}

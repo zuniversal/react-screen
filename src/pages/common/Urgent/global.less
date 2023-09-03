@@ -1,0 +1,157 @@
+@import './vars.less';
+@import './mixins.less';
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  // background-color: #000000;
+  color: rgba(0, 0, 0, 0.85);
+}
+
+.scree-box() {
+  font-size: 40px;
+  color: #ffffff;
+  text-align: center;
+  padding: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 20px #0095ff;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-c {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.f1 {
+  flex: 1 1 0%;
+}
+
+.screen-table {
+  .ant-tabs-tab {
+    color: #00debb;
+    font-size: 16px;
+    &.ant-tabs-tab-active {
+      .ant-tabs-tab-btn {
+        color: #00ffd6;
+        &:active,
+        &:focus {
+          color: #00ffd6;
+        }
+      }
+    }
+  }
+  .ant-tabs-top > .ant-tabs-nav {
+    margin: 0;
+  }
+  .ant-table {
+    background-color: transparent;
+    color: rgba(255, 255, 255, 0.85);
+    .ant-table-thead > tr > th {
+      background-color: transparent;
+    }
+    .ant-table-empty .ant-table-tbody > tr.ant-table-placeholder {
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+  .ant-table-thead > tr > th {
+    color: #ffffff;
+    border-bottom: solid 1px @color-border;
+  }
+  .ant-table-tbody > tr > td {
+    color: @color-active;
+    border-bottom: solid 1px @color-border;
+  }
+  .ant-empty-normal {
+    color: @color-normal;
+  }
+  .ant-pagination-item-active a {
+    color: @color-active;
+  }
+  .ant-pagination-item-active {
+    border: solid 1px @color-border;
+  }
+  // .ant-pagination-item {
+  //   border: none;
+  // }
+  .ant-pagination-disabled .ant-pagination-item-link {
+    border-color: transparent;
+  }
+  // .ant-pagination-prev .ant-pagination-item-link,
+  // .ant-pagination-next .ant-pagination-item-link {
+  //   border: none;
+  // }
+  .ant-table-tbody > tr > td {
+    word-wrap: break-word;
+    word-break: break-all;
+  }
+
+  .ant-table-body {
+    .scroller;
+  }
+}
+
+.amap-controlbar {
+  .amap-luopan,
+  .amap-luopan-bg {
+    .screen-bg('luopan');
+    .bg-center;
+  }
+  .amap-luopan .amap-compass {
+    .screen-bg('compass');
+    .bg-center;
+    top: 87px;
+  }
+  .amap-pitchUp {
+    cursor: pointer;
+    top: -0.5px;
+  }
+  .amap-pitchDown {
+    cursor: pointer;
+  }
+  .amap-rotateLeft {
+    cursor: pointer;
+    left: 3px;
+  }
+  .amap-rotateRight {
+    cursor: pointer;
+    right: 3px;
+  }
+}
+
+.ant-message {
+  color: #000000;
+}
+
+.ant-modal-wrap {
+  pointer-events: none;
+}
+
+// 修改全局滚动条样式
+::-webkit-scrollbar,
+::-webkit-scrollbar-track {
+  background: transparent;
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #3c454c;
+  width: 10px;
+  border-radius: 10px;
+}
+
+.comingsoon {
+  font-size: 20px;
+  padding: 120px 0;
+  text-align: center;
+  color: @color-active;
+}

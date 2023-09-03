@@ -1,5 +1,5 @@
-import React from 'react';
 import './style.less';
+import icon from '@/static/img/urgent/storeEnergyCalc.png';
 
 export const greenEnergyConfig1 = {
   title: '绿能统计',
@@ -74,11 +74,18 @@ export const configs = [
 ];
 
 const EnergyCalc = props => {
+  console.log(' EnergyCalc props ： ', props);
+  const { config = configs } = props;
   return (
     <div className="leftBox energyCalc">
-      {configs.map((item, index) => (
+      {config.map((item, index) => (
         <div className="content" key={index}>
-          <div className="chartTitle">{item.title}</div>
+          <div className="iconTitle">
+            <div className="df">
+              <img src={icon} className="icon" />
+              <div className="chartTitle">{item.title}</div>
+            </div>
+          </div>
           <div className="itemBox">
             {item.infos.map((v, i) => (
               <div className="item" key={i}>

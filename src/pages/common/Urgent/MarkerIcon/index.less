@@ -1,0 +1,86 @@
+@import '../mixins.less';
+
+.icons {
+  width: 38px;
+  height: 38px;
+  background-size: 100% 100%;
+  user-select: none;
+}
+
+.amap-marker.selected .icon {
+  width: 94px;
+  height: 94px;
+  position: relative;
+  right: 28px;
+  bottom: 28px;
+}
+
+.icon-marker {
+  &-people {
+    .screen-bg('people');
+
+    &.selected {
+      .screen-bg('people_s');
+    }
+
+    &.gray {
+      .screen-bg('people_gray');
+    }
+  }
+
+  &-vehicle {
+    .screen-bg('vehicle');
+
+    &.selected {
+      .screen-bg('vehicle_s');
+    }
+
+    &.gray {
+      .screen-bg('vehicle_gray');
+    }
+  }
+
+  &-customer {
+    .screen-bg('customer');
+
+    &.selected {
+      .screen-bg('customer_s');
+    }
+  }
+
+  &-customer-error {
+    .screen-bg('customer_0');
+
+    &.selected {
+      .screen-bg('customer_0_s');
+    }
+  }
+
+  .amap-marker.selected {
+    .icon-marker {
+      &-people {
+        .screen-bg('people_s');
+
+        &.gray {
+          .screen-bg('people_gray');
+        }
+      }
+
+      &-vehicle {
+        .screen-bg('vehicle_s');
+
+        &.gray {
+          .screen-bg('vehicle_gray');
+        }
+      }
+
+      &-customer {
+        .screen-bg('customer_s');
+      }
+
+      &-customer-error {
+        .screen-bg('customer_0_s');
+      }
+    }
+  }
+}

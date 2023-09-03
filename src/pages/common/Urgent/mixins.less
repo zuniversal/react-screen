@@ -1,0 +1,49 @@
+@import './vars.less';
+
+.screen-shadow() {
+  box-shadow: 0 0 20px #0095ff;
+}
+
+.screen-box {
+  border: solid 2px @color-border;
+  padding: 10px;
+  overflow: hidden;
+  position: relative;
+}
+
+.screen-bg(@imageName) {
+  background-image: url('@{img-path}@{imageName}.png');
+}
+
+.bg-center {
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+.scroller {
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #3c454c;
+    width: 10px;
+    border-radius: 10px;
+  }
+}
+
+.wave-cell(@wave-color: @color-wave) {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: solid 1px @wave-color;
+}
