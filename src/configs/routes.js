@@ -32,8 +32,8 @@ export const carManage = {
 export const systemRoutes = [
   // carManage,
   {
-    path: '/om/equipmentAcount',
-    component: '@/pages/common/EquipmentAcount',
+    path: '/om/equipmentAccount',
+    component: '@/pages/common/EquipmentAccount',
     name: '设备台账',
     icon: <Icon icon={'shiftsManage'} />,
   },
@@ -44,10 +44,25 @@ export const systemRoutes = [
     icon: <Icon icon={'shiftsManage'} />,
   },
   {
-    platform: 'iot',
     authKey: 'alarmRecord',
     path: '/om/alarmRecord',
     name: '告警记录',
+    icon: <Icon icon={'shiftsManage'} />,
+  },
+  {
+    hideInMenu: true,
+    hide: true,
+    authKey: 'userCenter',
+    path: '/om/userCenter',
+    name: '用户中心',
+    icon: <Icon icon={'shiftsManage'} />,
+  },
+  {
+    hideInMenu: true,
+    hide: true,
+    authKey: 'resetPwd',
+    path: '/om/resetPwd',
+    name: '修改密码',
     icon: <Icon icon={'shiftsManage'} />,
   },
 ];

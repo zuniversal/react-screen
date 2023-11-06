@@ -3,6 +3,7 @@ import { Form, Button } from 'antd';
 import { history, connect } from 'umi';
 import loginAvatar from '@/static/assets/loginAvatar.png';
 import ResetPwdForm from './ResetPwdForm';
+import { mapStateToProps, mapDispatchToProps } from '@/models/user';
 
 const ResetPwd = props => {
   const [form] = Form.useForm();
@@ -19,6 +20,11 @@ const ResetPwd = props => {
     //   type: 'user/loginAsync',
     //   payload: values,
     // });
+    props.changePwdAsync(values.values);
+    // props.changePwdAsync({
+    //   old_password: 'string',
+    //   new_password: 'string',
+    // });
   };
 
   return (
@@ -28,18 +34,18 @@ const ResetPwd = props => {
         <div className="loginForm">
           <div className="loginRow">
             <img src={loginAvatar} className="loginAvatar" />
-            <div className="sysystemTitle">欢迎登录电管家平台</div>
+            <div className="sysystemTitle">欢迎登录</div>
           </div>
 
           <ResetPwdForm
             className="login-form"
-            initialValues={{
-              remember: true,
-              username: 'admin',
-              password: 'afafa',
-              username: '',
-              password: '',
-            }}
+            // initialValues={{
+            //   remember: true,
+            //   username: 'admin',
+            //   password: 'afafa',
+            //   username: '',
+            //   password: '',
+            // }}
             onSubmit={onFinish}
           >
             <Form.Item className={`btnFormItem`} noStyle>
@@ -55,4 +61,4 @@ const ResetPwd = props => {
 };
 
 // export default ResetPwd;
-export default connect()(ResetPwd);
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPwd);

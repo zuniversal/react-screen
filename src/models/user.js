@@ -1,5 +1,15 @@
 import { init } from '@/utils/createAction';
-import { setItem, getItem, removeItem, getItems, setItems } from '@/utils';
+import {
+  setItem,
+  getItem,
+  removeItem,
+  getItems,
+  setItems,
+  dataURLtoFile,
+} from '@/utils';
+// import * as services from '@/services/user';
+import * as commonServices from '@/services/common';
+import * as alarmRecordServices from '@/services/alarmRecord';
 import { history } from 'umi';
 import {
   HOME,
@@ -23,7 +33,7 @@ import defaultProps, {
 import { AUTH_FAIL } from '@/utils/request';
 // import authData from '@/configs/auth';
 const namespace = 'user';
-const { createActions, createAction } = init(namespace);
+const { createAction, createDispatch } = init(namespace);
 
 const otherActions = [];
 
@@ -79,9 +89,9 @@ export const recursiveAuth = (data = [], authData = {}) => {
     // hideInMenu: isDev
     //   ? false
     //   : !(v.authKey ? authData[v.authKey]?.perms.module : true),
-    hideInMenu: !(v.authKey && authData[v.authKey]
-      ? authData[v.authKey]?.module
-      : false),
+    // hideInMenu: !(v.authKey && authData[v.authKey]
+    //   ? authData[v.authKey]?.module
+    //   : false),
     // hideInMenu: false,
     authInfo: authData[v.authKey] ?? {},
     ...v,
@@ -138,7 +148,7 @@ const getRoutes = (props = {}) => {
       ? (v.platform && v.platform !== platform) || v.hideInMenu
       : // : false,
         v.hideInMenu,
-    hideInMenu: false,
+    // hideInMenu: false,
   }));
   const routesData = {
     route: {
@@ -170,6 +180,14 @@ const model = {
     dataList: [],
     count: 0,
     itemDetail: {},
+    // userInfo: userInfo
+    //   ? {
+    //       ...userInfo,
+    //       logo: userInfo.logo
+    //         ? 'data:image/jpeg;base64,' + userInfo.logo
+    //         : userInfo.logo,
+    //     }
+    //   : userInfo,
     userInfo,
     authInfo: {},
     accountType: 'customer',
@@ -177,6 +195,7 @@ const model = {
     // getRoutes: getRoutes()[0],
     getRoutes: getRoutes(getItem('userInfo') || {}),
     system: 'OM',
+    userMsg: [],
   },
 
   reducers: {
@@ -240,9 +259,77 @@ const model = {
         ),
       };
     },
+    getAlarmRecordList(state, { payload, type }) {
+      console.log(' payload ： ', payload);
+      return {
+        ...state,
+        userMsg: payload.data.map(v => ({
+          ...v,
+          // formatDuring: formatDuring(v.duration),
+        })),
+      };
+    },
+    getUserInfo(state, { payload, type }) {
+      console.log(' getUserInfo ： ', payload, payload.data.logo);
+      setItem('userInfo', payload.data);
+      // const { logo } = payload.data;
+
+      return {
+        ...state,
+        userInfo: payload.data,
+        // userInfo: {
+        //   ...payload.data,
+        //   // logo: dataURLtoFile(
+        //   //   'data:image/jpeg;base64,' + payload.data.logo,
+        //   //   'logo',
+        //   // ),
+        //   // logo: window.atob(payload.data.logo),
+        //   logo: logo ? 'data:image/jpeg;base64,' + logo : logo,
+        // },
+      };
+    },
   },
 
-  effects: {},
+  effects: {
+    *loginAsync({ payload, action, type }, { call, put }) {
+      console.log(' loginAsync ： ');
+      const res = yield call(commonServices.login, payload);
+      console.log(' loginAsync ： ', res, payload, action);
+      if (res.data) {
+        setItem('token', res.data.token, true);
+        yield put({
+          type: 'login',
+          payload: res.data,
+        });
+        yield put({
+          type: 'getUserInfoAsync',
+          payload: { id: res.data.user_id },
+        });
+        history.push('/om/equipmentAccount');
+      }
+    },
+    *changePwdAsync({ payload, action, type }, { call, put }) {
+      console.log(' changePwdAsync ： ', res, payload, action);
+      const res = yield call(commonServices.changePwd, payload);
+      if (res.data) {
+        history.push('/om/equipmentAccount');
+      }
+    },
+    *getUserInfoAsync({ payload, action, type }, { call, put }) {
+      console.log(' getUserInfoAsync ： ', res, payload, action);
+      const res = yield call(commonServices.getUserInfo, payload);
+      yield put({ type: 'getUserInfo', payload: { ...res, payload } });
+    },
+    *editUserInfoAsync({ payload, action, type }, { call, put }) {
+      console.log(' editUserInfoAsync ： ', res, payload, action);
+      const res = yield call(commonServices.editUserInfo, payload);
+      yield put({ type: 'getUserInfoAsync', payload: { id: payload.id } });
+    },
+    *getAlarmRecordListAsync({ payload, action, type }, { call, put }) {
+      const res = yield call(alarmRecordServices.getList, payload);
+      yield put({ type: 'getAlarmRecordList', payload: { ...res, payload } });
+    },
+  },
 
   subscriptions: {
     setup: props => {
@@ -252,5 +339,7 @@ const model = {
 };
 
 export const actions = createAction(model);
+
+export const mapDispatchToProps = createDispatch(model);
 
 export default model;

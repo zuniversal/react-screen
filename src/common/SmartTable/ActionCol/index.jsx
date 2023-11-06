@@ -4,7 +4,7 @@ import { isDev } from '@/constants';
 
 // 通用的操作列组件
 const formatData = (record, rowKey) => {
-  const data = { ...record, d_id: record[rowKey] ? record[rowKey] : {} };
+  const data = { ...record, id: record[rowKey] ? record[rowKey] : {} };
   return data;
 };
 
@@ -40,7 +40,7 @@ const ActionCol = props => {
                   ? edit({
                       action: 'edit',
                       // ...record,
-                      d_id: record[rowKey],
+                      id: record[rowKey],
                     })
                   : props.showFormModal({
                       action: 'add',

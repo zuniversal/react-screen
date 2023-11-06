@@ -7,8 +7,8 @@ const ResetPwdForm = props => {
     {
       noLabel: true,
       itemProps: {
-        label: '新密码',
-        name: 'username',
+        label: '原密码',
+        name: 'old_password',
       },
       comProps: {
         className: 'formItem',
@@ -17,8 +17,8 @@ const ResetPwdForm = props => {
     {
       noLabel: true,
       itemProps: {
-        label: '确认密码',
-        name: 'password',
+        label: '新密码',
+        name: 'new_password',
       },
       comProps: {
         className: 'formItem',

@@ -19,10 +19,10 @@ const seriesConfigs = [
     name: '储能用电',
     key: 'storagEnergy',
   },
-  {
-    name: '绿能用电',
-    key: 'greenEnergy',
-  },
+  // {
+  //   name: '绿能用电',
+  //   key: 'greenEnergy',
+  // },
   {
     name: '市网用电',
     key: 'cityEnergy',
@@ -37,7 +37,7 @@ const legend = {
   itemHeight: 10,
   selected: {
     储能用电: true,
-    绿能用电: true,
+    // 绿能用电: true,
     市网用电: true,
   },
   data: [
@@ -51,11 +51,11 @@ const legend = {
       icon:
         'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAApUlEQVQYlW3QMWqCURAE4E9Jo5gbaOUlgm30BqmUWHgDG7FKYeUlUoiIhxAsLcQrSArJDeQPiEVY2B9FnGaYYfbt7Ktcxx9QwxQDtHDCCnP8vaCODTpuaOMLXfSq+UIEfvCO1+TQ4U8i1M/5EbY4Jw/T/4xQdAgc7tYF9snNCEXJwNtDqOz4G6F1iu8s2khepL+ML3h2XYldeV2RkzMccUkO3UXxD7JdILOOiy17AAAAAElFTkSuQmCC',
     },
-    {
-      name: '绿能用电',
-      icon:
-        'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAlUlEQVQYlY3PPQ5BcRAE8B8deW5A5RIiGvGcwj1ErXIJhYg4hEYiUYgj+ChEpX8SlWzyl8jTmGYym9nZ2Ur2WEINE4zQwg0rzPAMUx0bdP1ij2E1JYThigEaiUPHfBxJJ7TRx/Yrq4cdLpEUHQLH0rFD4maYomSgUzJ9Ot7DtE5ijhxZ4kWaL//+rkibU5zxShw6R/EGdQMjbDfhHjkAAAAASUVORK5CYII=',
-    },
+    // {
+    //   name: '绿能用电',
+    //   icon:
+    //     'image://data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAlUlEQVQYlY3PPQ5BcRAE8B8deW5A5RIiGvGcwj1ErXIJhYg4hEYiUYgj+ChEpX8SlWzyl8jTmGYym9nZ2Ur2WEINE4zQwg0rzPAMUx0bdP1ij2E1JYThigEaiUPHfBxJJ7TRx/Yrq4cdLpEUHQLH0rFD4maYomSgUzJ9Ot7DtE5ijhxZ4kWaL//+rkibU5zxShw6R/EGdQMjbDfhHjkAAAAASUVORK5CYII=',
+    // },
   ],
   textStyle: {
     color: '#ffffff',
@@ -88,7 +88,7 @@ const optionHandle = params => {
     //   fontSize: 12,
     // },
     // legend,
-    color: ['#0DC8CA', '#10E9A8', '#FC7154'],
+    color: ['#0DC8CA', '#FC7154', '#10E9A8'],
     xAxis: [
       {
         type: 'category',
@@ -140,18 +140,18 @@ const optionHandle = params => {
         data: data.map(v => 350),
         barWidth: '5px',
       },
-      {
-        name: '绿能用电',
-        type: 'bar',
-        axisLabel: {
-          fontSize: 10,
-          textStyle: {
-            color: 'rgba(255, 255, 255, 0.2)',
-          },
-        },
-        data: data.map(v => 200),
-        barWidth: '5px',
-      },
+      // {
+      //   name: '绿能用电',
+      //   type: 'bar',
+      //   axisLabel: {
+      //     fontSize: 10,
+      //     textStyle: {
+      //       color: 'rgba(255, 255, 255, 0.2)',
+      //     },
+      //   },
+      //   data: data.map(v => 200),
+      //   barWidth: '5px',
+      // },
     ],
     series: seriesConfigs.map(v => ({
       type: 'bar',

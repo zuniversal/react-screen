@@ -3,7 +3,7 @@ import { mapStateToProps, mapDispatchToProps } from '@/models/urgent';
 import React, { useState, useEffect } from 'react';
 import '@/static/css/index.less';
 import './style.less';
-import PowerLineChart from '../../Home/PowerLineChart';
+import PowerLineChart from '../PowerLineChart';
 import RealData from '../../Home/RealData';
 import RealDataDesc from '../../Home/RealDataDesc';
 import ElectricPie from '../ElectricPie';
@@ -13,14 +13,14 @@ const RightContent = props => {
   const [isShowRealData, setIsShowRealData] = useState(false);
   const ajax = () => {
     const req = params => {
-      params.getCarbonAssetsAsync();
       params.getRealDataStatisticsAsync();
       params.getElectricFeeAsync();
       params.getPowerlineInfoAsync();
       params.getRealDataAsync();
+      params.getAlarmListAsync();
     };
     setInterval(() => {
-      req(props);
+      // req(props);
     }, 10000);
     req(props);
   };
@@ -55,7 +55,9 @@ const RightContent = props => {
             powerlineParams={props.powerlineParams}
             getPowerlineInfoAsync={getPowerlineInfoAsync}
           ></PowerLineChart>
-          <AlarmSeamlessScroll></AlarmSeamlessScroll>
+          <AlarmSeamlessScroll
+            alarmList={props.alarmList}
+          ></AlarmSeamlessScroll>
         </div>
       )}
     </div>

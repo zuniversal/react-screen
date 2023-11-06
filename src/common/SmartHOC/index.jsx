@@ -34,12 +34,6 @@ const getAuth = (authInfo = {}, authKey = '') => {
   const authData = authInfo[authKey];
   console.log(' authData ： ', authData); //
   if (authData && Object.keys(authData).length) {
-    if (false) {
-      // if (isDev) {
-      const devAuth = {};
-      Object.keys(authData).forEach(v => (devAuth[v] = true));
-      return devAuth;
-    }
     return authData;
   } else {
     return {};
@@ -626,6 +620,7 @@ export default ({
         const { route } = props;
         const { path, title } = route;
         const isInclude = noShowTitlePath.every(v => v != path);
+        console.log(' isInclude ： ', isInclude, noShowTitlePath);
         return isInclude ? title : false;
         // const isInclude = noShowTitlePath.some(v => v == path);
         // console.log(' isInclude some  ： ', props, isInclude, path);

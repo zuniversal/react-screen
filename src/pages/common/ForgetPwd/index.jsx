@@ -35,7 +35,7 @@ const ForgetPwd = props => {
         <div className="loginForm">
           <div className="loginRow">
             <img src={loginAvatar} className="loginAvatar" />
-            <div className="sysystemTitle">欢迎登录电管家平台</div>
+            <div className="sysystemTitle">欢迎登录</div>
           </div>
 
           <ForgetPwdForm

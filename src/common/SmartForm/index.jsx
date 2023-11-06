@@ -510,7 +510,7 @@ const SmartForm = (props, state) => {
           {...realComProps}
         />
       ),
-      InputNumber: <InputNumber allowClear maxLength={32} {...realComProps} />,
+      InputNumber: <InputNumber maxLength={32} {...realComProps} />,
       // InputCompact: <Input allowClear maxLength={32} {...realComProps} />,
       TextArea: (
         <TextArea

@@ -3,6 +3,7 @@ import './style.less';
 import { CloseOutlined } from '@ant-design/icons';
 import { Menu, Dropdown, Button } from 'antd';
 import { csSystemNotify } from '@/constants';
+import moment from 'moment';
 
 const menuConfig = [
   {
@@ -73,11 +74,12 @@ const DropdownNotice = props => {
       <Menu.ItemGroup
         title={
           <div className="header divider fsb">
-            <div className="text">通知 ({userMsg[0]?.count}) </div>
+            <div className="text">通知 ({userMsg.length}) </div>
             <div>
               <Button
                 type="primary"
-                onClick={() => props.goPage(csSystemNotify)}
+                // onClick={() => props.goPage(csSystemNotify)}
+                onClick={() => props.goPage('/om/alarmRecord')}
                 className={`m-r-5`}
               >
                 全部通知
@@ -101,26 +103,24 @@ const DropdownNotice = props => {
                   </div>
                 </div>
                 <div className="right">
-                  {/* <div className="title subText ">{v.verb}</div>
-                  <div className="content ellipsis">{v.description}</div>
-                  <div className="time subText">{v.timestamp}</div> */}
-                  <div className="title subText ">{v.title}</div>
-                  <div className="content ">{v.content}</div>
-                  <div className="time subText">{v.created_time}</div>
+                  <div className="title subText ">{v.customer_name}</div>
+                  <div className="content ">{v.detail}</div>
+                  <div className="time subText">
+                    {moment(v.update_time).format('YYYY-MM-DD')}
+                  </div>
                 </div>
               </div>
             </Menu.Item>
           ))}
         </Menu.ItemGroup>
       </Menu.ItemGroup>
-      <Menu.Item key={'footer'}>
+      {/* <Menu.Item key={'footer'}>
         <div className="footer">
-          {/* <div className="clearText" onClick={props.clearNotice}> */}
           <div className="clearText" onClick={clearNotice}>
             清空通知
           </div>
         </div>
-      </Menu.Item>
+      </Menu.Item> */}
     </Menu>
   );
 
@@ -131,12 +131,12 @@ const DropdownNotice = props => {
       className={`dropdownNotice`}
       overlayClassName={`dropdownNotice`}
       // placement={'bottomRight'}
-      onVisibleChange={isNotice =>
-        isNotice &&
-        props.onNoticeChange({
-          isNotice: false,
-        })
-      }
+      // onVisibleChange={isNotice =>
+      //   isNotice &&
+      //   props.onNoticeChange({
+      //     isNotice: false,
+      //   })
+      // }
     >
       {children}
     </Dropdown>

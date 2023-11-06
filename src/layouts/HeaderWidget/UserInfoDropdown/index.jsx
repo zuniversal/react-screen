@@ -2,6 +2,7 @@ import React from 'react';
 import { Menu, Dropdown } from 'antd';
 
 const UserInfoDropdown = props => {
+  console.log(' UserInfoDropdown ： ', props);
   const { children = '按钮', menu, config, menuClick } = props;
 
   const handleMenuClick = (item, data) => {
@@ -11,27 +12,27 @@ const UserInfoDropdown = props => {
     menuClick && menuClick({ ...clickItem, data, ...item });
   };
 
-  const menuCom = menu ? (
-    menu
-  ) : (
+  const menuCom = (
     <Menu className={`dropdownContent`}>
-      {config.map((v, i) => (
-        <Menu.Item
-          action={v.action}
-          onClick={e => handleMenuClick(e, v)}
-          key={v.key}
-        >
-          <div className="menuItem divider">
-            <div className="title  ">{v.label}</div>
-          </div>
-        </Menu.Item>
-      ))}
+      <Menu.ItemGroup key={'header'} className={`listWrapper`}>
+        {config.map((v, i) => (
+          <Menu.Item
+            action={v.action}
+            onClick={e => handleMenuClick(e, v)}
+            key={v.key}
+          >
+            <div className="menuItem divider">
+              <div className="title  ">{v.label}</div>
+            </div>
+          </Menu.Item>
+        ))}
+      </Menu.ItemGroup>
     </Menu>
   );
 
   return (
     <Dropdown
-      overlay={!!config.length ? menuCom : <div></div>}
+      overlay={menuCom}
       className={`userInfoDropdown`}
       overlayClassName={`userInfoDropdown`}
       // placement={'bottomRight'}

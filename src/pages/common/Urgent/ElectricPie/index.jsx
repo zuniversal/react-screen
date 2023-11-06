@@ -6,6 +6,7 @@ import money from '@/static/img/urgent/money.png';
 const configs = [
   {
     icon: battery,
+    iconCls: 'batteryIcon',
     title: '峰平谷电量',
     unit: '度',
     dataKey: 'ep',
@@ -25,6 +26,7 @@ const configs = [
   },
   {
     icon: money,
+    iconCls: 'moneyIcon',
     title: '峰平谷电费',
     unit: '元',
     dataKey: 'fee',
@@ -60,7 +62,7 @@ const ElectricPie = props => {
           <div className="electricPieItem">
             <div className="iconTitle">
               <div className="df">
-                <img src={item.icon} className="icon" />
+                <img src={item.icon} className={`icon ${item.iconCls}`} />
                 <div className="chartTitle">{item.title}</div>
               </div>
             </div>

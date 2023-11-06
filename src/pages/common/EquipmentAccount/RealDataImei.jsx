@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { getShowRealData } from './data';
-import * as services from '@/services/home';
+import * as services from '@/services/urgent';
 import useHttp from '@/hooks/useHttp';
 import styles from './index.less';
 
@@ -9,7 +9,7 @@ export default React.memo(function RealData(props) {
 
   const commonParams = {
     init: {},
-    attr: 'bean',
+    attr: 'data',
     // noMountFetch: true,
     format: null,
   };

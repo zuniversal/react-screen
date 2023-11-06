@@ -526,7 +526,13 @@ class SmartTable extends PureComponent {
     return actionCol;
   };
   onTableChange = (pagination, filters, sorter) => {
-    console.log('    onTableChange ： ', pagination, filters, sorter);
+    console.log(
+      '    onTableChange ： ',
+      pagination,
+      filters,
+      sorter,
+      this.props,
+    );
     const { order, column: { sortKey, paramKey = '_sort' } = {} } = sorter;
     const { current: page, pageSize: page_size } = pagination;
     if (!this.props.noRequest && this.props.getListAsync) {
@@ -538,7 +544,7 @@ class SmartTable extends PureComponent {
       if (sortKey) {
         params[paramKey] = `${order === 'descend' ? '-' : ''}${sortKey}`;
       }
-
+      console.log(' onTableChange params ： ', params);
       this.props.getListAsync(params);
     }
   };

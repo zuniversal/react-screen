@@ -18,7 +18,7 @@ const useHttp = (http = () => {}, configs = {}) => {
   const {
     init = [], // 数据的初始值
     params,
-    attr = 'list', // 数据的固定格式属性
+    attr = 'data', // 数据的固定格式属性
     format = formatSelectList, // 格式化函数
     formatKey,
     formatVal, // 格式化方法的键和值文本

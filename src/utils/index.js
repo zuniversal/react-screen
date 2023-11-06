@@ -140,8 +140,11 @@ export const nowMonthPad = `${new Date().getMonth() + 1}`.padStart(2, '0');
 export const nowDay = new Date().getDate();
 export const nowYearMonth = `${nowYear}-${nowMonth}`;
 export const nowYearMonthDay = `${nowYear}-${nowMonth}-${nowDay}`;
-export const nowYearMonthDayFull = `${nowYear}-${`${nowMonth}`.padStart(2, '0')}-${nowDay}`;
-console.log(' nowDay ： ', nowYearMonthDayFull, nowYearMonthDay, nowDay,  )//
+export const nowYearMonthDayFull = `${nowYear}-${`${nowMonth}`.padStart(
+  2,
+  '0',
+)}-${nowDay}`;
+console.log(' nowDay ： ', nowYearMonthDayFull, nowYearMonthDay, nowDay); //
 export const getCountDays = (month = nowMonth, year = nowYear) =>
   new Date(year, month, 0).getDate();
 // export const getMonthDays = ({month, year, isPad}) =>
@@ -219,11 +222,6 @@ export const renderRadioOp = (
     <RadioGroup disabled={isDisabledAll} {...comProps}>
       {radioItems}
     </RadioGroup>
-  );
-  return opType === 'group' ? (
-    <RadioGroup>{radioItems}</RadioGroup>
-  ) : (
-    radioItems
   );
 };
 
@@ -450,6 +448,69 @@ export const dataURLtoFile = (dataurl, filename) => {
   return new File([u8arr], filename, { type: mime });
 };
 
+// File对象 转化为base64
+export const fileToBase64 = async file => {
+  return new Promise((resolve, reject) => {
+    // 创建一个新的 FileReader 对象
+    const reader = new FileReader();
+    // 读取 File 对象
+    reader.readAsDataURL(file);
+    // 加载完成后
+    reader.onload = function() {
+      // 将读取的数据转换为 base64 编码的字符串
+      const base64String = reader.result.split(',')[1];
+      // 解析为 Promise 对象，并返回 base64 编码的字符串
+      resolve(base64String);
+    };
+    // 加载失败时
+    reader.onerror = function() {
+      reject(new Error('Failed to load file'));
+    };
+  });
+};
+
+export const getBase64 = (img, callback) => {
+  const reader = new FileReader();
+  reader.addEventListener('load', () => callback(reader.result));
+  reader.readAsDataURL(img);
+};
+
+// // File对象 转化为base64
+// const fileToBase64 = async file => {
+//   var file = e.target.files[0];
+//   var reader = new FileReader();
+//   reader.onloadend = function() {
+//     // 将文件转换成base64字符串
+//     var base64String = reader.result;
+//     console.log(base64String);
+//   };
+//   reader.readAsDataURL(file);
+//   // let reader = new FileReader();
+//   // let fn = function() {
+//   //   return new Promise(resolve => {
+//   //     reader.onload = function() {
+//   //       let obj = {
+//   //         code: 200,
+//   //         data: this.result,
+//   //         msg: '成功',
+//   //       };
+//   //       resolve(obj);
+//   //     };
+//   //     reader.onerror = function() {
+//   //       let obj = {
+//   //         code: 100,
+//   //         data: '',
+//   //         msg: '失败',
+//   //       };
+//   //       resolve(obj);
+//   //     };
+//   //   });
+//   // };
+//   // reader.readAsDataURL(file);
+//   // let res = await fn();
+//   // return res;
+// };
+
 export const createIndexArr = (length = 6) =>
   Array.from({ length }, (_, index) => index);
 
@@ -545,8 +606,6 @@ export const getLengthLimit = text => {
     // return 15;
     return 20;
   }
-  console.log(' 默认长度 ： ', isNaN(text), text, textLength);
-  return textLength;
 };
 
 // 得到最终的格式化后的文本
@@ -699,7 +758,7 @@ export const createProperty = (arr, f) => {
 
 export const TOKEN_PREFIX = 'AFAJWT '; //
 
-export const getToken = (k = 'token', prefix = TOKEN_PREFIX) => {
+export const getToken = (k = 'token', prefix = '') => {
   const token =
     localStorage.getItem(k) != undefined ? localStorage.getItem(k) : 'no_token';
   // console.log(' prefix, k ： ', prefix, k, token);
@@ -847,4 +906,4 @@ export const toFixed = (num = '', decimal = 2) => {
   return parseFloat(num).toFixed(decimal);
 };
 
-export const vh = val => window.document.body.offsetHeight * 0.01 * val
+export const vh = val => window.document.body.offsetHeight * 0.01 * val;

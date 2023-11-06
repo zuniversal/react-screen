@@ -20,10 +20,10 @@ const HistoryElecCalc = props => {
               class: 'introOrange',
               text: '市网用电',
             },
-            {
-              class: 'introGreen',
-              text: '绿能用电',
-            },
+            // {
+            //   class: 'introGreen',
+            //   text: '绿能用电',
+            // },
           ].map((v, i) => (
             <div className={`colorIntroItem ${v.class}`} key={i}>
               {v.text}

@@ -87,6 +87,7 @@ export default defineConfig({
     '/api': {
       target: 'https://api.github.com',
       target: 'http://106.15.92.117:9510',
+      target: 'http://101.132.155.166:27102',
       changeOrigin: true,
       pathRewrite: {
         '^/api': '',

@@ -5,22 +5,22 @@ import './style.less';
 const config1 = [
   {
     label: '当前电量',
-    valKey: 'val1',
+    valKey: 'real_power',
     unit: 'kWh',
   },
   {
     label: '当前电压',
-    valKey: 'val2',
+    valKey: 'voltage',
     unit: 'V',
   },
   {
     label: '当前电流',
-    valKey: 'val3',
+    valKey: 'current',
     unit: 'A',
   },
   {
     label: '累计充电量',
-    valKey: 'val4',
+    valKey: 'pv_charge',
     unit: 'kWh',
   },
 ];
@@ -28,8 +28,7 @@ const config1 = [
 const config2 = [
   {
     label: '状态',
-    valKey: 'val①',
-    valKey: 'val5',
+    valKey: 'statusMap',
   },
 ];
 
@@ -79,6 +78,8 @@ const InfoItem = props => {
 };
 
 const DetailPopover = props => {
+  console.log(' DetailPopover ： ', props);
+  const { pointStatistics } = props;
   const data = {
     val1: '120',
     val2: '120',
@@ -89,23 +90,23 @@ const DetailPopover = props => {
     humidity: '18',
   };
   return (
-    <div className="detailPopover">
+    <div className="detailPopover" key={pointStatistics}>
       <div className="point">{props.data.label}</div>
       <div className="detailPopoverColWrapper">
         <div className="detailPopoverCol">
           {config1.map((v, i) => (
-            <InfoItem key={i} {...v} data={data}></InfoItem>
+            <InfoItem key={i} {...v} data={pointStatistics}></InfoItem>
           ))}
         </div>
         <div className="detailPopoverCol">
           {config2.map((v, i) => (
-            <InfoItem key={i} {...v} data={data}></InfoItem>
+            <InfoItem key={i} {...v} data={pointStatistics}></InfoItem>
           ))}
         </div>
       </div>
       <div className="divider"></div>
       <div className="detailPopoverCol">
-        <DetailEnvInfo config={config3} data={data}></DetailEnvInfo>
+        <DetailEnvInfo config={config3} data={pointStatistics}></DetailEnvInfo>
       </div>
     </div>
   );

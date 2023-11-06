@@ -593,18 +593,13 @@ export const contractTypeMap = arrMapObj(contractTypeConfig);
 export const notifyTypeConfig = [
   {
     label: '应用内通知',
-    value: '2',
-    key: 2,
-  },
-  {
-    label: '短信',
-    value: '0',
-    key: 0,
+    value: 1,
+    key: 1,
   },
   {
     label: '邮件',
-    value: '1',
-    key: 1,
+    value: 2,
+    key: 2,
   },
 ];
 
@@ -2270,7 +2265,7 @@ export const certificateTypeMap = arrMapObj(certificateTypeConfig);
 
 export const genderRadios = [
   { label: '男', value: 1, key: '1' },
-  { label: '女', value: 0, key: '0' },
+  { label: '女', value: 2, key: '2' },
 ];
 
 export const crmNotifyTypeConfig = [
@@ -2382,3 +2377,51 @@ export const assetDetailConfig = [
     value: 'code',
   },
 ];
+
+export const pointStatusConfig = [
+  {
+    label: '待机中',
+    value: '0',
+  },
+  {
+    label: '充电中',
+    value: '1',
+  },
+  {
+    label: '放电中',
+    value: '2',
+  },
+];
+
+export const pointStatusMap = arrMapObj(pointStatusConfig);
+
+export const deviceTypeConfig = [
+  {
+    label: '储能设备',
+    value: 1,
+  },
+];
+
+export const deviceTypeMap = arrMapObj(deviceTypeConfig);
+
+export const deviceStatusConfig = [
+  {
+    label: '运行中',
+    value: '1',
+  },
+];
+
+export const deviceStatusMap = arrMapObj(deviceStatusConfig);
+
+export const handleStatusConfig = [
+  {
+    label: '未处理',
+    value: '1',
+  },
+  {
+    label: '已处理',
+    value: '2',
+  },
+];
+
+export const handleStatusMap = arrMapObj(handleStatusConfig);

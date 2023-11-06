@@ -4,6 +4,7 @@ import { Form, Button } from 'antd';
 import { history, connect } from 'umi';
 import loginAvatar from '@/static/assets/loginAvatar.png';
 import LoginForm from './LoginForm';
+import { mapStateToProps, mapDispatchToProps } from '@/models/user';
 
 const Login = props => {
   const [form] = Form.useForm();
@@ -22,11 +23,12 @@ const Login = props => {
   const onFinish = values => {
     console.log('onFinish 提交 : ', values, props);
     const { username, password } = values;
-    props.dispatch({
-      type: 'user/loginAsync',
-      // payload: values,
-      payload: values.values,
-    });
+    // props.dispatch({
+    //   type: 'user/loginAsync',
+    //   // payload: values,
+    //   payload: values.values,
+    // });
+    props.loginAsync(values.values);
   };
 
   return (
@@ -71,4 +73,4 @@ const Login = props => {
 };
 
 // export default Login;
-export default connect()(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

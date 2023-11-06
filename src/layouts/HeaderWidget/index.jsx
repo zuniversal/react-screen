@@ -5,7 +5,12 @@ import { LogoutOutlined } from '@ant-design/icons';
 import './style.less';
 import UserInfoDropdown from './UserInfoDropdown';
 import DropdownNotice from './DropdownNotice';
-import { csSystemNotify, BIG_SCREEN, USER_CENTER } from '@/constants';
+import {
+  csSystemNotify,
+  BIG_SCREEN,
+  USER_CENTER,
+  RESET_PWD,
+} from '@/constants';
 import Icon from '@/components/Widgets/Icons';
 import { routeTabConfig, DEF_BUSSNIESS_TAB } from '@/configs/routes';
 const { CheckableTag } = Tag;
@@ -24,7 +29,7 @@ const menuConfig = [
     label: '修改密码',
     type: 'fn',
     type: 'url',
-    path: `${USER_CENTER}action=pwd`,
+    path: RESET_PWD,
   },
 ];
 
@@ -63,7 +68,8 @@ const HeaderWidget = props => {
     history.push(path);
   };
   const menuClick = params => {
-    const path = `${csSystemNotify}id=${params.key}`;
+    // const path = `${csSystemNotify}id=${params.key}`;
+    const path = `/om/alarmRecord?id=${params.key}`;
     console.log(' menuClick   params,   ： ', params);
     history.push(path);
     props.menuClick(params);
@@ -79,7 +85,9 @@ const HeaderWidget = props => {
     // props.menuClick(params);
   };
 
-  const avatar = (
+  const avatar = props.userInfo.logo ? (
+    <img src={props.userInfo.logo} className="avatars" />
+  ) : (
     <span className="avatars" onClick={() => goPage('/om/userCenter')}></span>
   );
 
@@ -90,7 +98,7 @@ const HeaderWidget = props => {
         menuClick={menuClick}
         userInfo={props.userInfo}
         userMsg={props.userMsg}
-        userMsg={[{ count: 20 }]}
+        // userMsg={[{ count: 20, id: 1 }]}
         clearNotice={props.clearNotice}
         goPage={goPage}
         // onNoticeChange={props.onNoticeChange}
@@ -99,7 +107,7 @@ const HeaderWidget = props => {
           <Badge
             size="small"
             offset={[10]}
-            count={10}
+            count={props.userMsg.length}
             className={props.isNotice ? 'isNotice ' : null}
           >
             <Icon icon={'bell'} className={'headerIcon'} />
@@ -109,7 +117,11 @@ const HeaderWidget = props => {
         )}
       </DropdownNotice>
       <span className="yAxis actionItem"></span>
-      <span className="bigScreenWrapper actionItem dfc" onClick={goBigScreen}>
+      {/* <span className="bigScreenWrapper actionItem dfc" onClick={goBigScreen}> */}
+      <span
+        className="bigScreenWrapper actionItem dfc"
+        onClick={() => window.open('/#/urgent')}
+      >
         <Icon icon={'bigScreen'} className={'headerIcon'} />
         <span className="text">大屏展示</span>
       </span>
@@ -118,10 +130,10 @@ const HeaderWidget = props => {
       <UserInfoDropdown menuClick={avatarMenuClick} config={menuConfig}>
         <span
           className={'actionItem userName '}
-          onClick={() => goPage('/om/userCenter')}
+          onClick={() => props.userInfo.id && goPage('/om/userCenter')}
         >
           {/* {props.userInfo.name} */}
-          {props.userInfo.nickname}zyb
+          {props.userInfo.nickname}
         </span>
       </UserInfoDropdown>
       <Tooltip placement="bottom" title={'退出登录'}>
@@ -141,11 +153,6 @@ const HeaderWidget = props => {
       {headerWidget}
     </div>
   );
-};
-
-HeaderWidget.defaultProps = {
-  menuClick: () => {},
-  userInfo: {},
 };
 
 export default HeaderWidget;

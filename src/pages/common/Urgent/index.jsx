@@ -10,8 +10,11 @@ import MapTools from './MapTools';
 import LeftContent from './LeftContent';
 import RightContent from './RightContent';
 import SearchForm from './SearchForm';
-import SystemTitle from '../Home/SystemTitle';
+import SystemTitle from './SystemTitle';
 import DetailPopover from './components/DetailPopover';
+import videoIcon from '@/static/img/urgent/video.png';
+import CreatePortal from '@/components/Portal/CreatePortal';
+import { CloseCircleOutlined } from '@ant-design/icons';
 
 export let mapInstance;
 let markerCluster;
@@ -25,8 +28,9 @@ let indexes = 0;
 
 const Urgent = props => {
   console.log(' Urgent ： ', props);
-  const { dataList } = props;
+  const { dataList, customerList, pointList, customerItem } = props;
   const [isLoad, setIsLoad] = useState(false);
+  const [isShowVideo, setIsShowVideo] = useState(false);
 
   /**
    * 移动到指定位置
@@ -166,7 +170,9 @@ const Urgent = props => {
    * 渲染地图点的弹窗
    */
   const renderPopInfoWindow = data => {
-    console.log(' renderPopInfoWindow ： ', data);
+    console.log(' renderPopInfoWindow ： ', data, props.pointStatistics);
+    // const { pointStatistics } = props;
+    const { pointStatistics } = data;
     const { position } = data;
     let content = <div />;
     let offset = new AMap.Pixel(30, 100);
@@ -176,7 +182,11 @@ const Urgent = props => {
       //   <div className="wave-ball"></div>
       // </div>,
       <div className="renderPopInfoWindow">
-        <DetailPopover data={data}></DetailPopover>
+        <DetailPopover
+          pointStatistics={pointStatistics}
+          data={data}
+          key={pointStatistics}
+        ></DetailPopover>
       </div>,
     );
     if (!popInfoWindow) {
@@ -187,7 +197,7 @@ const Urgent = props => {
     popInfoWindow.setOffset(offset);
     setTimeout(() => {
       popInfoWindow.open(mapInstance, position);
-    }, 100);
+    }, 1000);
   };
 
   // 点击标记点居中定位
@@ -195,8 +205,15 @@ const Urgent = props => {
     marker.setTop(false);
     mapInstance.setCenter(marker.getPosition());
   };
-  const onClickMarker = record => {
-    renderPopInfoWindow(record);
+  const onClickMarker = async record => {
+    console.log(' onClickMarker ： ', record);
+    const res = await props.getPointStatisticsAsync({ id: record.value });
+    console.log('  onClickMarker await 结果  ：', res);
+    renderPopInfoWindow({
+      ...record,
+      pointStatistics: res,
+    });
+    // renderPopInfoWindow(record);
   };
   /**
    * 基于数据创建标记点
@@ -223,8 +240,14 @@ const Urgent = props => {
    * 初始化标记点
    */
   const initMarkerList = () => {
-    const markers = createMarkers(props.dataList);
-    console.log('init marker list ==>', props.dataList, markers);
+    const markers = createMarkers(props.customerList);
+    console.log(
+      'initMarkerList：',
+      props.customerList,
+      props.pointList,
+      props.dataList,
+      markers,
+    );
     markerCluster.setMarkers(markers);
     markerList = markers;
   };
@@ -272,6 +295,12 @@ const Urgent = props => {
     initMapUI();
     initMarkerList();
   }, []);
+  useEffect(() => {
+    if (props.customerList.length) {
+      console.log(' 数据变化 customerList ： ', props.customerList);
+      initMarkerList();
+    }
+  }, [props.customerList]);
   const setZoomAndCenter = position => {
     // mapInstance.setZoomAndCenter(18, ['121.429906', '31.181512']);
     mapInstance.setZoomAndCenter(18, position);
@@ -289,13 +318,57 @@ const Urgent = props => {
     // }, 5000);
   }, []);
 
+  useEffect(() => {
+    console.log(' useEffect ： ');
+    props.getCustomerListAsync();
+    // props.getPointListAsync();
+    // props.getPointStatisticsAsync({ id: 1 });
+    // props.getCustomerPointListAsync({ id: 1 });
+    // props.getPointDetailAsync({ id: 1 });
+    // props.registerAsync({
+    //   username: 'zyb',
+    //   password: '888',
+    //   nickname: '庄宇彬',
+    // });
+    // props.loginAsync({
+    //   username: 'zyb',
+    //   password: '888',
+    //   // scope: undefined,
+    //   // client_id: undefined,
+    //   // client_secret: undefined,
+    // });
+  }, []);
+
   return (
     <div className="mapBox amap-container urgentScreen">
-      <div className="headerPic"></div>
+      {isShowVideo && (
+        <CreatePortal show={isShowVideo} className="fullScreenVideoWrapper">
+          <video
+            src="https://video.699pic.com/videos/33/75/00/a_xxGakty08C2R1589337500.mp4"
+            className="fullScreenVideo"
+            controls
+          ></video>
+          <div className="btnBlock">
+            <CloseCircleOutlined
+              onClick={() => setIsShowVideo(false)}
+              style={{ fontSize: '60px' }}
+            />
+          </div>
+        </CreatePortal>
+      )}
+
+      <div className="headerPic">
+        <img
+          src={videoIcon}
+          className="videoIcon"
+          onClick={() => setIsShowVideo(true)}
+        />
+      </div>
       {/* <DetailPopover></DetailPopover> */}
       <SystemTitle
         className="urgentSystemTitle"
         title={'中宇清能 安钒达楼宇数字应急储能系统'}
+        title={' 安钒达楼宇数字应急储能系统'}
       ></SystemTitle>
       <LeftContent
         mapInstance={mapInstance}
@@ -304,6 +377,10 @@ const Urgent = props => {
       <RightContent></RightContent>
       <SearchForm
         dataList={dataList}
+        customerList={customerList}
+        pointList={pointList}
+        getPointListAsync={props.getPointListAsync}
+        getPointStatisticsAsync={props.getPointStatisticsAsync}
         onClickMarker={onClickMarker}
       ></SearchForm>
       {/* <MapTools

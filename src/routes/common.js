@@ -16,13 +16,13 @@ export default [
     title: '忘记密码',
   },
   {
-    path: '/resetPwd',
-    component: '@/pages/common/ResetPwd',
-    title: '密码重置',
-  },
-  {
     path: '/userCenter',
     component: '@/pages/common/UserCenter',
     title: '用户中心',
+  },
+  {
+    path: '/resetPwd',
+    component: '@/pages/common/ResetPwd',
+    title: '修改密码',
   },
 ];

@@ -1,0 +1,57 @@
+.realDataDetail {
+  .title {
+    font-size: 16px;
+  }
+
+  .timeRadioWrapper {
+    margin-top: 10px;
+  }
+
+  .realDataInfo {
+    display: flex;
+    align-items: center;
+
+    .realDataChartWrapper {
+      width: 600px;
+      width: 60%;
+      height: 300px;
+    }
+  }
+
+  .infoWrapper {
+    width: 40%;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+
+    .labelWrapper {
+      background: #eee;
+      width: 60%;
+    }
+
+    .valueWrapper {
+      width: 50%;
+    }
+
+    .infoCol {
+      display: flex;
+      flex-direction: column;
+      padding: 15px 12px;
+      border-radius: 4px;
+      height: 100%;
+      justify-content: space-around;
+
+      .infoItem {
+        &:first-child {
+          border-bottom: 1px solid #000;
+        }
+
+        flex: 1;
+        padding: 5px 0;
+        line-height: 2.3;
+      }
+    }
+  }
+}

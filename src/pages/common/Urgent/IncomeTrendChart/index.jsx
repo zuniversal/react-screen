@@ -94,13 +94,13 @@ const IncomeTrendChart = props => {
       <div className="iconTitle">
         <div className="chartTitle">
           <div className="df">
-            <img src={icon} className="icon" />
+            <img src={icon} className={`icon moneyIcon`} />
             <div className="chartTitle">近30天节能减排收益</div>
           </div>
           <div className="money">{props.incomeTrendInfo.sum}元</div>
         </div>
         <div className="iconRight">
-          <div className="text">累计总收</div>
+          <div className="text">累计总收益</div>
           <div className="money">{props.incomeTrendInfo.sum}元</div>
         </div>
       </div>

@@ -23,3 +23,25 @@ export const getGe30days = p => req.noTipsGet(`/pv/ge_30days/`, p);
 export const getRealStatus = p => req.noTipsGet(`/pv/real_status/`, p);
 // 累计碳资产
 export const getCarbonAssets = p => req.noTipsGet(`/pv/carbon_assets/`, p);
+
+// 注册
+export const register = p => req.noTipsPost(`/register/`, p);
+//
+export const login = p => req.noTipsPost(`/login/`, p);
+// 获取客户列表
+export const getCustomerList = p => req.noTipsGet(`/customer`, p);
+// 获取点位列表
+export const getPointList = p => req.noTipsGet(`/customer/points`, p);
+// 获取点位统计信息
+export const getPointStatistics = p =>
+  req.noTipsGet(`/customer/points/${p.id}/statistics`, p);
+
+// // 获取客户点位列表
+// export const getCustomerPointList = p =>
+//   req.noTipsGet(`/customer/${p.id}/points`, p);
+// // 获取点位详情
+// export const getPointDetail = p =>
+//   req.noTipsGet(`/customer/points/${p.id}/info`, p);
+
+// 告警列表
+export const getAlarmList = p => req.noTipsGet(`/alarm`, p);

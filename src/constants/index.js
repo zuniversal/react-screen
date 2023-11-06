@@ -46,7 +46,7 @@ const proxyPrefix = {
   'https:': '/screen',
 }[protocol];
 
-export const TEST_URL =  proxyPrefix + `/api`;
+export const TEST_URL = proxyPrefix + `/api`;
 export const PROXY_URL = `/api`;
 // export const PROXY_URL = ``;
 // export const PROXY_URL = `/api/v1/cnosole/`;
@@ -91,7 +91,9 @@ export const CRM_HOME = '/crm/clientList';
 // export const CS_HOME = '/cs/home';
 export const CS_SYSTEM = 'CS';
 export const DEF_PALTFORM = 'bp';
+export const EQUIPMENT_ACCOUNT = '/om/equipmentAccount';
 export const USER_CENTER = '/om/userCenter?';
+export const RESET_PWD = '/resetPwd';
 export const HOUSENO = '/om/houseNo?';
 export const SHIFTSARRANGE = '/om/shiftsArrange?';
 export const csSystemNotify = '/cs/systemNotify?';

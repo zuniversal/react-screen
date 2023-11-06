@@ -20,7 +20,7 @@ const LeftContent = props => {
       params.getCarbonAssetsAsync();
     };
     setInterval(() => {
-      req(props);
+      // req(props);
     }, 10000);
     req(props);
   };

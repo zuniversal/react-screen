@@ -1,6 +1,7 @@
 import { init } from '@/utils/createAction';
 import * as services from '@/services/urgent';
 import { nowYearMonthDayFull, toFixed } from '@/utils';
+import { pointStatusMap } from '@/configs';
 import moment from 'moment';
 import { POWER_CURVE } from '@/pages/common/Home/PowerLineChart';
 import * as dataJson from '@/constants/data.json';
@@ -45,6 +46,9 @@ const model = {
   namespace,
 
   state: {
+    customerList: [],
+    customerItem: {},
+
     mapInstance: {},
     mapObj: {},
     dataList: [],
@@ -94,6 +98,11 @@ const model = {
       query: POWER_CURVE,
     },
     powerlineInfo: [],
+
+    pointList: [],
+    pointDetail: {},
+    pointStatistics: {},
+    alarmList: [],
   },
 
   reducers: {
@@ -288,6 +297,78 @@ const model = {
         },
       };
     },
+
+    getCustomerList(state, { payload, data }) {
+      console.log(' getCustomerList ： ', state, payload, data);
+      return {
+        ...state,
+        customerList: data.map(v => ({
+          ...v,
+          value: v.id,
+          label: v.name,
+          position: [v.longitude, v.latitude],
+          type: 'customer',
+        })),
+      };
+    },
+    register(state, { payload, data }) {
+      console.log(' register ： ', state, payload, data);
+      return {
+        ...state,
+        xx: data,
+      };
+    },
+    login(state, { payload, data }) {
+      console.log(' login ： ', state, payload, data);
+      return {
+        ...state,
+        xx: data,
+      };
+    },
+    getPointList(state, { payload, data }) {
+      console.log(' getPointList ： ', state, payload, data);
+      return {
+        ...state,
+        pointList: data.map(v => ({
+          ...v,
+          value: v.id,
+          label: v.name,
+          position: [v.longitude, v.latitude],
+          type: 'customer', // 注意 如果没加  type: 'customer'  不会显示 绿点位
+        })),
+      };
+    },
+    getPointStatistics(state, { payload, data }) {
+      console.log(' getPointStatistics ： ', state, payload, data);
+      return {
+        ...state,
+        pointStatistics: {
+          ...data,
+          statusMap: pointStatusMap[data.status],
+        },
+      };
+    },
+    getCustomerPointList(state, { payload, data }) {
+      console.log(' getCustomerPointList ： ', state, payload, data);
+      return {
+        ...state,
+        customerList: data,
+      };
+    },
+    getPointDetail(state, { payload, data }) {
+      console.log(' getPointDetail ： ', state, payload, data);
+      return {
+        ...state,
+        pointDetail: data,
+      };
+    },
+    getAlarmList(state, { payload, data }) {
+      console.log(' getAlarmList ： ', state, payload, data);
+      return {
+        ...state,
+        alarmList: data,
+      };
+    },
   },
 
   effects: {
@@ -378,6 +459,8 @@ const model = {
       const params = {
         ...powerlineParams,
         ...payload,
+        // start_time: '2023-08-30 00:00:00',
+        // end_time: '2023-08-30 23:59:59',
       };
       const res = yield call(services.getPowerlineInfo, params);
       yield put({
@@ -404,6 +487,89 @@ const model = {
       const res = yield call(services.getRealStatus, payload);
       yield put({
         type: 'getRealStatus',
+        ...res,
+        payload,
+      });
+    },
+    *getCustomerListAsync({ payload, action, type }, { call, put }) {
+      // console.log(' getCustomerListAsync ： ', payload, action, type);
+      const res = yield call(services.getCustomerList, payload);
+      yield put({
+        type: 'getCustomerList',
+        ...res,
+        payload,
+      });
+    },
+    *registerAsync({ payload, action, type }, { call, put }) {
+      // console.log(' registerAsync ： ', payload, action, type);
+      const res = yield call(services.register, payload);
+      yield put({
+        type: 'register',
+        ...res,
+        payload,
+      });
+    },
+    *loginAsync({ payload, action, type }, { call, put }) {
+      // console.log(' loginAsync ： ', payload, action, type);
+      const res = yield call(services.login, payload);
+      yield put({
+        type: 'login',
+        ...res,
+        payload,
+      });
+    },
+    *getPointListAsync({ payload, action, type }, { call, put }) {
+      // console.log(' getPointListAsync ： ', payload, action, type);
+      const res = yield call(services.getPointList, payload);
+      yield put({
+        type: 'getPointList',
+        ...res,
+        payload,
+      });
+    },
+    *getPointStatisticsAsync({ payload, action, type }, { call, put }) {
+      // console.log(' getPointStatisticsAsync ： ', payload, action, type);
+      const res = yield call(services.getPointStatistics, payload);
+      // yield put({
+      //   type: 'getPointStatistics',
+      //   ...res,
+      //   payload,
+      // });
+      const yieldRes = yield put({
+        type: 'getPointStatistics',
+        ...res,
+        payload,
+      });
+      console.log(' onClickMarker yieldRes ： ', yieldRes);
+      const { data = {} } = res;
+      return {
+        ...data,
+        statusMap: pointStatusMap[data.status],
+      };
+    },
+    *getCustomerPointListAsync({ payload, action, type }, { call, put }) {
+      // console.log(' getCustomerPointListAsync ： ', payload, action, type);
+      const res = yield call(services.getCustomerPointList, payload);
+      yield put({
+        type: 'getCustomerPointList',
+        ...res,
+        payload,
+      });
+    },
+    *getPointDetailAsync({ payload, action, type }, { call, put }) {
+      // console.log(' getPointDetailAsync ： ', payload, action, type);
+      const res = yield call(services.getPointDetail, payload);
+      yield put({
+        type: 'getPointDetail',
+        ...res,
+        payload,
+      });
+    },
+    *getAlarmListAsync({ payload, action, type }, { call, put }) {
+      // console.log(' getAlarmListAsync ： ', payload, action, type);
+      const res = yield call(services.getAlarmList, payload);
+      yield put({
+        type: 'getAlarmList',
         ...res,
         payload,
       });

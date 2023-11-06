@@ -366,8 +366,8 @@ FormListCom.defaultProps = {
   // renderHeaderRight: () => {},
 };
 
-const EquipmentAcountForm = props => {
-  console.log(' EquipmentAcountForm ： ', props, props.init);
+const EquipmentAccountForm = props => {
+  console.log(' EquipmentAccountForm ： ', props, props.init);
 
   const { action } = props;
 
@@ -549,33 +549,13 @@ const EquipmentAcountForm = props => {
   };
 
   const areaConfig = [
-    // {
-    //   formType: 'Cascader',
-    //   itemProps: {
-    //     label: '区域',
-    //     name: 'region',
-    //   },
-    //   comProps: {
-    //     options: regoins,
-    //   },
-    // },
-    // {
-    //   noRule: true,
-    //   itemProps: {
-    //     label: '区域',
-    //     name: 'areas',
-    //   },
-    //   comProps: {
-    //     disabled: true,
-    //   },
-    // },
     {
       colCls: 'hidden',
       noRule: true,
       flexRow: 3,
       itemProps: {
         label: '城市编码',
-        name: ['enterprise', 'city_code'],
+        name: 'city',
         ...addrLayout1,
         // hidden: true,
       },
@@ -587,11 +567,10 @@ const EquipmentAcountForm = props => {
     {
       // noRule: true,
       flexRow: 3,
-      // noRule: true,
       itemProps: {
         label: '行政区域编码',
         // name: 'adcode',
-        name: ['enterprise', 'adcode'],
+        name: 'district',
         ...addrLayout1,
       },
       comProps: {
@@ -602,11 +581,9 @@ const EquipmentAcountForm = props => {
     {
       // noRule: true,
       flexRow: 3,
-      // noRule: true,
       itemProps: {
         label: '经度',
-        // name: 'longitude',
-        name: ['enterprise', 'longitude'],
+        name: 'longitude',
         ...addrLayout2,
       },
       comProps: {
@@ -617,11 +594,9 @@ const EquipmentAcountForm = props => {
     {
       // noRule: true,
       flexRow: 3,
-      // noRule: true,
       itemProps: {
         label: '纬度',
-        // name: 'latitude',
-        name: ['enterprise', 'latitude'],
+        name: 'latitude',
         ...addrLayout2,
       },
       comProps: {
@@ -630,7 +605,8 @@ const EquipmentAcountForm = props => {
       },
     },
   ];
-  const deviceInfoConfig = [
+
+  const config = [
     {
       formType: 'rowText',
       itemProps: {
@@ -641,31 +617,44 @@ const EquipmentAcountForm = props => {
     {
       itemProps: {
         label: '设备名称',
-        name: 'keyword',
+        name: 'name',
       },
     },
     {
       itemProps: {
         label: '设备类型',
-        name: 'keyword',
+        name: 'device_type',
       },
     },
     {
+      formType: 'InputNumber',
       itemProps: {
         label: '装机客量(kWh)',
-        name: 'keyword',
+        name: 'capacity',
       },
     },
     {
+      formType: 'InputNumber',
       itemProps: {
         label: '额定电压(V)',
-        name: 'keyword',
+        name: 'voltage',
       },
     },
     {
+      formType: 'InputNumber',
       itemProps: {
         label: '额定电流(A)',
-        name: 'keyword',
+        name: 'current',
+      },
+    },
+    {
+      noRule: true,
+      formType: 'CustomCom',
+      CustomCom: <div></div>,
+      itemProps: {
+        label: '',
+        name: 'block',
+        className: 'ant-col-12 ',
       },
     },
 
@@ -675,11 +664,11 @@ const EquipmentAcountForm = props => {
       // formType: 'Search',
       itemProps: {
         label: '详细地址',
-        name: ['enterprise', 'address'],
+        name: 'address',
         ...addrLayout,
       },
       comProps: {
-        className: 'rowInput ',
+        className: 'rowInput w100',
         // onChange: props.onAddressChange,
       },
     },
@@ -695,33 +684,19 @@ const EquipmentAcountForm = props => {
     {
       itemProps: {
         label: '电力监控设备',
-        name: 'keyword1',
+        name: 'ele_sn',
       },
     },
     {
       itemProps: {
         label: '温湿度监控sn',
-        name: 'keyword2',
+        name: 'ht_sn',
       },
     },
     {
       itemProps: {
         label: '监控告警设置',
-        name: 'keyword3',
-      },
-    },
-  ];
-
-  const config = [
-    ...deviceInfoConfig,
-    {
-      noRule: true,
-      formType: 'CustomCom',
-      CustomCom: <div></div>,
-      itemProps: {
-        label: '',
-        name: 'block',
-        className: 'ant-col-12 ',
+        name: 'monitor_id',
       },
     },
   ].map(v => ({
@@ -735,13 +710,7 @@ const EquipmentAcountForm = props => {
       isDisabledAll={action === 'detail'}
       {...props}
       init={{
-        ...objNum2str(props.init, [
-          // 'service_organization_id',
-          'service_staff_id',
-          'last_service_staff_id',
-          'service_enterprise_id',
-          'tags',
-        ]),
+        ...objNum2str(props.init, []),
       }}
       formLayouts={formLayouts}
       flexRow={2}
@@ -752,7 +721,7 @@ const EquipmentAcountForm = props => {
   console.log(' configconfig ： ', config);
 
   return (
-    <div classname="equipmentAcountForm">
+    <div classname="equipmentAccountForm">
       <Form.Provider
         onFormFinish={(name, { values, forms }) => {
           console.log(' name, values, forms ： ', name, values, forms);
@@ -764,6 +733,4 @@ const EquipmentAcountForm = props => {
   );
 };
 
-FormListCom.defaultProps = {};
-
-export default EquipmentAcountForm;
+export default EquipmentAccountForm;

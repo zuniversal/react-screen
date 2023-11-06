@@ -3,7 +3,7 @@ import './style.less';
 import SmartEchart from '@/common/SmartEchart';
 import { createIndexArr } from '@/utils';
 import { datas } from '@/configs/datas';
-import { Tabs,  } from 'antd';
+import { Tabs } from 'antd';
 const { TabPane } = Tabs;
 
 const monthArr = createIndexArr(24).map(v => `${v}`);
@@ -236,8 +236,8 @@ const legendOptions = {
     textStyle: {
       color: '#ffffff',
     },
-  }
-}
+  },
+};
 const optionHandle = params => {
   const {
     // data = [],
@@ -270,7 +270,14 @@ const optionHandle = params => {
       trigger: 'axis',
       formatter: params => {
         return params
-          .map(v => `${v.marker} ${query === powerConfigMap.POWER_LOAD ? '' : v.seriesName} ${v.value ?? '-'} ${configs.find(v => v.key === query).yAxisName}<br/>`)
+          .map(
+            v =>
+              `${v.marker} ${
+                query === powerConfigMap.POWER_LOAD ? '' : v.seriesName
+              } ${v.value ?? '-'} ${
+                configs.find(v => v.key === query).yAxisName
+              }<br/>`,
+          )
           .join(' ');
       },
     },
@@ -289,7 +296,7 @@ const optionHandle = params => {
         data:
           query === powerConfigMap.POWER_CURVE
             ? monthArr
-            : data?.map(v => v.uptime.split(' ')[1].split('.')[0]),
+            : data?.map(v => v.uptime?.split(' ')[1]?.split('.')[0]),
         boundaryGap: false,
       },
     ],
@@ -365,7 +372,11 @@ const optionHandle = params => {
 
 const ActionTabs = props => {
   return (
-    <Tabs defaultActiveKey="1" onChange={props.onChange} activeKey={props.activeKey}>
+    <Tabs
+      defaultActiveKey="1"
+      onChange={props.onChange}
+      activeKey={props.activeKey}
+    >
       {configs.map((v, i) => (
         <TabPane {...v}></TabPane>
       ))}
@@ -374,7 +385,7 @@ const ActionTabs = props => {
 };
 
 const PowerLineChart = props => {
-  console.log(' PowerLineChart ： ', props   )// 
+  console.log(' PowerLineChart ： ', props); //
   const { powerlineInfo, powerlineParams } = props;
   const option = optionHandle({
     ...props,
@@ -383,7 +394,7 @@ const PowerLineChart = props => {
   });
 
   const onChange = key => {
-    console.log(' onChangeonChange ： ', key   )// 
+    console.log(' onChangeonChange ： ', key); //
     props.getPowerlineInfoAsync({
       ...powerlineParams,
       query: key,
@@ -398,9 +409,16 @@ const PowerLineChart = props => {
 
   return (
     <div className="rightBox powerLineChart">
-      <ActionTabs onChange={onChange} activeKey={powerlineParams.query}></ActionTabs>
+      <ActionTabs
+        onChange={onChange}
+        activeKey={powerlineParams.query}
+      ></ActionTabs>
       <div className="powerLineChartWrapper">
-        <SmartEchart {...props} option={option} key={powerlineParams.query}></SmartEchart>
+        <SmartEchart
+          {...props}
+          option={option}
+          key={powerlineParams.query}
+        ></SmartEchart>
       </div>
     </div>
   );

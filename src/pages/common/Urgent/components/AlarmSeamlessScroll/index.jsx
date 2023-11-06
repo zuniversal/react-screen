@@ -46,13 +46,13 @@ const AlarmSeamlessItem = props => {
   return (
     <div className={`alarmSeamlessItem ${props.type == 1 ? 'warn' : 'error'}`}>
       <div className="label">
-        点位： <span className="val">{props.point}</span>
+        点位： <span className="val">{props.device_name}</span>
       </div>
       <div className="label f2">
-        告警： <span className="val">{props.alarm}</span>
+        告警： <span className="val">{props.name}</span>
       </div>
       <div className="label item3">
-        时长： <span className="val">{props.time}分钟</span>
+        时长： <span className="val">{props.duration}分钟</span>
       </div>
     </div>
   );
@@ -77,7 +77,7 @@ const AlarmSeamlessScroll = props => {
           speed={20}
         >
           <div className={``}>
-            {config.map((v, i) => (
+            {props.alarmList.map((v, i) => (
               <AlarmSeamlessItem key={i} {...v}></AlarmSeamlessItem>
             ))}
           </div>

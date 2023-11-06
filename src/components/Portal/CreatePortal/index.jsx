@@ -4,7 +4,7 @@ import './style.less';
 
 const CreatePortal = props => {
   return ReactDOM.createPortal(
-    <div className={'fullScreen  '}>{props.children}</div>,
+    <div className={`fullScreen ${props?.className}`}>{props.children}</div>,
     document.getElementById('root'),
   );
 };

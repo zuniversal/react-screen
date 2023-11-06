@@ -208,11 +208,7 @@ export class Request {
         // return res.data
         const { data, ...rest } = res.data;
 
-        return res.data
-        return {
-          ...data,
-          rest,
-        };
+        return res.data;
       },
       err => {
         console.log(' 请求发生错误了：', err, err.message, err.response, {

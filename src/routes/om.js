@@ -6,8 +6,8 @@ export default [
   },
 
   {
-    path: '/om/equipmentAcount',
-    component: '@/pages/common/EquipmentAcount',
+    path: '/om/equipmentAccount',
+    component: '@/pages/common/EquipmentAccount',
     title: '设备台账',
   },
   {
@@ -19,5 +19,15 @@ export default [
     path: '/om/alarmRecord',
     component: '@/pages/common/AlarmRecord',
     title: '告警记录',
+  },
+  {
+    path: '/om/userCenter',
+    component: '@/pages/common/UserCenter',
+    title: '用户中心',
+  },
+  {
+    path: '/om/resetPwd',
+    component: '@/pages/common/ResetPwd',
+    title: '密码重置',
   },
 ];
