@@ -7,7 +7,7 @@ const SystemTitle = props => {
   const { title } = props;
   return (
     <div className="systemTitle">
-      <img src={logos} className="logo" />
+      <img src={logo} className="logo" />
       <div className="title">{title}</div>
     </div>
   );
