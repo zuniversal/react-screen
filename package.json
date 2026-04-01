@@ -1,8 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "start": "set NODE_OPTIONS=--openssl-legacy-provider && umi dev",
-    "start2": "umi dev",
+    "start": "umi dev",
+    "startw": "set NODE_OPTIONS=--openssl-legacy-provider && umi dev",
+    "startl": "export NODE_OPTIONS=--openssl-legacy-provider && umi dev",
     "build": "umi build",
     "build2": "set NODE_OPTIONS=--openssl-legacy-provider && umi build && scp -r ./dist/ root@101.132.155.166:/root/deploy/react-screen/dist/",
     "postinstall": "umi generate tmp",

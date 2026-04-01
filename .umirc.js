@@ -6,9 +6,9 @@ export default defineConfig({
   // mfsu: { production: { output: '.mfsu-production' } },
   // mfsu: {},
 
-  nodeModulesTransform: {
-    type: 'none',
-  },
+  // nodeModulesTransform: {
+  //   type: 'none',
+  // },
   hash: true,
   history: {
     type: 'hash',
